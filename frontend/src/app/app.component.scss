@@ -1,0 +1,124 @@
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+.container {
+  display: flex;
+  height: 100%;
+  margin-right: 0;
+  margin-left: 0;
+  padding: 0;
+  max-width: 1500px;
+  overflow: hidden;
+  height: calc(100vh - 64px);
+  /* Altura de mat-toolbar - HAY QUE REVISTAR */
+}
+
+
+
+.menu {
+  max-width: 234px;
+  width: 100%;
+  height: 100%;
+  border-right: 1px solid var(--grey-200);
+  background-color: var(--white);
+}
+
+#routeo {
+  width: 100%;
+  flex-grow: 1;
+  padding: 10px 10px; //pedido por UX
+  overflow-x: auto; //  evitar scroll horizontal completamente
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+
+.menu.hidden {
+  display: none;
+}
+
+
+.logo-text {
+  font-size: 24px;
+  margin-left: 8px;
+  color: var(--white) !important;
+  opacity: 1 !important;
+  text-shadow: none !important;
+  filter: none !important;
+  font-weight: bold;
+}
+
+.icon-color {
+  color: var(--white);
+}
+
+.logo-img {
+  filter: brightness(0) invert(1);
+}
+
+
+.mat-toolbar {
+  background: var(--primary);
+
+}
+
+/*ajuste de el icono y el logo*/
+mat-toolbar {
+  display: flex !important;
+  align-items: center !important;
+  /* alineación vertical perfecta */
+  padding: 0 16px !important;
+  height: 64px;
+  /* misma altura del toolbar */
+  box-sizing: border-box;
+}
+
+/* Asegura que el contenedor interno mantenga alineación */
+.toolbar-container {
+  display: flex;
+  align-items: center;
+}
+
+
+
+/* Alinea correctamente el botón */
+.menu-toggle-btn {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  background: transparent !important;
+}
+
+
+.menu-toggle-btn .icon-color {
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+  line-height: 24px;
+  color: var(--primary);
+}
+
+/* Alinea el link (imagen + texto) */
+.logo-link {
+  display: flex;
+  align-items: center !important;
+}
+
+/* Asegura que la imagen del logo no rompa la alineación */
+.logo-link img {
+  display: block;
+}
+
+.logo-link,
+.logo-link:visited,
+.logo-link:hover,
+.logo-link:active {
+  text-decoration: none;
+}

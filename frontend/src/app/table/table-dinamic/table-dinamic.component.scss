@@ -1,0 +1,253 @@
+.mat-mdc-header-cell .mat-mdc-checkbox {
+    margin-top: 6px;
+}
+
+.mat-mdc-checkbox {
+    display: inline-block;
+    /* margin-right: 5px; */
+    padding-top: 8px;
+}
+
+// table td {
+//     font-weight: 400;
+// }
+
+.hide {
+    visibility: hidden;
+}
+
+// mat-row:hover .hide {
+//     visibility: visible;
+//     font-size: 15pt;
+// }
+
+.hide {
+    font-size: 15pt;
+}
+
+h5 button {
+    margin-right: 3px;
+    margin-left: 3px;
+}
+
+// th {
+//     margin-left: 2px;
+//     text-align: left;
+// }
+
+// tr {
+//     font-size: 11pt;
+//     color: rgb(53, 53, 53);
+//     font-weight: 600;
+// }
+
+fa-icon {
+    font-size: 11pt;
+    color: rgb(53, 53, 53);
+}
+
+td fa-icon {
+    font-size: 13pt;
+}
+
+
+::ng-deep .my-table .mat-mdc-header-cell,
+::ng-deep .my-table .mat-mdc-cell {
+    padding: 16px !important;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+
+
+::ng-deep .my-table .mat-mdc-row {
+    height: 52px !important;
+}
+
+::ng-deep .my-table .mat-mdc-header-row {
+    height: 56px !important;
+}
+
+.group-header-cell {
+    text-align: center;
+    padding: 8px;
+    border-left-width: 1px !important;
+    border-left-color: rgb(188, 188, 188) !important;
+
+
+}
+
+::ng-deep th.group-header-cell {
+    border-right: 1px solid #ccc !important;
+}
+
+.table-wrapper {
+    max-width: auto !important;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    width: 100%;
+}
+
+app-table-paginator {
+    display: block;
+    padding-top: 8px;
+    width: 100%;
+}
+
+
+
+.mdc-data-table__row:last-child .mat-mdc-cell {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.mdc-data-table__row .mat-mdc-cell {
+    border-bottom: 1px solid #6c757d;
+}
+
+.even-row:hover {
+    background-color: var(--table-row-hover, #dee2e6) !important;
+}
+
+.odd-row:hover {
+    background-color: var(--table-row-hover, #dee2e6) !important;
+}
+
+
+.even-row {
+    background-color: var(--table-row-even, #ffffff) !important;
+}
+
+.odd-row {
+    background-color: var(--table-row-odd, #DEE2E6) !important;
+}
+
+.selected-row {
+    background-color: var(--table-row-select, rgb(45, 45, 45)) !important;
+    // border-bottom: 2px solid #183058 !important;
+}
+
+.mdc-data-table__row.selected-row .mat-mdc-cell {
+  border-bottom: 2px solid  var(--table-row-border-select, rgb(45, 45, 45)) !important;;
+}
+
+
+.col-check {
+    width: 30px;
+    /* achicá el ancho de la columna */
+    max-width: 30px;
+    padding: 0;
+    /* eliminá padding extra */
+    text-align: center;
+}
+
+mat-checkbox {
+    padding: 0;
+    margin: 0 auto;
+    /* centrado */
+}
+
+
+::ng-deep .mdc-checkbox__ripple {
+    display: none !important;
+}
+
+::ng-deep .mat-mdc-cell mat-form-field {
+    width: 100%;
+    /* que tome el ancho completo disponible dentro del padding */
+    box-sizing: border-box;
+    margin: 0;
+    /* sin margen extra */
+    display: block;
+}
+
+
+
+
+/* Opcional: achicar los botones dentro de las filas */
+::ng-deep .mat-icon-button {
+    width: 24px !important;
+    height: 24px !important;
+    line-height: 24px !important;
+}
+
+/* Opcional: achicar el mat-form-field si hay inputs dentro de la celda */
+::ng-deep .mat-mdc-form-field {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.no-data-message {
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+.my-table {
+    width: 100%;
+    table-layout: auto;
+}
+
+
+
+.my-table th,
+.my-table td {
+    white-space: normal;
+    word-break: normal;
+}
+
+// /* CONTENEDOR DEL CHECK */
+.mat-mdc-checkbox {
+    width: 24px;
+    height: 24px;
+    padding: 0 4px !important;
+}
+
+/* COLOR BASE (para currentColor del borde) */
+.col-check .mat-mdc-checkbox {
+    color: #000000;
+    --mdc-checkbox-unselected-icon-color: #000000;
+}
+
+/* SOLO header tiene que llevar blanco */
+.h-check .mat-mdc-checkbox {
+
+    --mdc-checkbox-unselected-icon-color: white;
+    --mdc-checkbox-unselected-hover-icon-color: white;
+    --mdc-checkbox-unselected-focus-icon-color: white;
+    --mdc-checkbox-unselected-pressed-icon-color: white;
+
+}
+
+/* CONTENEDOR MDC */
+.mat-mdc-checkbox .mdc-checkbox {
+    width: 24px;
+    height: 24px;
+    box-sizing: border-box;
+}
+
+/* CAJA VISIBLE */
+.mdc-checkbox__background {
+    width: 24px;
+    height: 24px;
+    box-sizing: border-box;
+    border-radius: 2px;
+    background-color: transparent;
+}
+
+/* CHECKMARK (tilde) */
+.mdc-checkbox__checkmark {
+    width: 14px;
+    height: 14px;
+}
+
+
+::ng-deep .my-table .mat-mdc-cell {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    color: #000000;
+}

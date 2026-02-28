@@ -1,0 +1,35 @@
+spring:
+  liquibase:
+    enabled: false
+
+# ----------------------------------------
+# DATASOURCE PARAMETERS
+# ----------------------------------------
+    
+#server.servlet.context-Path: /pipers   
+#server.servlet.context-Path: 
+
+#esto es apra poder realizar el qr dependiendo el ambiente
+frontend:
+  base-url: http://localhost:4200/#/egresoStock
+           
+
+
+
+
+
+
+
+
+
+
+
+debug: false
+
+
+
+
+
+
+
+

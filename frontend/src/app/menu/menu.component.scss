@@ -1,0 +1,78 @@
+.menu-list {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* Cada item */
+.menu-list .mat-mdc-list-item {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  min-height: 40px;
+  /* opcional, más compacto */
+}
+
+/* Texto */
+.menu-list .mat-mdc-list-item .mdc-list-item__primary-text {
+  font-weight: 500;
+}
+
+/* Ícono */
+.menu-list mat-icon {
+  color: var(--grey-700);
+}
+
+/* Hover */
+.menu-list .mat-mdc-list-item:hover {
+  //  background-color: var(--primary-soft);
+}
+
+.menu-list .mat-mdc-list-item:hover,
+.menu-list .mat-mdc-list-item:hover mat-icon {
+  color: var(--primary);
+}
+
+/* Activo */
+.menu-list a.active {
+  //  background-color: var(--primary-soft);
+  //   color: var(--primary);
+}
+
+.menu-list a.active mat-icon {
+  //  color: var(--primary);
+}
+
+.menu-list a.active {
+  // background-color: var(--primary-soft);
+}
+
+
+/* Estado normal */
+.menu-list .item-text,
+.menu-list .item-icon {
+  color: var(--grey-700);
+}
+
+/* Hover */
+.menu-list a.active,
+.menu-list a.active .item-text,
+.menu-list a.active .item-icon,
+.menu-list a:focus //.menu-list a:visited
+
+  {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.menu-list a.active mat-icon {
+  color: var(--primary);
+}
+
+
+/* Hover: icono + texto */
+.menu-list .mat-mdc-list-item:hover mat-icon,
+.menu-list .mat-mdc-list-item:hover .mdc-list-item__primary-text,
+.menu-list .mat-mdc-list-item:hover .item-text {
+  color: var(--primary);
+  font-weight: 600;
+
+}

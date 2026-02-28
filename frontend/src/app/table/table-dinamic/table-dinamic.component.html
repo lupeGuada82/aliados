@@ -1,0 +1,94 @@
+<!-- Toolbar con los check de visibilidad  de columnas y botón agregar -->
+<app-toolbar-actions [settings]="settings" (add)="onAdd($event)" (massive)="onMassive($event)"
+  [dataSource]="dataSource"></app-toolbar-actions>
+<!--  tabla -->
+<div #tableContainer class="table-wrapper">
+  <div #tableResponsive class="table-responsive" [class.with-scroll]="needScroll" style="overflow-x:auto;">
+    <table #tableEl mat-table [dataSource]="dataSource" matSort class="my-table mat-elevation-z8 noselect"
+      (matSortChange)="changeSort($event)" [style.min-width]="needScroll ? tableMinWidth : null">
+      <!-- Columna seleccion de filas  -->
+      <ng-container *ngIf="columnsKeyIncludes('select')" matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef class="h-check">
+          <mat-checkbox (change)="masterToggle()" [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()" disableRipple>
+          </mat-checkbox>
+        </th>
+
+        <td mat-cell *matCellDef="let row" class="col-check">
+          <mat-checkbox (click)="$event.stopPropagation()" (change)="onCheckboxChange(row)"
+            [checked]="selection.isSelected(row)" disableRipple>
+          </mat-checkbox>
+        </td>
+
+      </ng-container>
+      <!-- se agergan todas las columnas menos acciones -->
+      <!-- Columna ACCIONES separada -->
+      <ng-container matColumnDef="acciones">
+
+        <th mat-header-cell *matHeaderCellDef stickyEnd> </th>
+        <td mat-cell *matCellDef="let row; let i = index" stickyEnd>
+          <app-table-actions [settings]="settings" [row]="row" [index]="i" [isEditing]="isRowEditing(row)"
+            (show)="onShow($event)" [dataSource]='dataSource' (navigate)="onNavigate(row)" (edit)="onEdit($event)"
+            (editConfirm)="onEditConfirm($event)" (cancel)="onCancel($event)" (delete)="onDelete($event)"
+            (add)="onAdd($event)" (addConfirm)="onAddConfirm($event)" (copy)="onCopy($event)">
+          </app-table-actions>
+      </ng-container>
+      <!-- app-create -->
+      <ng-container *ngFor="let column of columns">
+        <ng-container *ngIf="column.key !== 'acciones'">
+          <ng-container [matColumnDef]="column.key">
+            <!-- HEADER -->
+            <th mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="column.headerClass">
+              {{ column.label }}
+            </th>
+            <!-- CELDA -->
+            <td mat-cell *matCellDef="let row">
+                <app-table-cell [column]="column" [row]="row" [formGroup]="formGroups.get(row)"
+                  [isEditing]="isRowEditing(row)" [settings]="settings" (editConfirm)="onEditConfirm($event)"
+                  (addConfirm)="onAddConfirm($event)">
+                </app-table-cell>
+            </td>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+
+      <!-- Fila de Encabezado Agrupado  -->
+      <ng-container *ngIf="settings.headerGroup?.length > 0">
+        <tr class="mat-header-row" *ngIf="settings.headerGroup?.length > 0">
+          <!-- Fila default si tiene acciones -->
+          <ng-container *ngIf="getDefaultGroupColspan() > 0 && settings.headerGroup?.length > 0">
+            <ng-container matColumnDef="default">
+              <th mat-header-cell *matHeaderCellDef [attr.colspan]="getDefaultGroupColspan()"></th>
+            </ng-container>
+          </ng-container>
+
+          <!-- Grupos definidos por headerGroup -->
+          <ng-container *ngFor="let group of settings.headerGroup">
+            <ng-container [matColumnDef]="group.nameGroup">
+              <th mat-header-cell *matHeaderCellDef [attr.colspan]="getColumnVisible(group.groupColumns)"
+                class="group-header-cell">
+                {{ group.nameGroup }}
+              </th>
+            </ng-container>
+          </ng-container>
+        </tr>
+        <tr mat-header-row *matHeaderRowDef="groupedHeaderRowKeys"></tr>
+      </ng-container>
+      <!-- Header & Rows - tienen que estar aca para que funcione el resto -->
+      <tr mat-header-row *matHeaderRowDef="columnKeys"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnKeys;  let i = index" [class.even-row]="i % 2 === 0"
+        [class.odd-row]="i % 2 !== 0"
+        [class.selected-row]="selection.isSelected(row)"></tr>
+    </table>
+  </div>
+  <ng-container *ngIf="dataSource?.data.length === 0">
+    <div class="no-data-message">{{settings.noDataMessage}}</div>
+  </ng-container>
+
+  <!-- Paginación -->
+  <ng-container *ngIf="settings.pagination.enabled">
+    <table-paginator [hidden]="dataSource?.data.length === 0" [length]="dataSource?.data.length"
+      [pagination]="settings.pagination">
+    </table-paginator>
+  </ng-container>
+</div>

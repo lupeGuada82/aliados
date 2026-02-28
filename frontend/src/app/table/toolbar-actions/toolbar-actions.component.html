@@ -1,0 +1,39 @@
+<div class="table-actions">
+    <ng-container *ngIf="isExport()">
+        <button [matMenuTriggerFor]="menu" class="export-button"  [disabled]="grisarEditing(actionExport.disabled)">
+            <mat-icon [fontSet]="actionExport.fontSet">{{ actionExport?.icon }}</mat-icon>
+            <span class="button-text">{{ actionExport?.label }}</span>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="export('pdf')">PDF</button>
+            <button mat-menu-item (click)="export('xls')">Excel</button>
+            <button mat-menu-item (click)="export('csv')">CSV</button>
+        </mat-menu>
+    </ng-container>
+    <ng-container *ngIf="isHidenColumn()">
+        <button [matMenuTriggerFor]="menu" class="hide-button"  [disabled]="grisarEditing(actionHidenColumn.disabled)">
+            <mat-icon [fontSet]="actionHidenColumn.fontSet">{{ actionHidenColumn?.icon }}</mat-icon>
+            <span class="button-text">{{ actionHidenColumn?.label }}</span>
+        </button>
+        <mat-menu #menu="matMenu">
+            <column-visibility-selector [columns]="hideableColumns"></column-visibility-selector>
+        </mat-menu>
+    </ng-container>
+    <ng-container *ngIf="isAdd()">
+        <button [disabled]="grisar(actionAdd.disabled)" class="add-button" (click)="add.emit({dataSource})">
+            <mat-icon [fontSet]="actionAdd.fontSet">{{ actionAdd?.icon }}</mat-icon>
+            <span class="button-text">{{ actionAdd?.label }}</span>
+        </button>
+    </ng-container>
+    <ng-container *ngIf="settings.massiveActions.length > 0">
+        <button mat-icon-button [matMenuTriggerFor]="menu" class="massiveActions">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <ng-container *ngFor="let action of settings.massiveActions">
+                <button mat-menu-item (click)="executeMassive(action.name)"
+                    [disabled]="!evaluateConditionMassive(action)">{{action.label}}</button>
+            </ng-container>
+        </mat-menu>
+    </ng-container>
+</div>

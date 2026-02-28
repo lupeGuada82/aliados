@@ -1,0 +1,5 @@
+<mat-form-field appearance="fill">
+    <input matInput type="text" [formControl]="control" (keydown.enter)="addEditConfirmed()" />
+    <mat-icon matSuffix *ngIf="control.invalid && (control.dirty || control.touched)"  class="error-icon">error</mat-icon>
+
+</mat-form-field>

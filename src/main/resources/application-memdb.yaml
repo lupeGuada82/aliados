@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:pipers
+    username: sa
+    password: sa
+    driverClassName: org.h2.Driver
+  h2:
+    # default path: h2-console
+    console.enabled: false
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    hibernate.ddl-auto: create
+    generate-ddl: true
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+#      javax:
+#        persistence:
+#          schema-generation:
+#            scripts:
+#              create-source: metadata
+#              action: create
+#              create-target: create.sql
+  liquibase:
+    enabled: false
+
+springdoc:
+  swagger-ui:
+    enabled: true
+
+sgi:
+  authentication:
+    base_url: https://tstpaec.gde.gob.ar/auth/realms/*/protocol/openid-connect

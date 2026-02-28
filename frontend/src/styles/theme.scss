@@ -1,0 +1,186 @@
+@use '@angular/material' as mat;
+
+
+/* ================================================================
+   1) PALETA DE GRISES
+   ================================================================ */
+
+$grey-palette: mat.define-palette((100: #f8f9fa,
+         200: #e9ecef,
+         300: #dee2e6,
+         400: #ced4da,
+         500: #adb5bd,
+         600: #6c757d,
+         700: #495057,
+         800: #343a40,
+         900: #212529,
+         contrast: (100: black,
+            200: black,
+            300: black,
+            400: black,
+            500: black,
+            600: white,
+            700: white,
+            800: white,
+            900: white)));
+
+
+/* ================================================================
+   2) PALETA PRIMARY SEGÚN FIGMA
+   ================================================================ */
+$primary-palette: mat.define-palette((50: #ECEFF1,
+         100: #CFD8DC,
+         200: #B0BEC5,
+         300: #90A4AE,
+         400: #78909C,
+         500: #607D8B, // BASE
+         600: #546E7A,
+         700: #455A64,
+         800: #37474F,
+         900: #263238,
+
+         contrast: (50: black,
+            100: black,
+            200: black,
+            300: black,
+            400: black,
+            500: white,
+            600: white,
+            700: white,
+            800: white,
+            900: white,
+         )), 500);
+
+// mat.define-palette((
+//   50:  #FFF8E1,
+//   100: #FFECB3,
+//   200: #FFE082,
+//   300: #FFD54F,
+//   400: #FFCA28,
+//   500: #FFC107,
+//   600: #FFB300,
+//   700: #FFA000,
+//   800: #FF8F00,
+//   900: #FF6F00,
+//   A100: #FFE57F,
+//   A200: #FFD740,
+//   A400: #FFC400,
+//   A700: #FFAB00,
+//   contrast: (
+//     500: black,
+//   )
+// ), 500);
+
+// $primary-palette: mat.define-palette((
+//        50: #F1F5FB,
+//       100: #E3EBF7,
+//       200: #C7D7F0,
+//       300: #ABC2E8,
+//       400: #8FAEE0,
+//       500: #6590D5,
+//       600: #3061AF, // PRIMARY REAL
+//       700: #285192,
+//       800: #204075,
+//       900: #183058,
+//       contrast: (50: black,
+//         100: black,
+//         200: black,
+//         300: white,
+//         400: white,
+//         500: white,
+//         600: white,
+//         700: white,
+//         800: white,
+//         900: white,
+//       )), 600); // DEFAULT PRIMARY COLOR 600
+
+
+/* ================================================================
+   3) PALETA SECONDARY SEGÚN FIGMA
+   ================================================================ */
+
+$secondary-palette: mat.define-palette((100: #ABB5BE, // light
+         600: #6c757d, // main
+         700: #54595E, // dark
+         contrast: (100: black,
+            500: white,
+            700: white,
+         )), 600);
+
+
+
+/* ================================================================
+   4) DEFINICIÓN DEL TEMA LIGHT
+   ================================================================ */
+
+$my-theme: mat.define-light-theme((color: (primary: $primary-palette,
+            accent: $secondary-palette,
+         )));
+
+/* ================================================================
+   5) APLICAR EL TEMA A TODOS LOS COMPONENTES
+   ================================================================ */
+@include mat.all-component-themes($my-theme);
+
+$tertiary-palette: mat.define-palette((50: #E0F7FA,
+         100: #B2EBF2,
+         200: #80DEEA,
+         300: #4DD0E1,
+         400: #26C6DA,
+         500: #00BCD4, // BASE
+         600: #00ACC1,
+         700: #0097A7,
+         800: #00838F,
+         900: #006064,
+
+         contrast: (50: black,
+            100: black,
+            200: black,
+            300: black,
+            400: black,
+            500: white,
+            600: white,
+            700: white,
+            800: white,
+            900: white,
+         )), 500);
+
+
+/* ================================================================
+   6) VARIABLES CSS (para usar en toda la app)
+   ================================================================ */
+
+:root {
+   /* PRIMARY */
+   --primary: #{mat.get-color-from-palette($primary-palette)};
+   --primary-soft: #{mat.get-color-from-palette($primary-palette, 50)};
+   --primary-light: #{mat.get-color-from-palette($primary-palette, 200)};
+   --primary-dark: #{mat.get-color-from-palette($primary-palette, 900)};
+   --primary-400: #{mat.get-color-from-palette($primary-palette, 400)};
+
+
+   /* SECONDARY */
+   --secondary: #{mat.get-color-from-palette($secondary-palette)};
+   --secondary-light: #{mat.get-color-from-palette($secondary-palette, 100)};
+   --secondary-dark: #{mat.get-color-from-palette($secondary-palette, 700)};
+
+
+   --tertiary: #{mat.get-color-from-palette($tertiary-palette)};
+   --tertiary-light: #{mat.get-color-from-palette($tertiary-palette, 100)};
+   --tertiary-soft: #{mat.get-color-from-palette($tertiary-palette, 50)};
+   --tertiary-dark: #{mat.get-color-from-palette($tertiary-palette, 700)};
+   /* GREYS */
+   --grey-900: #{mat.get-color-from-palette($grey-palette, 900)};
+   --grey-700: #{mat.get-color-from-palette($grey-palette, 700)};
+   --grey-500: #{mat.get-color-from-palette($grey-palette, 500)};
+   --grey-200: #{mat.get-color-from-palette($grey-palette, 200)};
+
+   /* ESTADOS */
+   --status-success: #198754;
+   --status-danger: #DC3545;
+   --status-warning: #FFC107;
+   --status-info: #0DCAF0;
+
+   /* OTROS */
+   --white: #FFFFFF;
+}
