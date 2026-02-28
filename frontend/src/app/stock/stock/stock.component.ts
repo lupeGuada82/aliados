@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { AbstractEntityComponent } from '../../abstract-entity/abstract-entity.component';
 import { ColumnSetting, CustomAction } from '../../table/utils/utils';
 import { stockProductos } from '../../data/stock-data';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-stock',
@@ -10,6 +12,10 @@ import { stockProductos } from '../../data/stock-data';
 })
 export class StockComponent extends AbstractEntityComponent {
 
+  constructor(route: ActivatedRoute, router: Router, titleService: Title) {
+    super(route, router, titleService);
+  }
+
 
 
   createTable() {
@@ -17,13 +23,13 @@ export class StockComponent extends AbstractEntityComponent {
       new ColumnSetting({
         key: 'codigo',
         label: 'Codigo',
-        cellClass: 'column-codigo',
+       // cellClass: 'column-codigo',
         isAddable: true
       }),
       new ColumnSetting({
         key: 'nombre',
         label: 'Nombre',
-        cellClass: 'column-nombre',
+       // cellClass: 'column-nombre',
         isAddable: true,
         isEditable: true
       }),
@@ -33,12 +39,12 @@ export class StockComponent extends AbstractEntityComponent {
         label: 'Stock Minimo',
         isEditable: true,
         isAddable: true,
-        className: 'column-stockMinimo'
+        //className: 'column-stockMinimo'
       }),
       new ColumnSetting({
         key: 'stockActual',
         label: 'Stock Actual',
-        className: 'column-stockActual',
+        //className: 'column-stockActual',
       }),
 
       new ColumnSetting({
@@ -60,7 +66,7 @@ new ColumnSetting({
     this.settings.createAddAction = true;
     this.settings.createEditAction = true;
     this.settings.pagination.pageSize = 10;
-    this.settings.createExportAction=false
+    this.settings.createExportAction=false;
 
     this.settings.customActions = this.createActionsAjustarStock();
   
@@ -89,7 +95,7 @@ new ColumnSetting({
     return 'stock';
   }
   protected override loadData() {
-            this.data = stockProductos;
+            this.data.data = stockProductos;
             this.createTable();
         
   }

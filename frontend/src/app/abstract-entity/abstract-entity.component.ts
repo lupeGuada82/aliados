@@ -2,13 +2,14 @@ import { Directive, OnInit } from '@angular/core';
 import { TableConfiguration } from '../table/utils/utils';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 @Directive()
 export abstract class AbstractEntityComponent implements  OnInit {
 
   displayedColumns: any[] = [];
-  data: any[];
+  data= new MatTableDataSource<any>();
   settings = new TableConfiguration();
 
   constructor(protected route: ActivatedRoute, protected router: Router, protected titleService: Title) {

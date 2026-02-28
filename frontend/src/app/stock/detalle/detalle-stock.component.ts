@@ -51,18 +51,18 @@ export class DetalleStockComponent implements OnInit {
       new ColumnSetting({
         key: 'fecha',
         label: 'Fecha',
-        className: 'column-fecha'
+       // className: 'column-fecha'
       }),
 
       new ColumnSetting({
         key: 'cantidad',
         label: 'Cantidad',
-        className: 'column-cantidad'
+        //className: 'column-cantidad'
       }),
       new ColumnSetting({
         key: 'responsable',
         label: 'Responsable',
-        className: 'column-responsable',
+        //className: 'column-responsable',
       }),
 
       new ColumnSetting({
@@ -73,13 +73,13 @@ export class DetalleStockComponent implements OnInit {
       new ColumnSetting({
         key: 'estado',
         label: 'Estado',
-        className: 'column-estado',
+        //className: 'column-estado',
 
       }),
       new ColumnSetting({
         key: 'observacion',
         label: 'Observacion',
-        className: 'column-observacion',
+       // className: 'column-observacion',
       })
 
     ];
@@ -117,18 +117,18 @@ export class DetalleStockComponent implements OnInit {
       new ColumnSetting({
         key: 'fecha',
         label: 'Fecha',
-        className: 'column-fecha'
+      //  className: 'column-fecha'
       }),
 
       new ColumnSetting({
         key: 'cantidad',
         label: 'Cantidad',
-        className: 'column-cantidad'
+       // className: 'column-cantidad'
       }),
       new ColumnSetting({
         key: 'observacion',
         label: 'Observacion',
-        className: 'column-observacion',
+      //  className: 'column-observacion',
       }),
 
       new ColumnSetting({
@@ -139,7 +139,7 @@ export class DetalleStockComponent implements OnInit {
       new ColumnSetting({
         key: 'estado',
         label: 'Estado',
-        className: 'column-estado',
+        //className: 'column-estado',
 
       })
 

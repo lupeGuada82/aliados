@@ -8,7 +8,7 @@ import { LocatizationService } from './localization/localization.service';
 
 
 @Component({
-    selector: 'table',
+    selector: 'table-component',
     standalone: true,
     templateUrl: './table.component.html',
     styleUrls: ['./table.component.scss'],
