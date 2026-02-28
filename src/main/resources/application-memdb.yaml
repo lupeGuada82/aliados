@@ -6,7 +6,7 @@ spring:
     driverClassName: org.h2.Driver
   h2:
     # default path: h2-console
-    console.enabled: false
+    console.enabled: true
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     defer-datasource-initialization: true
@@ -30,6 +30,10 @@ springdoc:
   swagger-ui:
     enabled: true
 
-sgi:
-  authentication:
-    base_url: https://tstpaec.gde.gob.ar/auth/realms/*/protocol/openid-connect
+#esto es apra poder realizar el qr dependiendo el ambiente
+frontend:
+  base-url: http://localhost:4200/#/egresoStock
+
+#sgi:
+#  authentication:
+#    base_url: https://tstpaec.gde.gob.ar/auth/realms/*/protocol/openid-connect

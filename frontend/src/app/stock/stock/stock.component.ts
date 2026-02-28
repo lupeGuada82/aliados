@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { AbstractEntityComponent } from '../../abstract-entity/abstract-entity.component';
 import { ColumnSetting, CustomAction } from '../../table/utils/utils';
-import { stockProductos } from '../../data/stock-data';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { DetalleStockService } from '../../service/detalleStock.service';
 
 @Component({
   selector: 'app-stock',
@@ -12,11 +12,15 @@ import { Title } from '@angular/platform-browser';
 })
 export class StockComponent extends AbstractEntityComponent {
 
-  constructor(route: ActivatedRoute, router: Router, titleService: Title) {
-    super(route, router, titleService);
-  }
 
-
+  constructor(
+  route: ActivatedRoute,
+  router: Router,
+  titleService: Title,
+  private detalleStockService: DetalleStockService
+) {
+  super(route, router, titleService); 
+}
 
   createTable() {
     this.displayedColumns = [
@@ -95,19 +99,43 @@ new ColumnSetting({
     return 'stock';
   }
   protected override loadData() {
-            this.data.data = stockProductos;
-            this.createTable();
-        
-  }
+  this.detalleStockService.getAll('detalleStock').subscribe({
+    next: (productos) => {
+      this.data = productos;
+      this.createTable();
+    },
+    error: (err) => {
+      console.error('Error cargando stock desde backend', err);
+    }
+  });
+}
 
   onAddConfirm(event) {
     let data = event.newData;
-    event.confirm.resolve(data);
+    this.detalleStockService.createDetalleStock(data).subscribe({
+    next: (response) => {
+      event.confirm.resolve(response);
+    },
+    error: (err) => {
+      console.error('Error creando detalleStock', err);
+      event.confirm.reject(); 
+    }
+   });
+    
   }
 
  onEditConfirm(event) {
    
-    event.confirm.resolve(event.data);
+    let data = event.data;
+    this.detalleStockService.editDetalleStock(data).subscribe({
+    next: (response) => {
+      event.confirm.resolve(response);
+    },
+    error: (err) => {
+      console.error('Error editando detalleStock', err);
+      event.confirm.reject(); 
+    }
+   });
   
   }
 

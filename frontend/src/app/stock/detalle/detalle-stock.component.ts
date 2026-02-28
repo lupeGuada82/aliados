@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { stockProductos } from '../../data/stock-data';
+import { DetalleStockService } from '../../service/detalleStock.service';
 import { ColumnSetting, CustomAction, TableConfiguration } from '../../table/utils/utils';
 import { GeneradorQRService } from '../../service/generadorQR.service';
 
@@ -20,23 +20,31 @@ export class DetalleStockComponent implements OnInit {
   settingsEgresos = new TableConfiguration();
 
 
-  constructor(private route: ActivatedRoute, public router: Router, private generadorQRService: GeneradorQRService) { }
+  constructor(private route: ActivatedRoute, public router: Router, private generadorQRService: GeneradorQRService,
+  private detalleStockService: DetalleStockService) { }
 
   ngOnInit() {
 
-    this.route.params.subscribe(prodId => {
-      const codigo = Number(prodId['codigo']);
-      const producto = stockProductos.find(p => p.codigo === codigo
+    this.route.params.subscribe(param => {
 
-      );
+      const codigo = Number(param['codigo']);
+            
+      this.detalleStockService.getProductoByCodigo(codigo).subscribe({
+      next: (producto) => {
+        
       if (producto) {
         this.inicializarStock(producto);
       } else {
         console.log('Producto no encontrado');
+      }},
+      error: (err) => {
+        console.error('Error obteniendo productos', err);
       }
 
     });
+      });
   }
+  
   inicializarStock(producto: { codigo: number; nombre: string; stockMinimo: number; stockActual: number; stockMaximo: number; }) {
     this.originalSelectedProd = producto;
     this.currentSelectedProd = this.copyElement(producto);

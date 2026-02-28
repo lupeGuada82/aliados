@@ -1,24 +1,28 @@
 package com.demo.pipers.domain.abstracts;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.Column;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.MappedSuperclass;
 import jakarta.persistence.Version;
 import jakarta.validation.constraints.NotNull;
 
-
+@MappedSuperclass
+@EntityListeners(AuditingEntityListener.class)
 public abstract class AbstractEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SEQ")
-	protected long id;
+	private long id;
 
 	@Version
 	@NotNull
@@ -27,15 +31,18 @@ public abstract class AbstractEntity {
 	@Column(name = "FH_ALTA", updatable = false, nullable = false)
 	@NotNull
 	@CreatedDate
-	private LocalDate fechaCreacion;
+	private LocalDateTime fechaCreacion;
 
 	@Column(name = "FHU_ACTUALIZ", nullable = false)
 	@LastModifiedDate
 	@NotNull
-	private LocalDate fechaUltimaModificacion;
+	private LocalDateTime fechaUltimaModificacion;
 
-	@Column(name = "C_USUARIO", nullable = false)
-	@NotNull
+	@Column(name = "FH_BAJA", updatable = false, nullable = true)
+	private LocalDateTime fechaBaja;
+
+	@Column(name = "C_USUARIO", nullable = true)
+	//@NotNull
 	@LastModifiedBy
 	private String usuarioUltimaModificacion;
 
