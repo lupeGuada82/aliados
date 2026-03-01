@@ -101,7 +101,7 @@ new ColumnSetting({
   protected override loadData() {
   this.detalleStockService.getAll('detalleStock').subscribe({
     next: (productos) => {
-      this.data = productos;
+      this.data.data = productos;
       this.createTable();
     },
     error: (err) => {

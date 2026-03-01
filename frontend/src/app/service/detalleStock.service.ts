@@ -4,7 +4,8 @@ import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
 import { HttpHeaders } from '@angular/common/http';
 
-@Injectable()
+//@Injectable() -- me dijo chatgp que lo cambie por el de abajo
+@Injectable({ providedIn: 'root' })
 export class DetalleStockService {
 
     baseUrl = '/rest-api';
