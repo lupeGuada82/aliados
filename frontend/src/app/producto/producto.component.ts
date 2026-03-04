@@ -4,6 +4,7 @@ import { Title } from '@angular/platform-browser';
 import { AbstractEntityComponent } from '../abstract-entity/abstract-entity.component';
 import { DetalleStockService } from '../service/detalleStock.service';
 import { ColumnSetting, CustomAction } from '../table/utils/utils';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-producto',
@@ -12,7 +13,7 @@ import { ColumnSetting, CustomAction } from '../table/utils/utils';
 })
 export class ProductoComponent extends AbstractEntityComponent {
 
-
+  productos: any[] = [];
   constructor(
   route: ActivatedRoute,
   router: Router,
@@ -64,12 +65,12 @@ export class ProductoComponent extends AbstractEntityComponent {
 
     ];
     this.settings.columns = this.displayedColumns;
-    this.settings.editable = true;
+    this.settings.editable = false;
     this.settings.createHidenAction=false;
-    this.settings.createAddAction = true;
-    this.settings.createEditAction = true;
+   // this.settings.createAddAction = true;
+   // this.settings.createEditAction = true;
     this.settings.pagination.pageSize = 10;
-    this.settings.createExportAction=false;
+    //this.settings.createExportAction=false;
 
    // this.settings.customActions = this.createActionsAjustarStock();
   
@@ -100,7 +101,7 @@ export class ProductoComponent extends AbstractEntityComponent {
   protected override loadData() {
   this.detalleStockService.getAll('producto').subscribe({
     next: (productos) => {
-      this.data.data = productos;
+      this.data = new MatTableDataSource(productos);
       this.createTable();
     },
     error: (err) => {

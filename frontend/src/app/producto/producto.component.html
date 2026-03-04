@@ -8,11 +8,11 @@
    
 </div>
 
-<div *ngIf="data; then enteSelected else loadingPage"></div>
+<div *ngIf="data; then productosSelected else loadingPage"></div>
 
 <ng-template #loadingPage>
 </ng-template>
-<ng-template #enteSelected>
+<ng-template #productosSelected>
     <div>
          <span class="titulo">{{ getTitle() }}</span>
         <div class="d-flex justify-content-end mb-2 mt-1">
@@ -25,8 +25,7 @@
                 Filtrar
             </button>
         </div>
-        <table-component [source]="data" [settings]="settings" 
-           ></table-component>
+        <table-component [source]="data" [settings]="settings" ></table-component>
 
 
     </div>

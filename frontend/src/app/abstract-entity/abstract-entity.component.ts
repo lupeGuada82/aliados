@@ -9,7 +9,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export abstract class AbstractEntityComponent implements  OnInit {
 
   displayedColumns: any[] = [];
-  data= new MatTableDataSource<any>();
+  data: MatTableDataSource<any> ;
   settings = new TableConfiguration();
 
   constructor(protected route: ActivatedRoute, protected router: Router, protected titleService: Title) {

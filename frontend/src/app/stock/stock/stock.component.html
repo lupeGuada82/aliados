@@ -8,11 +8,11 @@
    
 </div>
 
-<div *ngIf="data; then enteSelected else loadingPage"></div>
+<div *ngIf="data; then stockSelected else loadingPage"></div>
 
 <ng-template #loadingPage>
 </ng-template>
-<ng-template #enteSelected>
+<ng-template #stockSelected>
     <div>
          <span class="titulo">{{ getTitle() }}</span>
         <div class="d-flex justify-content-end mb-2 mt-1">

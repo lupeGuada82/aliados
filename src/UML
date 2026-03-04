@@ -1,0 +1,48 @@
+@startuml
+' =========================
+' Clases
+' =========================
+
+abstract class DetalleAbstract {
+  - fecha: Date
+  - cantidad: number
+  - observacion: String
+}
+
+class DetalleIngresoStock
+class DetalleEgresoStock
+
+class Stock {
+  - nombre: String
+  - stockMinimo: number
+  - stockMaximo: number
+  - stockActual: number
+}
+
+class Producto {
+  - nombre: String
+  - codigo: number
+  - estado: String
+}
+
+class Usuario
+
+' =========================
+' Herencia
+' =========================
+
+DetalleAbstract <|-- DetalleIngresoStock
+DetalleAbstract <|-- DetalleEgresoStock
+
+' =========================
+' Relaciones
+' =========================
+
+Stock "1" -- "0..*" DetalleIngresoStock : ingresos
+Stock "1" -- "0..*" DetalleEgresoStock : egresos
+Stock "1" -- "0..*" Producto : productos
+
+DetalleIngresoStock "1" -- "1" Usuario : usuario
+DetalleEgresoStock "1" -- "1" Usuario : responsable
+DetalleEgresoStock "1" -- "1" Usuario : solicitante
+@enduml
