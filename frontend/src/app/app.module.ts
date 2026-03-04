@@ -49,6 +49,8 @@ import { GeneradorQRService } from './service/generadorQR.service';
 import { MultiSelectComponent } from './filter-select/multi-select.component';
 import { SelectAutocompleteSearchComponent } from './mat-select-autocomplete-search/select-autocomplete.component';
 import { SelectAutocompleteChipComponent } from './mat-select-autocomplete-chips/select-autocomplete-chips.component';
+import { ProductoComponent } from './producto/producto.component';
+import { DetalleStockService } from './service/detalleStock.service';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,7 @@ import { SelectAutocompleteChipComponent } from './mat-select-autocomplete-chips
     PageNotFoundComponent,
     InicioComponent,
     StockComponent,
+    ProductoComponent,
     StockGeneralComponent,
     DetalleStockComponent,
     EgresoStockFormComponent,
@@ -136,14 +139,14 @@ import { SelectAutocompleteChipComponent } from './mat-select-autocomplete-chips
     MatButtonModule,
     // IMaskModule,
     MatNativeDateModule,
-    // ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
+    ReactiveFormsModule.withConfig({ warnOnNgModelWithFormControl: 'never' }),
     MatInputModule,
     MatSelectModule,
     MatMenuModule,
 
 
   ],
-  providers: [HelloService,GeneradorQRService],
+  providers: [HelloService,GeneradorQRService,DetalleStockService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

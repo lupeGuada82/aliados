@@ -6,9 +6,11 @@ import { StockComponent } from './stock/stock/stock.component';
 import { StockGeneralComponent } from './stock/stock-general.component';
 import { DetalleStockComponent } from './stock/detalle/detalle-stock.component';
 import { EgresoStockFormComponent } from './stock/egreso-stock-form/egreso-stock-form.component';
+import { ProductoComponent } from './producto/producto.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: InicioComponent },
+   { path: 'productos', component: ProductoComponent},
   {
     path: 'stock', component: StockGeneralComponent, children: [
       { path: '', component: StockComponent },
