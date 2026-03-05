@@ -1,6 +1,8 @@
 package com.demo.pipers.domain.abstracts;
 
 import jakarta.persistence.Column;
+import java.time.LocalDate;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -24,6 +26,8 @@ public class Empleado  extends AbstractEntity{
 	@Column(name = "NOMBRE", updatable = true, nullable = false)
 	@NotNull
 	private String nombre;
+	private String cargo;
+	private LocalDate fechaIngreso;
 	//POENR MAS DATOS
 
 }

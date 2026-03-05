@@ -87,7 +87,7 @@ export class TableActionsComponent {
       });
     }
   
-    // 🔹 Custom actions: usan "condicion" como "disabled"
+    // Custom actions: usan "condicion" como "disabled"
     const customs =
       this.settings.customActions?.map(a => ({
         type: 'custom',
