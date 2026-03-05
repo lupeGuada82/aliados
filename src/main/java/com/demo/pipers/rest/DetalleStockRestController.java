@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.pipers.domain.stock.DetalleStock;
+import com.demo.pipers.domain.stock.IngresoStock;
 import com.demo.pipers.domain.stock.Producto;
 import com.demo.pipers.service.DetalleStockService;
 
@@ -87,6 +88,14 @@ private DetalleStockService service;
 				.stockMaximo(ds.getProducto().getMaximo())
 				.stockMinimo(ds.getProducto().getMinimo())
 				.build();
+	}
+	
+	@GetMapping(value = "/{codigo}/ingresos", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody Collection<IngresoStockDTO> getIngresos() {
+		
+		
+		
 	}
 	
 	@GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
