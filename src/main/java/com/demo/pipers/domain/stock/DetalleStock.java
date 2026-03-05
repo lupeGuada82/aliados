@@ -1,9 +1,13 @@
 package com.demo.pipers.domain.stock;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.demo.pipers.domain.abstracts.AbstractEntity;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -27,6 +31,11 @@ public class DetalleStock extends AbstractEntity {
 	private long cantidadActual;
 	@OneToOne(cascade = CascadeType.PERSIST)
 	private Producto producto;
+	
+	@OneToMany(mappedBy = "stock", cascade = CascadeType.ALL, orphanRemoval = true)
+	@Builder.Default private List<IngresoStock> ingresos = new ArrayList<IngresoStock>();
+	@OneToMany(mappedBy = "stock", cascade = CascadeType.ALL, orphanRemoval = true)
+	@Builder.Default private List<EgresoStock> egresos = new ArrayList<EgresoStock>();
 	//private String observacion;
 //	private estado//se podrian cancelar los movimientos????
 //	private fecahbaja
