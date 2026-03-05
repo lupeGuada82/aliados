@@ -22,7 +22,6 @@ export class MultiSelectComponent implements OnInit {
 
   @Input() options: Item[] = [];
 
-  // 🔴 ESTE ERA EL QUE FALTABA
   @Output() selectionChange = new EventEmitter<Item[]>();
 
   control = new FormControl('');
@@ -50,14 +49,12 @@ export class MultiSelectComponent implements OnInit {
     this.selected = [...this.selected, item];
     this.control.setValue('');
 
-    // 🔴 emitir cambio
     this.selectionChange.emit(this.selected);
   }
 
   remove(item: Item): void {
     this.selected = this.selected.filter(i => i.id !== item.id);
 
-    // 🔴 emitir cambio
     this.selectionChange.emit(this.selected);
   }
 

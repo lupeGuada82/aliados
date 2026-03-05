@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.pipers.domain.stock.DetalleStock;
 import com.demo.pipers.domain.stock.Producto;
+import com.demo.pipers.dto.DetalleStockDTO;
 import com.demo.pipers.service.DetalleStockService;
 
 import lombok.Data;

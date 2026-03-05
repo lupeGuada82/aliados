@@ -10,16 +10,10 @@ export class GeneradorQRService {
 
 
     constructor(private http: HttpClient) { }
-    //    return this.http.get(this.baseUrl + this.constanciaPath +'descargar?id=' + id, { responseType: 'arraybuffer', observe: 'response' }).subscribe((response) => {
-    //             this.downloadFileService.windowOpen(response);
-    //         });
+   
 
     generarQR(codigo: number) {
-        // console.log('Generando QR para el código: ', codigo);
-        // return this.http.get(`${this.baseUrl}generadorQR/egreso-stock?codigo=${codigo}`, {
-        //     responseType: 'arraybuffer',
-        //     observe: 'response'
-        // });
+     
         const url = this.baseUrl + 'generadorQR/egreso-stock?codigo=' + codigo;
         console.log('URL de generación de QR: ', url);
         return this.http.get(url, {

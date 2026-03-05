@@ -181,13 +181,9 @@ export class DetalleStockComponent implements OnInit {
 
   }
   descargarPdf() {
-    // console.log('Descargando PDF de egreso de stock para el producto: ', this.currentSelectedProd);
-    // this.generadorQRService.generarQR(this.currentSelectedProd.codigo);
+ 
     this.generadorQRService.generarQR(this.currentSelectedProd.codigo);
-    // .subscribe({
-    //   next: response => this.generadorQRService.windowOpen(response, this.currentSelectedProd.codigo),
-    //   error: err => console.error('Error descargando PDF', err)
-    // });
+
 
   }
 
