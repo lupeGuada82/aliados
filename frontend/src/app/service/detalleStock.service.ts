@@ -1,11 +1,9 @@
 import { HttpClient } from "@angular/common/http";
-import { ApiURL } from "../../environments/enviroments";
 import { Observable } from "rxjs";
 import { Injectable } from "@angular/core";
-import { HttpHeaders } from '@angular/common/http';
 
-//@Injectable() -- me dijo chatgp que lo cambie por el de abajo
-@Injectable({ providedIn: 'root' })
+@Injectable()// -- me dijo chatgp que lo cambie por el de abajo
+// @Injectable({ providedIn: 'root' })  hayq ue tener cuidado porque si se pone asi, se crea una instancia global del servicio, y si se pone solo @Injectable(), se crea una instancia por cada componente que lo use, lo cual es mejor para evitar problemas de concurrencia y de memoria
 export class DetalleStockService {
 
     baseUrl = '/rest-api';

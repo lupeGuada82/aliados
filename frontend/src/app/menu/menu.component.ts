@@ -12,7 +12,7 @@ interface TreeNode {
   llaveReporteBI?: string;
   children?: TreeNode[];
 }
-// Mejorar con un menu TREE
+// Mejorar con un menu TREE, donde se crea mas automaticamente
 
 @Component({
   selector: 'app-menu',

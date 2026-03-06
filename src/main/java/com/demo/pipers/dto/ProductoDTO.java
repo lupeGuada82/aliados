@@ -13,7 +13,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Getter
 @Setter
-public class ProductoDTO {
+public class ProductoDTO  {
 	private Long codigo;
     private String nombre;
     private Long stockMinimo;

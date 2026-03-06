@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { DetalleStockService } from '../../service/detalleStock.service';
 import { MatTableDataSource } from '@angular/material/table';
+import { BaseService } from '../../service/base.service';
 
 @Component({
   selector: 'app-stock',
@@ -12,16 +13,15 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrl: './stock.component.scss'
 })
 export class StockComponent extends AbstractEntityComponent {
-  
+
 
   constructor(
     route: ActivatedRoute,
     router: Router,
     titleService: Title,
-
-    private detalleStockService: DetalleStockService
+    service: BaseService<any>,
   ) {
-    super(route, router, titleService);
+    super(route, router, titleService, service);
   }
 
   createTable() {
@@ -101,47 +101,13 @@ export class StockComponent extends AbstractEntityComponent {
   protected override getTitle(): string {
     return 'Gestión de Stock';
   }
-  protected override getEntityPath(): string {
-    return 'stock';
+  protected override getPath(): string {
+    return 'detalleStock/';
   }
-  protected override loadData() {
-    this.detalleStockService.getAll('detalleStock').subscribe((productos) => {
-      this.data = new MatTableDataSource(productos);
-      this.createTable();
-    }
-    );
+  
 
-  }
-
-  onAddConfirm(event) {
-    let data = event.newData;
-    this.detalleStockService.createDetalleStock(data).subscribe({
-      next: (response) => {
-        event.confirm.resolve(response);
-      },
-      error: (err) => {
-        console.error('Error creando detalleStock', err);
-        event.confirm.reject();
-      }
-    });
-
-  }
-
-  onEditConfirm(event) {
-
-    let data = event.data;
-    this.detalleStockService.editDetalleStock(data).subscribe({
-      next: (response) => {
-        event.confirm.resolve(response);
-      },
-      error: (err) => {
-        console.error('Error editando detalleStock', err);
-        event.confirm.reject();
-      }
-    });
-
-  }
-
+  
+ 
   cambiarFiltro() {
     // this.loadData();
   }

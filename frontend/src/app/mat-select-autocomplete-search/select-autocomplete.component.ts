@@ -28,7 +28,6 @@ export class SelectAutocompleteSearchComponent implements OnChanges, DoCheck {
   @Input() selectedOptions;
   @Input() multiple = true;
 
-  // New Options
   @Input() labelCount: number = 1;
   @Input() appearance:  "fill" | "outline" = "outline";
 

@@ -50,6 +50,9 @@ import { MultiSelectComponent } from './filter-select/multi-select.component';
 import { SelectAutocompleteSearchComponent } from './mat-select-autocomplete-search/select-autocomplete.component';
 import { SelectAutocompleteChipComponent } from './mat-select-autocomplete-chips/select-autocomplete-chips.component';
 import { ProductoComponent } from './producto/producto.component';
+import { EmpleadoComponent } from './empleado/empleado.component';
+import { DetalleStockService } from './service/detalleStock.service';
+import { BaseService } from './service/base.service';
 
 @NgModule({
   declarations: [
@@ -64,7 +67,8 @@ import { ProductoComponent } from './producto/producto.component';
     MultiSelectComponent,
     SelectAutocompleteSearchComponent,
     SelectAutocompleteChipComponent,
-    ProductoComponent
+    ProductoComponent,
+    EmpleadoComponent
 
   ],
   imports: [
@@ -141,7 +145,7 @@ import { ProductoComponent } from './producto/producto.component';
 
 
   ],
-  providers: [HelloService,GeneradorQRService],
+  providers: [HelloService,GeneradorQRService, DetalleStockService, BaseService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
