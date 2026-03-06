@@ -14,8 +14,8 @@ import { BaseService } from '../service/base.service';
 export class EmpleadoComponent extends AbstractEntityComponent {
 
 
-  constructor(route: ActivatedRoute, router: Router, titleService: Title,  service: BaseService<any>) {
-    super(route, router, titleService,service);
+  constructor(route: ActivatedRoute, router: Router, titleService: Title, service: BaseService<any>) {
+    super(route, router, titleService, service);
   }
   protected override createTable(): void {
     this.displayedColumns = [
@@ -29,7 +29,8 @@ export class EmpleadoComponent extends AbstractEntityComponent {
       new ColumnSetting({
         key: 'cargo',
         label: 'Cargo',
-        isAddable: true
+        isAddable: true,
+        isEditable: true
       }),
 
 
@@ -50,8 +51,8 @@ export class EmpleadoComponent extends AbstractEntityComponent {
     return 'empleado/';
   }
 
-atras() {
+  atras() {
     window.history.back()
   }
-  
+
 }

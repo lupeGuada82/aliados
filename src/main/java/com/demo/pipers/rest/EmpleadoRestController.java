@@ -17,9 +17,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.pipers.domain.abstracts.Empleado;
-import com.demo.pipers.domain.stock.DetalleStock;
-import com.demo.pipers.domain.stock.Producto;
-import com.demo.pipers.dto.DetalleStockDTO;
 import com.demo.pipers.dto.EmpleadoDTO;
 import com.demo.pipers.service.EmpleadoService;
 
@@ -38,7 +35,7 @@ public class EmpleadoRestController {
 
 		List<Empleado> empleados = (List<Empleado>) getService().getAll();
 		List<EmpleadoDTO> emepleadosDTO = new ArrayList<EmpleadoDTO>();
-		empleados.stream().forEach(p -> emepleadosDTO.add(EmpleadoDTO.builder().id(p.getId()).nombre(p.getNombre()).build()));
+		empleados.stream().forEach(p -> emepleadosDTO.add(EmpleadoDTO.builder().id(p.getId()).cargo(p.getCargo()).nombre(p.getNombre()).build()));
 
 		return emepleadosDTO;
 	}
@@ -47,7 +44,7 @@ public class EmpleadoRestController {
 	public @ResponseBody EmpleadoDTO update(@RequestBody EmpleadoDTO dto) throws Exception {
 
 		Empleado empleado = service.get(dto.getId());
-		//empleado.setCargo(dto.getCargo());
+		empleado.setCargo(dto.getCargo());
 		empleado.setNombre(dto.getNombre());
 		empleado = service.validateAndSave(empleado);
 
@@ -56,7 +53,7 @@ public class EmpleadoRestController {
 
 	@PostMapping(path = "/", produces = { "application/json" }, consumes = { "application/json" })
 	public @ResponseBody EmpleadoDTO save(@RequestBody EmpleadoDTO dto) throws Exception {
-		Empleado empleado = Empleado.builder().nombre(dto.getNombre()).build();
+		Empleado empleado = Empleado.builder().nombre(dto.getNombre()).cargo(dto.getCargo()).build();
 		Empleado empleadoNew =	service.validateAndSave(empleado);
 		return EmpleadoDTO.builder().nombre(empleadoNew.getNombre()).cargo(empleadoNew.getCargo()).build(); 
 	}
