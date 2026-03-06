@@ -53,6 +53,12 @@ import { ProductoComponent } from './producto/producto.component';
 import { EmpleadoComponent } from './empleado/empleado.component';
 import { DetalleStockService } from './service/detalleStock.service';
 import { BaseService } from './service/base.service';
+import { AuthService } from './service/auth.service';
+import { PipersErrorHandler } from './error.handler';
+import { MessageService } from './message/message.service';
+import { DialogMessageComponent } from './message/dialog-message/dialog-message.component';
+import { MessageDirective } from './message/message-directive';
+import { ModalMessageComponent } from './message/modal-message/modal-message.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +74,9 @@ import { BaseService } from './service/base.service';
     SelectAutocompleteSearchComponent,
     SelectAutocompleteChipComponent,
     ProductoComponent,
-    EmpleadoComponent
+    EmpleadoComponent,MessageDirective,
+    ModalMessageComponent,
+    DialogMessageComponent
 
   ],
   imports: [
@@ -145,7 +153,10 @@ import { BaseService } from './service/base.service';
 
 
   ],
-  providers: [HelloService,GeneradorQRService, DetalleStockService, BaseService],
+  providers: [HelloService,GeneradorQRService, DetalleStockService, BaseService,MessageService,
+      AuthService,
+        { provide: ErrorHandler, useClass: PipersErrorHandler },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

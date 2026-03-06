@@ -37,8 +37,9 @@ export abstract class AbstractEntityComponent implements  OnInit {
 
   /***TODO lo que viene debajo puede ir en la super */
   protected  loadData() {
-    this.service.getAll(this.getPath()).subscribe((empleados) => {
-      this.data = new MatTableDataSource(empleados);
+    this.service.getAll(this.getPath()).subscribe((datos) => {
+      this.data = new MatTableDataSource(datos);
+      console.log(this.data);
       this.createTable();
     }
     );
