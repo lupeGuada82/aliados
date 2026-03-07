@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DetalleStockService } from '../../service/detalleStock.service';
 import { ColumnSetting, CustomAction, TableConfiguration } from '../../table/utils/utils';
 import { GeneradorQRService } from '../../service/generadorQR.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'detalle-stock',
@@ -13,7 +14,7 @@ export class DetalleStockComponent implements OnInit {
   currentSelectedProd: any;
   originalSelectedProd: any;
 
-  ingresosDeStock: any[] = [];
+  ingresosDeStock: MatTableDataSource<any>;
   settingsIngresos = new TableConfiguration();
 
   egresosDeStock: any[] = [];
@@ -28,21 +29,17 @@ export class DetalleStockComponent implements OnInit {
     this.route.params.subscribe(param => {
 
       const codigo = Number(param['codigo']);
-            
-      this.detalleStockService.getProductoByCodigo(codigo).subscribe({
-      next: (producto) => {
-        
-      if (producto) {
-        this.inicializarStock(producto);
-      } else {
-        console.log('Producto no encontrado');
-      }},
-      error: (err) => {
-        console.error('Error obteniendo productos', err);
-      }
 
-    });
-      });
+      this.detalleStockService.getIngresos(codigo).subscribe((ingresos) => {
+
+            //this.inicializarStock(producto);
+            this.ingresosDeStock = new MatTableDataSource(ingresos);
+            this.inicializarTablaIngresosStock();
+          }
+          );
+
+     }
+    );
   }
   
   inicializarStock(producto: { codigo: number; nombre: string; stockMinimo: number; stockActual: number; stockMaximo: number; }) {
@@ -59,28 +56,36 @@ export class DetalleStockComponent implements OnInit {
       new ColumnSetting({
         key: 'fecha',
         label: 'Fecha',
+        isEditable: false,
+        isAddable: true
        // className: 'column-fecha'
       }),
 
       new ColumnSetting({
         key: 'cantidad',
         label: 'Cantidad',
+        isEditable: true,
+        isAddable: true
         //className: 'column-cantidad'
       }),
       new ColumnSetting({
         key: 'responsable',
         label: 'Responsable',
+        isEditable: false,
+        isAddable: true
         //className: 'column-responsable',
       }),
 
       new ColumnSetting({
         key: 'solicito',
-        label: 'Solicito'
+        label: 'Solicito',
+        isEditable: false,
+        isAddable: true
 
       }),
       new ColumnSetting({
         key: 'estado',
-        label: 'Estado',
+        label: 'Estado'
         //className: 'column-estado',
 
       }),
@@ -125,28 +130,38 @@ export class DetalleStockComponent implements OnInit {
       new ColumnSetting({
         key: 'fecha',
         label: 'Fecha',
+        isEditable: false,
+        isAddable: false
       //  className: 'column-fecha'
       }),
 
       new ColumnSetting({
         key: 'cantidad',
         label: 'Cantidad',
+        isEditable: false,
+        isAddable: true
        // className: 'column-cantidad'
       }),
       new ColumnSetting({
         key: 'observacion',
         label: 'Observacion',
+        isEditable: true,
+        isAddable: true
       //  className: 'column-observacion',
       }),
 
       new ColumnSetting({
         key: 'usuario',
-        label: 'Usuario'
+        label: 'Usuario',
+        isEditable: true,
+        isAddable: true,
 
       }),
       new ColumnSetting({
         key: 'estado',
         label: 'Estado',
+        isEditable: false,
+        isAddable: true
         //className: 'column-estado',
 
       })

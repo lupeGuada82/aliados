@@ -20,6 +20,7 @@ import com.demo.pipers.domain.stock.DetalleStock;
 import com.demo.pipers.domain.stock.IngresoStock;
 import com.demo.pipers.domain.stock.Producto;
 import com.demo.pipers.dto.DetalleStockDTO;
+import com.demo.pipers.dto.IngresoStockDTO;
 import com.demo.pipers.service.DetalleStockService;
 
 import lombok.Data;
@@ -93,8 +94,23 @@ private DetalleStockService service;
 	
 	@GetMapping(value = "/{codigo}/ingresos", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
-	public @ResponseBody Collection<IngresoStockDTO> getIngresos() {
+	public @ResponseBody Collection<IngresoStockDTO> getIngresos(@PathVariable("codigo") Long codigo) {
 		
+		DetalleStock ds = getService().getByProducto_Codigo(codigo);
+		Collection<IngresoStockDTO> ingresos = new ArrayList<IngresoStockDTO>();
+		for (IngresoStock i : ds.getIngresos()) {
+			
+			IngresoStockDTO iDTO = IngresoStockDTO.builder()
+					
+					.cantidad(i.cantidad())
+					.usuario(i.responsable().getNombre())
+					.build(); 
+			ingresos.add(iDTO);
+			
+		}
+		
+		
+		return ingresos;
 		
 		
 	}

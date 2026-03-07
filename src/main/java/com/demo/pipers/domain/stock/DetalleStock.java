@@ -34,11 +34,26 @@ public class DetalleStock extends AbstractEntity {
 	
 	@OneToMany(mappedBy = "stock", cascade = CascadeType.ALL, orphanRemoval = true)
 	@Builder.Default private List<IngresoStock> ingresos = new ArrayList<IngresoStock>();
+	
 	@OneToMany(mappedBy = "stock", cascade = CascadeType.ALL, orphanRemoval = true)
 	@Builder.Default private List<EgresoStock> egresos = new ArrayList<EgresoStock>();
 	//private String observacion;
 //	private estado//se podrian cancelar los movimientos????
 //	private fecahbaja
+
+	public void addIngreso(IngresoStock ingreso) {
+	 
+		this.getIngresos().add(ingreso);
+	    ingreso.stock(this);
+		
+	}
+	
+	public void addEgreso(EgresoStock ingreso) {
+		 
+		this.getEgresos().add(ingreso);
+	    ingreso.stock(this);
+		
+	}
 	
 
 }

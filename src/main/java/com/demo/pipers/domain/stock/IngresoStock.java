@@ -3,11 +3,14 @@ package com.demo.pipers.domain.stock;
 import jakarta.persistence.Entity;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 @Data
+@NoArgsConstructor
 @SuperBuilder
 @EqualsAndHashCode(callSuper = false)
 @Entity

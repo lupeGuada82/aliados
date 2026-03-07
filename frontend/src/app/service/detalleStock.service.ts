@@ -20,6 +20,14 @@ export class DetalleStockService {
     return this.http.get<any>(this.baseUrl + '/detalleStock/' + codigo);
     }
 
+    getIngresos(codigo: number): Observable<any> {
+    return this.http.get<any>(this.baseUrl + '/detalleStock/' + codigo + '/ingresos');
+    }
+
+    getEngresos(codigo: number): Observable<any> {
+    return this.http.get<any>(this.baseUrl + '/detalleStock/' + codigo + '/egresos');
+    }
+
     createDetalleStock(detalleStock: any): Observable<any> {
     return this.http.post<any>(this.baseUrl + '/detalleStock/', detalleStock);
     }

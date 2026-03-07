@@ -44,20 +44,16 @@ public class DataLoader {
 		
 
 		Producto producto = Producto.builder().codigo(125).minimo(5).maximo(50).nombre("CERRADURA KALLAY 4002").build(); 
-		DetalleStock detalleStock = DetalleStock.builder().cantidadActual(48).producto(producto).build();
-		service.validateAndSave(detalleStock);
+		DetalleStock detalleStock1 = DetalleStock.builder().cantidadActual(48).producto(producto).build();
 		producto = Producto.builder().codigo(551).minimo(1).maximo(10).nombre("BOTAS S/ CORDON TALLE 38").build(); 
-		detalleStock = DetalleStock.builder().cantidadActual(5).producto(producto).build();
-		
-		IngresoStock is = IngresoStock.builder().stock(detalleStock).cantidad(8).responsable(empl4).build();
-		
-		detalleStock.getIngresos().add(is);
-		
-		service.validateAndSave(detalleStock);
+		detalleStock1 = DetalleStock.builder().cantidadActual(5).producto(producto).build();
+		IngresoStock is = IngresoStock.builder().cantidad(8).responsable(empl4).build();
+		detalleStock1.addIngreso(is);
+		service.validateAndSave(detalleStock1);
 		
 		
 		producto = Producto.builder().codigo(554).minimo(1).maximo(5).nombre("BOTAS S/ CORDON TALLE 42").build(); 
-		detalleStock = DetalleStock.builder().cantidadActual(5).producto(producto).build();
+		DetalleStock detalleStock = DetalleStock.builder().cantidadActual(5).producto(producto).build();
 		service.validateAndSave(detalleStock);
 		
 		producto = Producto.builder().codigo(568).minimo(1).maximo(5).nombre("CAMISA JEAN TALLE 40").build(); 
