@@ -7,19 +7,21 @@ import { StockGeneralComponent } from './stock/stock-general.component';
 import { DetalleStockComponent } from './stock/detalle/detalle-stock.component';
 import { EgresoStockFormComponent } from './stock/egreso-stock-form/egreso-stock-form.component';
 import { ProductoComponent } from './producto/producto.component';
+import { EmpleadoComponent } from './empleado/empleado.component';
 
 const appRoutes: Routes = [
   { path: 'home', component: InicioComponent },
-   { path: 'productos', component: ProductoComponent},
+  { path: 'productos', component: ProductoComponent },
+  { path: 'empleados', component: EmpleadoComponent },
   {
     path: 'stock', component: StockGeneralComponent, children: [
       { path: '', component: StockComponent },
       { path: ':codigo', component: DetalleStockComponent },
     ]
   },
- { path: 'egresoStock', component: EgresoStockFormComponent },
-{ path: 'consultaEmpleados', component: EgresoStockFormComponent },
-{ path: 'consultaEmpleados', component: EgresoStockFormComponent },
+  { path: 'egresoStock', component: EgresoStockFormComponent },
+  { path: 'consultaEmpleados', component: EgresoStockFormComponent },
+  { path: 'consultaEmpleados', component: EgresoStockFormComponent },
 
   { path: '', redirectTo: '/home', pathMatch: 'full' }, // opción: default
   { path: '**', component: PageNotFoundComponent }

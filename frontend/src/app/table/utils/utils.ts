@@ -261,9 +261,9 @@ export class TableConfiguration {
 
     if (value && !this.addAction) {
       this.addAction = new ActionDefault({
-        name: 'agregar',
-        icon: 'splitscreen_add',
-        label: 'Agregar Fila',
+        name: 'nuevo',
+        icon: 'add',
+        label: 'Nuevo',
         fontSet: 'material-symbols-outlined'
       });
     }

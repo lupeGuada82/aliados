@@ -3,19 +3,18 @@ package com.demo.pipers.dto;
 import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+
 
 @Data
-@Builder
+@EqualsAndHashCode(callSuper=false)
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-public class EmpleadoDTO {
+public class EmpleadoDTO extends AbstractEntityDTO {
 	private String nombre;
 	private String cargo;
 	private LocalDate fechaIngreso;

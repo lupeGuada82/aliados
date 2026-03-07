@@ -6,4 +6,4 @@ export const environment = {
 
 //export const BaseURL =  '/pipers';
 
-export const ApiURL =  'rest-api/';
+export const ApiURL =  '/rest-api/';

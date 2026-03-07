@@ -53,7 +53,7 @@ private DetalleStockService service;
 		.build();
 		
 		getService().validateAndSave(ds);
-		
+		//aca para mi hay que ir a buscar el objeto de nuevo, ya que tiene datos distintos
 		return dto; 
 	}
 	
