@@ -8,7 +8,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -32,9 +31,14 @@ public abstract class MovimientoSock extends AbstractEntity {
 	
 	@Column(name = "CANTIDAD", updatable = true, nullable = false)
 	@NotNull
-	private int cantidad;
+	private Long cantidad;
 	
-	@OneToOne(fetch=FetchType.LAZY)
+	@Column(name = "OBSERVACION", updatable = true, nullable = true)
+	@NotNull
+	private String observacion;
+	
+	
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="RESPONSABLE")
 	private Empleado responsable;
 	

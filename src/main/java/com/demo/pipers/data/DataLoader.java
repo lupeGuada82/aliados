@@ -42,43 +42,41 @@ public class DataLoader {
 		empl4 = empleadoService.validateAndSave(empl4);
 		
 		
-
-		Producto producto = Producto.builder().codigo(125).minimo(5).maximo(50).nombre("CERRADURA KALLAY 4002").build(); 
-		DetalleStock detalleStock1 = DetalleStock.builder().cantidadActual(48).producto(producto).build();
-		producto = Producto.builder().codigo(551).minimo(1).maximo(10).nombre("BOTAS S/ CORDON TALLE 38").build(); 
-		detalleStock1 = DetalleStock.builder().cantidadActual(5).producto(producto).build();
-		IngresoStock is = IngresoStock.builder().cantidad(8).responsable(empl4).build();
-		detalleStock1.addIngreso(is);
+		DetalleStock detalleStock = DetalleStock.builder().producto(Producto.builder().codigo(125).minimo(5).maximo(50).nombre("CERRADURA KALLAY 4002").build()).build();
+		detalleStock.addIngreso(IngresoStock.builder().cantidad(48L).observacion("Carga inicial").responsable(empl4).build());
+		service.validateAndSave(detalleStock);
+		
+		DetalleStock detalleStock1 = DetalleStock.builder().producto(Producto.builder().codigo(551).minimo(1).maximo(10).nombre("BOTAS S/ CORDON TALLE 38").build()).build();
+		detalleStock1.addIngreso(IngresoStock.builder().cantidad(8L).observacion("Carga inicial").responsable(empl4).build());
 		service.validateAndSave(detalleStock1);
 		
+		DetalleStock detalleStock2 = DetalleStock.builder().producto(Producto.builder().codigo(554).minimo(1).maximo(5).nombre("BOTAS S/ CORDON TALLE 42").build()).build();
+		detalleStock2.addIngreso(IngresoStock.builder().cantidad(5L).observacion("Carga inicial").responsable(empl4).build());
+		service.validateAndSave(detalleStock2);
 		
-		producto = Producto.builder().codigo(554).minimo(1).maximo(5).nombre("BOTAS S/ CORDON TALLE 42").build(); 
-		DetalleStock detalleStock = DetalleStock.builder().cantidadActual(5).producto(producto).build();
-		service.validateAndSave(detalleStock);
+		DetalleStock detalleStock3 = DetalleStock.builder().producto(Producto.builder().codigo(568).minimo(1).maximo(5).nombre("CAMISA JEAN TALLE 40").build()).build();
+		detalleStock3.addIngreso(IngresoStock.builder().cantidad(3L).observacion("Carga inicial").responsable(empl4).build());
+		service.validateAndSave(detalleStock3);
 		
-		producto = Producto.builder().codigo(568).minimo(1).maximo(5).nombre("CAMISA JEAN TALLE 40").build(); 
-		detalleStock = DetalleStock.builder().cantidadActual(0).producto(producto).build();
-		service.validateAndSave(detalleStock);
+		DetalleStock detalleStock4 = DetalleStock.builder().producto(Producto.builder().codigo(569).minimo(1).maximo(5).nombre("CAMISA JEAN TALLE 42").build()).build();
+		detalleStock4.addIngreso(IngresoStock.builder().cantidad(2L).observacion("Carga inicial").responsable(empl4).build());
+		service.validateAndSave(detalleStock4);
 		
-		producto = Producto.builder().codigo(569).minimo(1).maximo(5).nombre("CAMISA JEAN TALLE 42").build(); 
-		detalleStock = DetalleStock.builder().cantidadActual(2).producto(producto).build();
-		service.validateAndSave(detalleStock);
+		DetalleStock detalleStock5 = DetalleStock.builder().producto(Producto.builder().codigo(596).minimo(2).maximo(10).nombre("CH. INOX ESM 3MM 1250x3000").build()).build();
+		detalleStock5.addIngreso(IngresoStock.builder().cantidad(3L).observacion("Carga inicial").responsable(empl4).build());
+		service.validateAndSave(detalleStock5);
 		
-		producto = Producto.builder().codigo(596).minimo(2).maximo(10).nombre("CH. INOX ESM 3MM 1250x3000").build(); 
-		detalleStock = DetalleStock.builder().cantidadActual(0).producto(producto).build();
-		service.validateAndSave(detalleStock);
+		DetalleStock detalleStock6 = DetalleStock.builder().producto(Producto.builder().codigo(597).minimo(2).maximo(10).nombre("CH. INOX ESM 2MM 1000x2000").build()).build();
+		detalleStock6.addIngreso(IngresoStock.builder().cantidad(1L).observacion("Carga inicial").responsable(empl4).build());
+		service.validateAndSave(detalleStock6);
 		
-		producto = Producto.builder().codigo(597).minimo(2).maximo(10).nombre("CH. INOX ESM 2MM 1000x2000").build(); 
-		detalleStock = DetalleStock.builder().cantidadActual(0).producto(producto).build();
-		service.validateAndSave(detalleStock);
+		DetalleStock detalleStock7 = DetalleStock.builder().producto(Producto.builder().codigo(598).minimo(2).maximo(10).nombre("CH. INOX ESM 1MM 1000x2000").build()).build();
+		detalleStock7.addIngreso(IngresoStock.builder().cantidad(2L).observacion("Carga inicial").responsable(empl4).build());
+		service.validateAndSave(detalleStock7);
 		
-		producto = Producto.builder().codigo(598).minimo(2).maximo(10).nombre("CH. INOX ESM 1MM 1000x2000").build(); 
-		detalleStock = DetalleStock.builder().cantidadActual(0).producto(producto).build();
-		service.validateAndSave(detalleStock);
-		
-		producto = Producto.builder().codigo(599).minimo(1).maximo(10).nombre("MASCARA PARA SOLDAR").build(); 
-		detalleStock = DetalleStock.builder().cantidadActual(0).producto(producto).build();
-		service.validateAndSave(detalleStock);
+		DetalleStock detalleStock8 = DetalleStock.builder().producto(Producto.builder().codigo(599).minimo(1).maximo(10).nombre("MASCARA PARA SOLDAR").build()).build();
+		detalleStock8.addIngreso(IngresoStock.builder().cantidad(2L).observacion("Carga inicial").responsable(empl4).build());
+		service.validateAndSave(detalleStock8);
 
 	}
 

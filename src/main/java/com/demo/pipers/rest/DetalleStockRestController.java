@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.demo.pipers.domain.stock.DetalleStock;
+import com.demo.pipers.domain.stock.EgresoStock;
 import com.demo.pipers.domain.stock.IngresoStock;
 import com.demo.pipers.domain.stock.Producto;
 import com.demo.pipers.dto.DetalleStockDTO;
@@ -52,9 +53,21 @@ private DetalleStockService service;
 		.producto(p)
 		.build();
 		
-		getService().validateAndSave(ds);
-		//aca para mi hay que ir a buscar el objeto de nuevo, ya que tiene datos distintos
-		return dto; 
+		IngresoStock is = IngresoStock.builder()
+				.cantidad(dto.getStockActual())
+				.build();
+		
+		ds.addIngreso(is);
+		
+		ds = getService().validateAndSave(ds);
+		
+		return DetalleStockDTO.builder()
+				.codigo(ds.getProducto().getCodigo())
+				.nombre(ds.getProducto().getNombre())
+				.stockActual(ds.getCantidadActual())
+				.stockMaximo(ds.getProducto().getMaximo())
+				.stockMinimo(ds.getProducto().getMinimo())
+				.build(); 
 	}
 	
 	@PutMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -101,8 +114,9 @@ private DetalleStockService service;
 		for (IngresoStock i : ds.getIngresos()) {
 			
 			IngresoStockDTO iDTO = IngresoStockDTO.builder()
-					
 					.cantidad(i.cantidad())
+					.fecha(i.getFechaCreacion().toString())
+					.observacion(i.observacion())
 					.usuario(i.responsable().getNombre())
 					.build(); 
 			ingresos.add(iDTO);
@@ -111,6 +125,29 @@ private DetalleStockService service;
 		
 		
 		return ingresos;
+		
+		
+	}
+	
+	@GetMapping(value = "/{codigo}/egresos", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody Collection<EgresoStockDTO> getEgresos(@PathVariable("codigo") Long codigo) {
+		
+		//DetalleStock ds = getService().getByProducto_Codigo(codigo);
+		Collection<EgresoStockDTO> egresos = new ArrayList<EgresoStockDTO>();
+//		for (IngresoStock i : ds.getIngresos()) {
+//			
+//			IngresoStockDTO iDTO = IngresoStockDTO.builder()
+//					.cantidad(i.cantidad())
+//					.fecha(i.getFechaCreacion().toString())
+//					.observacion(i.observacion())
+//					.build(); 
+//			ingresos.add(iDTO);
+//			
+//		}
+		
+		
+		return egresos;
 		
 		
 	}
