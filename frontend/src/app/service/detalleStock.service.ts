@@ -22,6 +22,8 @@ export class DetalleStockService {
     return this.http.get<any>(this.baseUrl + '/detalleStock/' + codigo + '/ingresos');
     }
 
+   
+
     getEngresos(codigo: number): Observable<any> {
     return this.http.get<any>(this.baseUrl + '/detalleStock/' + codigo + '/egresos');
     }
@@ -30,10 +32,12 @@ export class DetalleStockService {
     return this.http.post<any>(this.baseUrl + '/detalleStock/', detalleStock);
     }
 
-   
-
-  editDetalleStock(detalleStock: any): Observable<any> {
-  return this.http.put<any>(this.baseUrl + '/detalleStock/', detalleStock);
-}
+    nuevoIngreso(codigo: number, ingresoStock: any): Observable<any> {
+    return this.http.put<any>(this.baseUrl + '/detalleStock/' + codigo + '/ingreso', ingresoStock);
+    }
+    
+    editDetalleStock(detalleStock: any): Observable<any> {
+    return this.http.put<any>(this.baseUrl + '/detalleStock/', detalleStock);
+    }
 
 }

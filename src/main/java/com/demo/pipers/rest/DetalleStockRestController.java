@@ -2,6 +2,8 @@ package com.demo.pipers.rest;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.demo.pipers.domain.abstracts.Empleado;
 import com.demo.pipers.domain.stock.DetalleStock;
 import com.demo.pipers.domain.stock.EgresoStock;
 import com.demo.pipers.domain.stock.IngresoStock;
@@ -23,6 +26,7 @@ import com.demo.pipers.domain.stock.Producto;
 import com.demo.pipers.dto.DetalleStockDTO;
 import com.demo.pipers.dto.IngresoStockDTO;
 import com.demo.pipers.service.DetalleStockService;
+import com.demo.pipers.service.EmpleadoService;
 
 import lombok.Data;
 
@@ -32,10 +36,12 @@ import lombok.Data;
 public class DetalleStockRestController {
 	
 private DetalleStockService service;
+private EmpleadoService empleadoService;
 	
 	@Autowired
-    public DetalleStockRestController(DetalleStockService service) {
+    public DetalleStockRestController(DetalleStockService service,EmpleadoService eService) {
         this.service = service;
+        this.empleadoService = eService;
     }	
 	
 	@PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -53,8 +59,13 @@ private DetalleStockService service;
 		.producto(p)
 		.build();
 		
+		//TODO tiene que ser el usuario autenticado en el sistema
+		 Empleado responsable = empleadoService.getAll().stream().findFirst().get();
+		
 		IngresoStock is = IngresoStock.builder()
 				.cantidad(dto.getStockActual())
+				.observacion("Carga inicial")
+				.responsable(responsable)
 				.build();
 		
 		ds.addIngreso(is);
@@ -125,6 +136,44 @@ private DetalleStockService service;
 		
 		
 		return ingresos;
+		
+		
+	}
+	
+	@PutMapping(value = "/{codigo}/ingreso", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody IngresoStockDTO nuevoIngreso(@PathVariable("codigo") Long codigo, @RequestBody IngresoStockDTO dto) {
+		
+		DetalleStock ds = getService().getByProducto_Codigo(codigo);
+		
+		//TODO tiene que ser el usuario autenticado en el sistema
+		 Empleado responsable = empleadoService.getAll().stream().findFirst().get();
+		
+		IngresoStock is = IngresoStock.builder()
+				.cantidad(dto.getCantidad())
+				.observacion(dto.getObservacion())
+				.responsable(responsable)
+				.build();
+		
+		ds.addIngreso(is);
+		
+		ds = getService().validateAndSave(ds);
+		
+		// Use a lambda expression for the Comparator
+        Comparator<IngresoStock> idComparator = (p1, p2) -> Long.compare(p1.getId(), p2.getId());
+
+        // Find the maximum element using the custom comparator
+        IngresoStock newIs = Collections.max(ds.getIngresos(), idComparator);
+		
+		
+		IngresoStockDTO iDTO = IngresoStockDTO.builder()
+					.cantidad(newIs.cantidad())
+					.fecha(newIs.getFechaCreacion().toString())
+					.observacion(newIs.observacion())
+					.usuario(newIs.responsable().getNombre())
+					.build(); 
+			
+		return iDTO;
 		
 		
 	}

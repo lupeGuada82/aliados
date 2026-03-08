@@ -50,6 +50,8 @@ export class StockComponent extends AbstractEntityComponent {
       new ColumnSetting({
         key: 'stockActual',
         label: 'Stock Actual',
+        isEditable: false,
+        isAddable: true
         //className: 'column-stockActual',
       }),
 

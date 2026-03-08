@@ -125,7 +125,7 @@ export class DetalleStockComponent implements OnInit {
     });
     //this.ingresosDeStock = this.currentSelectedProd.modificaciones.filter(m => m.tipo === 'INGRESO');
 
-    //TODO los egresos de stock se deberían carcar solamente cuando se va a la solapa de egresos
+    //TODO los egresos de stock se deberían cargar solamente cuando se va a la solapa de egresos
     this.detalleStockService.getEngresos(this.currentSelectedProd.codigo).subscribe((datos) => {
           this.egresosDeStock = new MatTableDataSource(datos);
           console.log(this.ingresosDeStock);
@@ -194,13 +194,18 @@ export class DetalleStockComponent implements OnInit {
   }
   //estas acciones de los botones lue se implementan con servicios que van al server
   onAddConfirm(event) {
-    let data = event.newData;
-    event.confirm.resolve(data);
+    //let data = event.newData;
+    //event.confirm.resolve(data);
+    let newData = event.newData;
+    this.detalleStockService.nuevoIngreso(this.currentSelectedProd.codigo, newData).subscribe((data) => {
+        event.confirm.resolve(data);      
+    });
   }
 
   onEditConfirm(event) {
 
     event.confirm.resolve(event.data);
+    
 
   }
   descargarPdf() {

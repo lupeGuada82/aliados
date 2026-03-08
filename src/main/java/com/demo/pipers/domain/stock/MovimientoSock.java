@@ -34,7 +34,6 @@ public abstract class MovimientoSock extends AbstractEntity {
 	private Long cantidad;
 	
 	@Column(name = "OBSERVACION", updatable = true, nullable = true)
-	@NotNull
 	private String observacion;
 	
 	
