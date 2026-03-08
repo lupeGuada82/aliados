@@ -12,6 +12,10 @@ import lombok.NoArgsConstructor;
 public class EgresoStockDTO {
 	
 	private Long cantidad;
+	private Long codigo;
+	private String responsable;
+	private String solicitante;
+	
 	private String fecha;
 	private String observacion;
 

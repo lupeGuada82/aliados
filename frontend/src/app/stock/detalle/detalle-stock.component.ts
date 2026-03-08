@@ -75,7 +75,7 @@ export class DetalleStockComponent implements OnInit {
       }),
 
       new ColumnSetting({
-        key: 'solicito',
+        key: 'solicitante',
         label: 'Solicito'
 
       }),

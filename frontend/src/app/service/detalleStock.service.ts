@@ -35,6 +35,10 @@ export class DetalleStockService {
     nuevoIngreso(codigo: number, ingresoStock: any): Observable<any> {
     return this.http.put<any>(this.baseUrl + '/detalleStock/' + codigo + '/ingreso', ingresoStock);
     }
+
+    nuevoEgreso(egresoStock: any): Observable<any> {
+    return this.http.put<any>(this.baseUrl + '/detalleStock/' + egresoStock.codigo + '/egreso', egresoStock);
+    }
     
     editDetalleStock(detalleStock: any): Observable<any> {
     return this.http.put<any>(this.baseUrl + '/detalleStock/', detalleStock);

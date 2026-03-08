@@ -178,22 +178,62 @@ private EmpleadoService empleadoService;
 		
 	}
 	
+	@PutMapping(value = "/{codigo}/egreso", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public @ResponseBody EgresoStockDTO nuevoEgreso(@PathVariable("codigo") Long codigo, @RequestBody EgresoStockDTO dto) {
+		
+		DetalleStock ds = getService().getByProducto_Codigo(codigo);
+		
+		//TODO tiene que ser el usuario autenticado en el sistema
+		 Empleado responsable = empleadoService.getAll().stream().findFirst().get();
+		 Empleado solicitante = empleadoService.getAll().stream().findAny().get();
+//		
+		EgresoStock es = EgresoStock.builder()
+				.cantidad(dto.getCantidad())
+				.responsable(responsable)
+				.solicitante(solicitante)
+				.build();
+//		
+		ds.addEgreso(es);
+//		
+		ds = getService().validateAndSave(ds);
+//		
+//		// Use a lambda expression for the Comparator
+        Comparator<EgresoStock> idComparator = (p1, p2) -> Long.compare(p1.getId(), p2.getId());
+//
+//        // Find the maximum element using the custom comparator
+        EgresoStock newEs = Collections.max(ds.getEgresos(), idComparator);
+//		
+//		
+		EgresoStockDTO eDTO = EgresoStockDTO.builder()
+					.cantidad(newEs.cantidad())
+					.responsable(newEs.responsable().getNombre())
+					.solicitante(newEs.getSolicitante().getNombre())
+					.build(); 
+			
+		return eDTO;
+		
+		
+	}
+	
 	@GetMapping(value = "/{codigo}/egresos", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody Collection<EgresoStockDTO> getEgresos(@PathVariable("codigo") Long codigo) {
 		
-		//DetalleStock ds = getService().getByProducto_Codigo(codigo);
+		DetalleStock ds = getService().getByProducto_Codigo(codigo);
 		Collection<EgresoStockDTO> egresos = new ArrayList<EgresoStockDTO>();
-//		for (IngresoStock i : ds.getIngresos()) {
-//			
-//			IngresoStockDTO iDTO = IngresoStockDTO.builder()
-//					.cantidad(i.cantidad())
-//					.fecha(i.getFechaCreacion().toString())
-//					.observacion(i.observacion())
-//					.build(); 
-//			ingresos.add(iDTO);
-//			
-//		}
+		for (EgresoStock i : ds.getEgresos()) {
+			
+			EgresoStockDTO eDTO = EgresoStockDTO.builder()
+					.cantidad(i.cantidad())
+					.fecha(i.getFechaCreacion().toString())
+					.observacion(i.observacion())
+					.responsable(i.responsable().getNombre())
+					.solicitante(i.getSolicitante().getNombre())
+					.build(); 
+			egresos.add(eDTO);
+			
+		}
 		
 		
 		return egresos;
