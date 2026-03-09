@@ -1,4 +1,4 @@
-package com.demo.pipers.rest;
+package com.demo.pipers.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -24,6 +24,7 @@ import com.demo.pipers.domain.stock.EgresoStock;
 import com.demo.pipers.domain.stock.IngresoStock;
 import com.demo.pipers.domain.stock.Producto;
 import com.demo.pipers.dto.DetalleStockDTO;
+import com.demo.pipers.dto.EgresoStockDTO;
 import com.demo.pipers.dto.IngresoStockDTO;
 import com.demo.pipers.service.DetalleStockService;
 import com.demo.pipers.service.EmpleadoService;
