@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { AbstractEntityComponent } from '../../abstract-entity/abstract-entity.component';
-import { ColumnSetting, CustomAction } from '../../table/utils/utils';
+import { ColumnSetting, CustomAction, MassiveAction } from '../../table/utils/utils';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { DetalleStockService } from '../../service/detalleStock.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { BaseService } from '../../service/base.service';
+import { GeneradorQRService } from '../../service/generadorQR.service';
 
 @Component({
   selector: 'app-stock',
@@ -13,13 +14,14 @@ import { BaseService } from '../../service/base.service';
   styleUrl: './stock.component.scss'
 })
 export class StockComponent extends AbstractEntityComponent {
-
+  selection: any[];
 
   constructor(
     route: ActivatedRoute,
     router: Router,
     titleService: Title,
     service: BaseService<any>,
+    private generadorQRService: GeneradorQRService
   ) {
     super(route, router, titleService, service);
   }
@@ -61,12 +63,7 @@ export class StockComponent extends AbstractEntityComponent {
         isEditable: true,
         isAddable: true,
 
-      }),
-      new ColumnSetting({
-        key: 'qr',
-        label: 'Descargar QR',
       })
-
     ];
 
 
@@ -77,15 +74,25 @@ export class StockComponent extends AbstractEntityComponent {
     this.settings.createEditAction = true;
     this.settings.pagination.pageSize = 10;
     this.settings.createExportAction = false;
-    // this.settings.selection = true;
+    var descargarQR = new CustomAction({
+      icon: 'download',
+      label: 'Descargar QR',
+      action: (row) => this.descargarQR(row)
+    })
+    this.settings.selection = true;
 
 
-    this.settings.customActions = this.createActionsAjustarStock();
-
+    this.settings.customActions = [this.createActionsAjustarStock(), descargarQR];
+    let actionMassive = new MassiveAction({ name: 'descargarQR', label: 'Descargar QR', condicion: () => this.selection?.length > 0 });
+    this.settings.massiveActions.push(actionMassive);
 
   }
 
+  descargarQR(row: any) {
 
+    this.generadorQRService.generarQR(row);
+
+  }
   protected createDetalleStockAction() {
     return new CustomAction({
       icon: 'format_list_bulleted_add',
@@ -97,8 +104,8 @@ export class StockComponent extends AbstractEntityComponent {
     this.router.navigate(["/stock", row.codigo]);
   }
 
-  createActionsAjustarStock(): CustomAction[] {
-    return [this.createDetalleStockAction()];
+  createActionsAjustarStock(): CustomAction {
+    return this.createDetalleStockAction();
   }
   protected override getTitle(): string {
     return 'Gestión de Stock';
@@ -106,10 +113,16 @@ export class StockComponent extends AbstractEntityComponent {
   protected override getPath(): string {
     return 'detalleStock/';
   }
-  
 
-  
- 
+
+
+  onMassive(event) {
+   this.generadorQRService.generarQRs(event.selected);
+  }
+
+  selected(event) {
+    this.selection = event;
+  }
   cambiarFiltro() {
     // this.loadData();
   }

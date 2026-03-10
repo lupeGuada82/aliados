@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class DetalleStockDTO {
+public class DetalleStockDTO  {
 
 	private Long codigo;
     private String nombre;

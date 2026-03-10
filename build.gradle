@@ -27,7 +27,8 @@ dependencies {
     implementation 'org.liquibase:liquibase-core'
     implementation 'com.google.zxing:core:3.5.3'
     implementation 'com.google.zxing:javase:3.5.3'
-    implementation 'com.github.librepdf:openpdf:1.3.30'
+    implementation 'com.github.librepdf:openpdf:1.3.30' //en vez de utilizar Itex porque se necesita licencia
+    
 
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     

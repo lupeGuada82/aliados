@@ -183,4 +183,9 @@ $tertiary-palette: mat.define-palette((50: #E0F7FA,
 
    /* OTROS */
    --white: #FFFFFF;
+
+   
+   --table-row-hover: var(--primary-100);
+   --table-row-select: var(--primary-light);
+   --table-row-border-select: var(--primary-dark);
 }

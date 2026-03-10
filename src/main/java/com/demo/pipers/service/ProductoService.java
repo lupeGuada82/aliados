@@ -1,6 +1,7 @@
 package com.demo.pipers.service;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,11 +16,11 @@ import lombok.Data;
 public class ProductoService {
 
 	private ProductoRepository repository;
-	
+
 	@Autowired
-    public ProductoService(ProductoRepository repository) {
-        this.repository = repository;
-    }
+	public ProductoService(ProductoRepository repository) {
+		this.repository = repository;
+	}
 
 	public Producto validateAndSave(Producto producto) {
 		return getRepository().saveAndFlush(producto);
@@ -32,7 +33,13 @@ public class ProductoService {
 	public Collection<Producto> getAll() {
 		return getRepository().findAll();
 	}
-	
-	
-	
+
+	public Producto getByCodigo(Long codigo) {
+		return getRepository().findByCodigo(codigo).get();
+	}
+
+	public List<Producto> findByCodigoIn(List<Long> codigos) {
+		return getRepository().findByCodigoIn(codigos);
+	}
+
 }

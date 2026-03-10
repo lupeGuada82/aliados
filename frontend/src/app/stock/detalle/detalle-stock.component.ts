@@ -14,38 +14,39 @@ export class DetalleStockComponent implements OnInit {
   currentSelectedProd: any;
   originalSelectedProd: any;
 
-  ingresosDeStock: MatTableDataSource<any> ;
+  ingresosDeStock: MatTableDataSource<any>;
   settingsIngresos = new TableConfiguration();
 
-  egresosDeStock: MatTableDataSource<any> ;
+  egresosDeStock: MatTableDataSource<any>;
   settingsEgresos = new TableConfiguration();
 
 
-  constructor(private route: ActivatedRoute, public router: Router, private generadorQRService: GeneradorQRService,
-  private detalleStockService: DetalleStockService) { }
+  constructor(private route: ActivatedRoute, public router: Router,
+    private detalleStockService: DetalleStockService) { }
 
   ngOnInit() {
 
     this.route.params.subscribe(param => {
 
       const codigo = Number(param['codigo']);
-            
-      this.detalleStockService.getProductoByCodigo(codigo).subscribe({
-      next: (producto) => {
-        
-      if (producto) {
-        this.inicializarStock(producto);
-      } else {
-        console.log('Producto no encontrado');
-      }},
-      error: (err) => {
-        console.error('Error obteniendo productos', err);
-      }
 
-    });
+      this.detalleStockService.getProductoByCodigo(codigo).subscribe({
+        next: (producto) => {
+
+          if (producto) {
+            this.inicializarStock(producto);
+          } else {
+            console.log('Producto no encontrado');
+          }
+        },
+        error: (err) => {
+          console.error('Error obteniendo productos', err);
+        }
+
       });
+    });
   }
-  
+
   inicializarStock(producto: { codigo: number; nombre: string; stockMinimo: number; stockActual: number; stockMaximo: number; }) {
     this.originalSelectedProd = producto;
     this.currentSelectedProd = this.copyElement(producto);
@@ -60,7 +61,7 @@ export class DetalleStockComponent implements OnInit {
       new ColumnSetting({
         key: 'fecha',
         label: 'Fecha',
-       // className: 'column-fecha'
+        // className: 'column-fecha'
       }),
 
       new ColumnSetting({
@@ -88,7 +89,7 @@ export class DetalleStockComponent implements OnInit {
       new ColumnSetting({
         key: 'observacion',
         label: 'Observacion',
-       // className: 'column-observacion',
+        // className: 'column-observacion',
       })
 
     ];
@@ -117,21 +118,21 @@ export class DetalleStockComponent implements OnInit {
   }
 
   loadDataMovimientos() {
-    
+
     this.detalleStockService.getIngresos(this.currentSelectedProd.codigo).subscribe((datos) => {
-          this.ingresosDeStock = new MatTableDataSource(datos);
-          console.log(this.ingresosDeStock);
-          
+      this.ingresosDeStock = new MatTableDataSource(datos);
+      console.log(this.ingresosDeStock);
+
     });
     //this.ingresosDeStock = this.currentSelectedProd.modificaciones.filter(m => m.tipo === 'INGRESO');
 
     //TODO los egresos de stock se deberían cargar solamente cuando se va a la solapa de egresos
     this.detalleStockService.getEngresos(this.currentSelectedProd.codigo).subscribe((datos) => {
-          this.egresosDeStock = new MatTableDataSource(datos);
-          console.log(this.ingresosDeStock);
-          
-    });    
-   // this.egresosDeStock = this.currentSelectedProd.modificaciones.filter(m => m.tipo === 'DESCUENTO');
+      this.egresosDeStock = new MatTableDataSource(datos);
+      console.log(this.ingresosDeStock);
+
+    });
+    // this.egresosDeStock = this.currentSelectedProd.modificaciones.filter(m => m.tipo === 'DESCUENTO');
   }
 
   inicializarTablaIngresosStock() {
@@ -142,7 +143,7 @@ export class DetalleStockComponent implements OnInit {
         label: 'Fecha',
         isEditable: false,
         isAddable: false,
-      //  className: 'column-fecha'
+        //  className: 'column-fecha'
       }),
 
       new ColumnSetting({
@@ -150,14 +151,14 @@ export class DetalleStockComponent implements OnInit {
         label: 'Cantidad',
         isEditable: true,
         isAddable: true,
-       // className: 'column-cantidad'
+        // className: 'column-cantidad'
       }),
       new ColumnSetting({
         key: 'observacion',
         label: 'Observacion',
         isEditable: true,
         isAddable: true
-      //  className: 'column-observacion',
+        //  className: 'column-observacion',
       }),
 
       new ColumnSetting({
@@ -198,22 +199,17 @@ export class DetalleStockComponent implements OnInit {
     //event.confirm.resolve(data);
     let newData = event.newData;
     this.detalleStockService.nuevoIngreso(this.currentSelectedProd.codigo, newData).subscribe((data) => {
-        event.confirm.resolve(data);      
+      event.confirm.resolve(data);
     });
   }
 
   onEditConfirm(event) {
 
     event.confirm.resolve(event.data);
-    
-
-  }
-  descargarPdf() {
- 
-    this.generadorQRService.generarQR(this.currentSelectedProd.codigo);
 
 
   }
+
 
 
 }
