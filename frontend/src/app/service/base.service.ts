@@ -30,6 +30,9 @@ export class BaseService<T> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.put<T>(this.baseUrl + path, body, { headers: headers });
   }
-
+ 
+  getByCodigo(codigo: number, path: String) {
+    return this.http.get<any>(this.baseUrl + path + codigo);
+  }
 }
 

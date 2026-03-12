@@ -3,8 +3,6 @@ import { AbstractEntityComponent } from '../../abstract-entity/abstract-entity.c
 import { ColumnSetting, CustomAction, MassiveAction } from '../../table/utils/utils';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { DetalleStockService } from '../../service/detalleStock.service';
-import { MatTableDataSource } from '@angular/material/table';
 import { BaseService } from '../../service/base.service';
 import { GeneradorQRService } from '../../service/generadorQR.service';
 

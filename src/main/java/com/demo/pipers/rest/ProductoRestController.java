@@ -32,11 +32,6 @@ public class ProductoRestController {
 		this.service = service;
 	}
 
-//	@PostMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-//	@ResponseStatus(HttpStatus.OK)
-//	public @ResponseBody ProductoDTO save(@RequestBody ProductoDTO producto) {
-//		return getService().validateAndSave(producto);
-//	}
 
 	@GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
@@ -48,16 +43,22 @@ public class ProductoRestController {
 	@GetMapping(value = "/", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody Collection<ProductoDTO> getAll() {
-		
-		List<Producto> productos=(List<Producto>) getService().getAll();
+
+		List<Producto> productos = (List<Producto>) getService().getAll();
 		List<ProductoDTO> productosDTO = new ArrayList<ProductoDTO>();
-		productos.stream().forEach(p-> 
-		productosDTO.add( ProductoDTO.builder().codigo(p.getCodigo())
-		.nombre(p.getNombre())
-		.stockMaximo(p.getMaximo())
-		.stockMinimo(p.getMinimo())
-		.build()));
+		productos.stream().forEach(p -> productosDTO.add(ProductoDTO.builder().codigo(p.getCodigo())
+				.nombre(p.getNombre()).stockMaximo(p.getMaximo()).stockMinimo(p.getMinimo()).build()));
 
 		return productosDTO;
+	}
+
+	@GetMapping(value = "/codigo/{codigo}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public ProductoDTO getByCodigo(@PathVariable("codigo") Long codigo) {
+		Producto producto = this.getService().getByCodigo(codigo);
+		ProductoDTO productoDTO = ProductoDTO.builder().codigo(producto.getCodigo()).nombre(producto.getNombre())
+				.stockMaximo(producto.getMaximo()).stockMinimo(producto.getMinimo()).build();
+		return productoDTO;
+
 	}
 }

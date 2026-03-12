@@ -94,14 +94,15 @@ body {
   stroke-width: 3px !important;
 }
 
-/* Para asegurar que el mixedmark también desaparezca */
-.mdc-checkbox__mixedmark {
-  background-color: var(--primary-dark) !important;
+
+.mat-mdc-checkbox.mat-mdc-checkbox-checked .mdc-checkbox__background {
+  background-color: var(--white) !important;
+  border-color: var(--primary-dark) !important;
 }
 
-/* Evitar ripple de color */
-.mat-mdc-checkbox-ripple .mat-ripple-element {
-  background-color: transparent !important;
+.mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background {
+  background-color: var(--white) !important;
+  border-color: var(--primary-dark) !important;
 }
 
 

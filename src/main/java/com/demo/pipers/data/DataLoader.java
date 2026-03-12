@@ -77,6 +77,10 @@ public class DataLoader {
 		DetalleStock detalleStock8 = DetalleStock.builder().producto(Producto.builder().codigo(599).minimo(1).maximo(10).nombre("MASCARA PARA SOLDAR").build()).build();
 		detalleStock8.addIngreso(IngresoStock.builder().cantidad(2L).observacion("Carga inicial").responsable(empl4).build());
 		service.validateAndSave(detalleStock8);
+		
+		DetalleStock detalleStock9 = DetalleStock.builder().producto(Producto.builder().codigo(600).minimo(1).maximo(10).nombre("MASCARA PARA SOLDAR n3").build()).build();
+		detalleStock9.addIngreso(IngresoStock.builder().cantidad(2L).observacion("Carga inicial").responsable(empl4).build());
+		service.validateAndSave(detalleStock9);
 
 	}
 

@@ -19,12 +19,12 @@ public class ErrorHandlerController {
 
 	private Logger logger = LoggerFactory.getLogger(getClass());
 
-//	@ExceptionHandler(ServiceException.class)
-//	public ResponseEntity<ErrorDTO> handleServiceException(ServiceException rse) {
-//		log.error(rse.getMessage(), rse.getCause());
-//		var dto = new ErrorDTO(HttpStatus.INTERNAL_SERVER_ERROR, rse.getMessage());
-//		return ResponseEntity.status(dto.getStatus()).contentType(MediaType.APPLICATION_JSON).body(dto);
-//	}
+	@ExceptionHandler(ServiceException.class)
+	public ResponseEntity<ErrorDTO> handleServiceException(ServiceException rse) {
+		logger.error(rse.getMessage(), rse.getCause());
+		var dto = new ErrorDTO(HttpStatus.INTERNAL_SERVER_ERROR, rse.getMessage());
+		return ResponseEntity.status(dto.getStatus()).contentType(MediaType.APPLICATION_JSON).body(dto);
+	}
 
 	@ExceptionHandler(DataAccessException.class)
 	public ResponseEntity<ErrorDTO> handleDataAccessException(DataAccessException dae) {

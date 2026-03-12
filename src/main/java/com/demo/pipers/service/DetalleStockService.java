@@ -22,6 +22,7 @@ public class DetalleStockService {
     }
 
 	public DetalleStock validateAndSave(DetalleStock detalleStock) {
+		
 		return getRepository().saveAndFlush(detalleStock);
 	}
 

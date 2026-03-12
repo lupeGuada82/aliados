@@ -1,47 +1,79 @@
-<p>Egreso de Stock!</p>
-<form [formGroup]="form" (ngSubmit)="submit()" class="form-container">
+<div class="mb-2 mt-1 breadcrumb">
+  <span class="link-volver" (click)="irADetalleStock()">
+    <span class="material-icons">arrow_back</span>
+    <span>Ir a Egreso Stock</span>
 
-  <!-- Código (solo lectura) -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Código</mat-label>
-    <input matInput formControlName="codigo" readonly>
-  </mat-form-field>
+  </span>
 
-  <!-- Cantidad -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Cantidad</mat-label>
-    <input matInput type="number" formControlName="cantidad" min="1">
 
-    <mat-error *ngIf="form.get('cantidad')?.hasError('required')">
-      La cantidad es obligatoria
-    </mat-error>
-    <mat-error *ngIf="form.get('cantidad')?.hasError('min')">
-      Debe ser mayor a 0
-    </mat-error>
-  </mat-form-field>
+</div>
 
-  <!-- Responsable -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Responsable</mat-label>
-    <input matInput formControlName="responsable">
+<div *ngIf="producto; then productoSelected else loadingPage"></div>
 
-    <mat-error *ngIf="form.get('responsable')?.hasError('required')">
-      El responsable es obligatorio
-    </mat-error>
-  </mat-form-field>
+<ng-template #loadingPage>
+</ng-template>
+<ng-template #productoSelected>
+  <div class="mb-3">
+    <span class="titulo">Registrar Egreso de Stock</span>
+  </div>
 
-  <!-- Solicitante -->
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Solicitante</mat-label>
-    <input matInput formControlName="solicitante">
+  <div class="px-3 py-2 d-flex align-items-center gap-2 mb-4">
+    <span class="badge bg-secondary">
+      {{ producto.codigo }}
+    </span>
+    <span class="fw-semibold">
+      {{ producto.nombre }}
+    </span>
+  </div>
+  <div class="card p-3">
+    <form [formGroup]="form" (ngSubmit)="submit()" class="form-container">
+      <!-- Cantidad -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Cantidad</mat-label>
+        <input matInput type="number" formControlName="cantidad" min="1">
 
-    <mat-error *ngIf="form.get('solicitante')?.hasError('required')">
-      El solicitante es obligatorio
-    </mat-error>
-  </mat-form-field>
+        <mat-error *ngIf="form.get('cantidad')?.hasError('required')">
+          La cantidad es obligatoria
+        </mat-error>
+        <mat-error *ngIf="form.get('cantidad')?.hasError('min')">
+          Debe ser mayor a 0
+        </mat-error>
+      </mat-form-field>
 
-  <button mat-raised-button color="primary" type="submit">
-    Guardar
-  </button>
+      <!-- Responsable -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Responsable</mat-label>
+        <input matInput formControlName="responsable">
 
-</form>
+        <mat-error *ngIf="form.get('responsable')?.hasError('required')">
+          El responsable es obligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Solicitante -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Solicitante</mat-label>
+        <input matInput formControlName="solicitante">
+
+        <mat-error *ngIf="form.get('solicitante')?.hasError('required')">
+          El solicitante es obligatorio
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Observación</mat-label>
+        <input matInput formControlName="observacion">
+
+
+      </mat-form-field>
+
+      <div>
+        <button mat-raised-button color="primary" type="submit">
+          Guardar
+        </button>
+        <button mat-raised-button color="warn" type="button" (click)="onCancelar()">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </div>
+</ng-template>

@@ -97,25 +97,25 @@ export class DetalleStockComponent implements OnInit {
     this.settingsEgresos.createHidenAction = false;
     this.settingsEgresos.editable = true;
     this.settingsEgresos.createEditAction = true;
-    this.settingsEgresos.createAddAction = true;
+    // this.settingsEgresos.createAddAction = true;
     this.settingsEgresos.createExportAction = false;
     this.settingsEgresos.pagination.pageSize = 10;
     //esto se hace asi para poder probar el formulario que luego se realiza en QR
-    this.settingsEgresos.customActions = this.createActionEgresoStock();
+   // this.settingsEgresos.customActions = this.createActionEgresoStock();
 
   }
 
-  createActionEgresoStock(): CustomAction[] {
-    return [new CustomAction({
-      icon: 'format_list_bulleted_add',
-      label: 'Egreso Stock',
-      action: (row) => this.egresoStock(row)
-    })];
-  }
-  egresoStock(row: any): void {
-    console.log('Navegando a egreso de stock para el producto: ', row);
-    this.router.navigate(["/egresoStock", this.currentSelectedProd.codigo]);
-  }
+  // createActionEgresoStock(): CustomAction[] {
+  //   return [new CustomAction({
+  //     icon: 'format_list_bulleted_add',
+  //     label: 'Egreso Stock',
+  //     action: (row) => this.egresoStock(row)
+  //   })];
+  // }
+  // egresoStock(row: any): void {
+  //   console.log('Navegando a egreso de stock para el producto: ', row);
+  //   this.router.navigate(["/egresoStock", this.currentSelectedProd.codigo]);
+  // }
 
   loadDataMovimientos() {
 
