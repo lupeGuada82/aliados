@@ -1,0 +1,154 @@
+::ng-deep .mat-mdc-form-field-bottom-align::before {
+    display: none !important;
+}
+
+
+.mat-mdc-form-field-error {
+    font-size: 9px !important;
+}
+
+
+::ng-deep .mat-mdc-form-field-infix {
+
+    padding-top: 2px !important;
+    padding-bottom: 2px !important;
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+    min-height: 0 !important;
+
+}
+
+
+
+
+::ng-deep .mat-mdc-input-element {
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+    padding-left: 0 !important;
+}
+
+
+
+
+::ng-deep .mat-mdc-text-field-wrapper {
+    min-height: unset !important;
+    height: auto !important;
+    padding: 0 !important;
+}
+
+
+
+
+::ng-deep .mat-mdc-form-field .mdc-notched-outline {
+    border-radius: 0px !important;
+}
+
+
+//saca el redondeo de los bordes de los inputs/select y custom
+::ng-deep .mat-mdc-text-field-wrapper,
+::ng-deep .mdc-text-field,
+::ng-deep .mdc-notched-outline {
+    border-radius: 2px !important;
+}
+
+
+
+
+/****** CELDA DE LA TABLA - estira ******/
+::ng-deep .mat-mdc-cell {
+    padding: 0 !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+    max-width: 100% !important;
+}
+
+
+/****** FORM FIELD PRINCIPAL - es para el select ******/
+::ng-deep mat-form-field.auto-stretch-select {
+    width: 100% !important;
+    min-width: 0;
+    max-width: 100%;
+    display: block !important;
+    box-sizing: border-box;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/////******para que no se corra el input*********/
+.editor-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    min-height: 60px; // Asegura espacio suficiente para input + error
+
+    .mat-mdc-form-field-subscript-wrapper {
+        min-height: 16px; // ya lo tenés, ayuda
+    }
+
+
+    mat-error {
+        font-size: 10px;
+        line-height: 1.2;
+        display: block;
+        padding-top: 4px;
+        white-space: normal;
+        /* Permite salto de línea */
+        word-break: break-word;
+        /* Rompe palabras largas */
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: #DC3545;
+        max-height: 32px;
+        /* Máximo 2 líneas aprox */
+    }
+
+}
+
+::ng-deep .mat-form-field.mat-form-field-invalid .mat-form-field-underline {
+    background-color: #DC3545;
+}
+
+
+.view-wrapper {
+    align-items: center;
+}
+
+.wrap-text {
+    max-width: 100%;
+}
+
+::ng-deep .mat-mdc-cell mat-form-field {
+    width: 100% !important;
+    /*evita que empuje la celda */
+    max-width: 100%;
+    margin-left: 10px !important;
+    padding: 0 !important;
+    box-sizing: border-box;
+    display: block !important;
+}
+
+::ng-deep .mat-mdc-cell .error-wrapper {
+    margin-left: 15px;
+    margin-bottom: 2px;
+}
+
+
+
+::ng-deep .editor-wrapper {
+    height: 53px !important;
+    max-height: 53px !important;
+    min-height: 53px !important;
+
+    padding: 0 !important;
+    margin-top: 23px !important;
+    margin-bottom: 2px !important;
+
+    box-sizing: border-box !important;
+
+    display: flex;
+    align-items: center;
+}

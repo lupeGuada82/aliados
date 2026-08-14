@@ -1,0 +1,61 @@
+<mat-form-field [appearance]="appearance()" style="width: 100%">
+
+  <mat-select #selectElem [formControl]="control()" (selectionChange)="onSelectionChange($event)" (closed)="onClose()">
+
+    <!-- ===========================
+         BUSCADOR
+         =========================== -->
+
+    <div class="box-search">
+
+      <input #searchInput type="text" [formControl]="inputControl" [placeholder]="selectPlaceholder()"
+        (input)="filterItem(searchInput.value)" (keydown.space)="$event.stopPropagation()" />
+
+      <!-- LIMPIAR BÚSQUEDA -->
+      <div class="box-search-icon">
+
+        <app-button variant="icon" icon="clear" [disabled]="!inputControl.value"
+          (click)="clearSearch()" />
+
+      </div>
+
+    </div>
+
+
+    <!-- ===========================
+         VALOR SELECCIONADO
+         =========================== -->
+
+    <mat-select-trigger>
+      {{ selectedValue ? displaySelectFn()(selectedValue) : '' }}
+    </mat-select-trigger>
+
+
+    <!-- ===========================
+         OPCIÓN NINGUNA
+         =========================== -->
+
+    <mat-option [value]="null">
+      Ninguna
+    </mat-option>
+
+
+    <!-- ===========================
+         OPCIONES FILTRADAS
+         =========================== -->
+
+    @for (option of options(); track trackByFn($index, option)) {
+
+    <mat-option [value]="option" [disabled]="option.disabled" [style.display]="hideOption(option) ? 'none' : 'flex'">
+
+      <span class="option-text" [matTooltip]="showTooltip() ? displayFn()(option) : null">
+        {{ displayFn()(option) }}
+      </span>
+
+    </mat-option>
+
+    }
+
+  </mat-select>
+
+</mat-form-field>

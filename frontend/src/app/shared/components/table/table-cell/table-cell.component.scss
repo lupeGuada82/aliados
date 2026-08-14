@@ -1,0 +1,118 @@
+/* =========================
+   FORM FIELD
+========================= */
+
+/* elimina línea fantasma inferior */
+:host ::ng-deep .mat-mdc-form-field-bottom-align::before {
+  display: none;
+}
+
+/* altura real del input */
+:host ::ng-deep .mat-mdc-text-field-wrapper {
+  height: 24px !important;
+  min-height: 24px !important;
+  padding: 0 !important;
+}
+
+/* contenedor MDC */
+:host ::ng-deep .mdc-text-field {
+  height: 24px !important;
+  // align-items: center;
+}
+
+
+/* interior del form-field */
+:host ::ng-deep .mat-mdc-form-field-infix {
+  padding-top: 2px !important;
+  padding-left: 8px !important;
+  min-height: 0 !important;
+}
+
+/* input */
+:host ::ng-deep .mat-mdc-input-element {
+  font-size: 16px;
+  line-height: 20px;
+  padding: 0;
+}
+
+.my-table .mat-mdc-cell,
+.view-wrapper {
+  font-size: 16px !important;
+  line-height: 20px !important;
+}
+
+
+/* elimina espacio de errores/hints */
+:host ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+
+/* bordes más rectos */
+:host ::ng-deep .mat-mdc-text-field-wrapper,
+:host ::ng-deep .mdc-text-field,
+:host ::ng-deep .mdc-notched-outline {
+  border-radius: 2px !important;
+}
+
+
+/* =========================
+   CELDA EDITABLE
+========================= */
+
+
+.editor-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;   /* centra solo el editor */
+  min-height: 52px;
+  padding-bottom: 3px; /* reserva espacio visual para error */
+}
+// /* =========================
+//    ERRORES
+// ========================= */
+
+
+.error-wrapper {
+  position: absolute;
+  left: 0;
+  bottom: 6px;
+
+  font-size: 10px;
+  line-height: 10px;
+  color: #DC3545;
+}
+/* =========================
+   VIEW MODE
+========================= */
+
+.view-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.wrap-text {
+  max-width: 100%;
+}
+
+
+/* =========================
+   FORM FIELD DENTRO CELDA
+========================= */
+
+:host ::ng-deep .mat-mdc-cell mat-form-field {
+  width: 100%;
+  margin: 0;
+  display: block;
+  height: 100%;
+}
+
+:host ::ng-deep .mat-mdc-form-field-icon-suffix {
+  position: absolute;
+  right: 8px;
+  display: flex;
+  align-items: center;
+}
+
+:host ::ng-deep .mat-mdc-text-field-wrapper {
+  position: relative;
+}

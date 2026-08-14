@@ -1,0 +1,44 @@
+.breadcrumb {
+  margin-top: var(--spacing-1);
+  margin-bottom: var(--spacing-4);
+  display: flex;
+  justify-content: flex-start;
+  // margin-left: -8px;
+}
+
+.breadcrumb-button {
+  margin-left: 0px;
+}
+
+.breadcrumb-button ::ng-deep .btn {
+  padding-left: 0;
+  padding-right: var(--spacing-2);
+  gap: 4px;
+  min-width: 0;
+}
+
+.breadcrumb-button ::ng-deep .btn app-icon {
+  font-size: 20px;
+}
+
+.productos-page {
+  width: 100%;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+
+  margin-bottom: var(--spacing-4);
+}
+
+.titulo {
+  margin: 0;
+
+  font-family: var(--font-heading);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.25;
+}

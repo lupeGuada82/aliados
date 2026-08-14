@@ -1,0 +1,30 @@
+<block-ui>
+  <div class="main-layout">
+
+    <mat-toolbar>
+      <button mat-icon-button (click)="toggleMenu()" class="menu-toggle-btn" [disableRipple]="true">
+        <mat-icon class="material-icons-round icon-color">
+          dehaze
+        </mat-icon>
+      </button>
+
+      <!-- Logo -->
+      <a routerLink="/" class="logo-link">
+        <img src="assets/images/pipers.svg" width="35" height="45" loading="auto" class="logo-img">
+        <span class="logo-text">Pipers</span>
+      </a>
+    </mat-toolbar>
+
+    <div class="main-container" *ngIf="isLoggedIn()">
+      <!-- Menú lateral -->
+      <div class="menu" [class.hidden]="!menuVisible">
+        <app-menu></app-menu>
+      </div>
+      <!-- Contenido central -->
+      <div id="routeo">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+
+  </div>
+</block-ui>

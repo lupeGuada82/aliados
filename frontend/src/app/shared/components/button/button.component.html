@@ -1,0 +1,15 @@
+<button
+  class="btn"
+  [ngClass]="['btn-' + variant()]"
+  [type]="type()"
+  [disabled]="disabled()"
+  [matTooltip]="tooltip() || null"
+  [matTooltipClass]="tooltipClass() || ''">
+  @if (icon()) {
+  <app-icon [name]="icon()!" [size]="24">
+  </app-icon>
+  }
+  <span>
+    <ng-content></ng-content>
+  </span>
+</button>

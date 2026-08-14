@@ -1,0 +1,274 @@
+@use 'index' as *;
+
+/* ============================================================
+   FIELD
+   ============================================================ */
+
+.select-field {
+  width: 100%;
+}
+
+
+/* ============================================================
+   BOX SEARCH
+   Buscador dentro del panel del select
+   ============================================================ */
+
+.box-search {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  width: 100%;
+  padding: var(--spacing-1) var(--spacing-2);
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   INPUT
+   ============================================================ */
+
+.search-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 40px;
+  padding: 0 var(--spacing-1);
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-sm);
+  &::placeholder {
+    color: var(--color-text-secondary);
+  }
+}
+
+.search-input-single {
+  padding-left: var(--spacing-2);
+}
+
+
+/* ============================================================
+   SEARCH ACTIONS
+   ============================================================ */
+
+.box-search-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+}
+
+.search-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  padding: 0;
+
+  color: var(--color-text-secondary);
+
+  &:hover:not(:disabled) {
+    color: var(--color-primary);
+  }
+
+  &.is-active,
+  &.has-value {
+    color: var(--color-primary);
+  }
+
+  &:disabled {
+    color: var(--color-disabled);
+  }
+}
+
+.search-action mat-icon {
+  width: 20px;
+  height: 20px;
+
+  font-size: 20px;
+  line-height: 1;
+}
+
+
+/* ============================================================
+   SELECT TRIGGER
+   ============================================================ */
+
+.chip-trigger-wrapper {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  min-width: 0;
+
+  flex-wrap: nowrap;
+}
+
+
+/* ============================================================
+   CHIPS
+   ============================================================ */
+
+.chip-trigger-scroll {
+  display: flex;
+  align-items: center;
+
+  flex: 1 1 auto;
+
+  min-width: 0;
+  max-width: calc(100% - 40px);
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  scrollbar-width: thin;
+}
+
+
+/*
+ * Material genera internamente el contenedor de chips.
+ * Necesitamos controlar el wrapping para que los chips
+ * permanezcan en una sola línea.
+ */
+::ng-deep .chip-trigger-scroll .mdc-evolution-chip-set__chips {
+
+  display: flex !important;
+
+  flex-wrap: nowrap !important;
+
+  min-width: 0;
+}
+
+
+::ng-deep .mat-mdc-chip-set {
+  display: flex !important;
+
+  flex-wrap: nowrap !important;
+
+  width: max-content;
+}
+
+
+::ng-deep .mat-mdc-chip {
+  flex-shrink: 0 !important;
+
+  white-space: nowrap;
+}
+
+
+/* Scroll */
+
+.chip-trigger-scroll::-webkit-scrollbar {
+  height: 3px;
+}
+
+.chip-trigger-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-disabled);
+
+  border-radius: var(--radius-round);
+}
+
+
+/* ============================================================
+   MORE CHIP
+   ============================================================ */
+
+.more-chip-wrapper {
+  flex: 0 0 auto;
+
+  margin-left: var(--spacing-1);
+}
+
+
+.more-chip {
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   SELECTED VALUE
+   ============================================================ */
+
+.selected-value {
+  color: var(--color-text);
+
+  font-family: var(--font-family-primary);
+}
+
+
+/* ============================================================
+   OPTIONS
+   ============================================================ */
+
+.option-text {
+  display: block;
+
+  max-width: 100%;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+
+/*
+ * Las opciones filtradas no se eliminan del array.
+ * Simplemente se ocultan visualmente.
+ */
+.option-hidden {
+  display: none !important;
+}
+
+
+/*
+ * Panel interno de Material.
+ *
+ * El panel del mat-select puede tener un ancho diferente
+ * al del componente, por eso limitamos el overflow.
+ */
+::ng-deep .mat-mdc-select-panel {
+  max-width: 100%;
+
+  overflow-x: hidden;
+}
+
+
+/*
+ * Cada opción ocupa todo el ancho disponible.
+ */
+::ng-deep .mat-mdc-option {
+  width: 100%;
+
+  box-sizing: border-box;
+}
+
+
+/*
+ * Texto interno generado por MDC.
+ */
+::ng-deep .mat-mdc-option .mdc-list-item__primary-text {
+  display: block !important;
+  max-width: 100% !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+}
+
+/* ============================================================
+   ERROR
+   ============================================================ */
+
+.error-message {
+  color: var(--color-danger);
+}

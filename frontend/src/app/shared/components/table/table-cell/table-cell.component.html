@@ -1,0 +1,61 @@
+@if (settings().editable && isEditing()) {
+  @if (isColumnEditable(column(), row())) {
+    @if (isFormControl(control)) {
+      <div class="editor-wrapper">
+        @switch (column().editor.type) {
+          @case ('text') {
+            <text-cell-editor [control]="control" [row]="row()" [column]="column()"
+              (addEditConfirm)="addEditConfirmed()">
+            </text-cell-editor>
+          }
+          @case ('number') {
+            <number-cell-editor [control]="control" [row]="row()" [column]="column()"
+              (addEditConfirm)="addEditConfirmed()">
+            </number-cell-editor>
+          }
+          @case ('list') {
+            <list-cell-editor [control]="control" [row]="row()" [column]="column()">
+            </list-cell-editor>
+          }
+          @case ('custom') {
+            <custom-cell-editor [control]="control" [row]="row()" [column]="column()"
+              [formGroup]="getForm(row())" [parameters]="parameters">
+            </custom-cell-editor>
+          }
+        }
+        <!-- Errores dinámicos -->
+        @if (control.invalid && control.touched) {
+          @for (errorKey of errorKeys(control.errors); track errorKey) {
+            <mat-error class="error-wrapper">
+              {{ column().editor.errorMessages?.[errorKey] || errorKey }}
+            </mat-error>
+          }
+        }
+        <!-- errores de grupo -->
+        @if (control.parent?.invalid && (control.touched || control.dirty)) {
+          @for (key of errorKeys(control.parent?.errors); track key) {
+            <mat-error class="error-wrapper">
+              {{ column().editor.errorMessages?.[key] || key }}
+            </mat-error>
+          }
+        }
+      </div>
+    }
+  } @else {
+    <div class="view-wrapper wrap-text" [ngClass]="getCellClass()">
+      @if (column().valueGetter) {
+        {{ column().valueGetter(getForm(row())?.value) }}
+      } @else {
+        {{ row()[column().key] }}
+      }
+    </div>
+  }
+} @else {
+  <div class="view-wrapper wrap-text" [ngClass]="getCellClass()">
+    @if (column().valueGetter) {
+      {{ column().valueGetter(row()) }}
+    } @else {
+      {{ row()[column().key] }}
+    }
+  </div>
+}

@@ -1,0 +1,26 @@
+<header class="section-title" [ngClass]="'align-' + align()">
+
+  @if(eyebrow()){
+
+  <span class="eyebrow">
+    {{eyebrow()}}
+  </span>
+
+  }
+
+
+  <h2>
+    {{title()}}
+  </h2>
+
+
+  @if(description()){
+
+  <p>
+    {{description()}}
+  </p>
+
+  }
+
+
+</header>

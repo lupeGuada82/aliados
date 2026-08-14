@@ -1,0 +1,44 @@
+<div class="breadcrumb">
+    <app-button
+        variant="ghost"
+        (click)="atras()"
+        icon="arrow_back">
+        <span>Volver</span>
+    </app-button>
+</div>
+
+@if (data) {
+
+    <section class="stock-page">
+
+        <div class="page-header">
+
+            <h1 class="titulo">
+                {{ getTitle() }}
+            </h1>
+
+            <app-button
+                variant="primary"
+                (click)="cambiarFiltro()"
+                icon="filter_alt">
+                <span>Filtrar</span>
+            </app-button>
+
+        </div>
+
+        <app-table
+            [source]="data"
+            [settings]="settings"
+            (editConfirm)="onEditConfirm($event)"
+            (selectionChange)="selected($event)"
+            (addConfirm)="onAddConfirm($event)"
+            (massive)="onMassive($event)">
+        </app-table>
+
+    </section>
+
+} @else {
+
+    <app-loading-overlay message="Cargando stock..." />
+
+}

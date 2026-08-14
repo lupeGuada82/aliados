@@ -1,0 +1,37 @@
+:root {
+
+  /* Families */
+
+  --font-family-primary: 'Inter', sans-serif;
+  --font-family-display: 'Poppins', sans-serif;
+
+  /* Sizes */
+
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 20px;
+  --font-size-xl: 28px;
+  --font-size-2xl: 36px;
+  --font-size-3xl: 48px;
+
+
+  /* Weights */
+
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Line heights */
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+
+
+  --letter-spacing-normal: 0;
+  --letter-spacing-sm: 1px;
+  --letter-spacing-md: 2px;
+
+}

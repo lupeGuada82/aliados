@@ -1,0 +1,33 @@
+
+<div class="mb-2 mt-1 breadcrumb">
+    <span class="link-volver" (click)="atras()">
+        <span class="material-icons">arrow_back</span>
+        <span>Volver</span>
+
+    </span>
+
+   
+</div>
+
+<div *ngIf="data; then empleadoSelected else loadingPage"></div>
+
+<ng-template #loadingPage>
+</ng-template>
+<ng-template #empleadoSelected>
+    <div>
+         <span class="titulo">{{ getTitle() }}</span>
+        <div class="d-flex justify-content-end mb-2 mt-1">
+            <!-- <button mat-raised-button color="primary" matTooltip="Filtro" (click)="cambiarFiltro()" class="btn-cambiar-filtro">
+                <span class="material-symbols-outlined" style="vertical-align: middle; margin-right: 4px;">
+
+                    filter_alt
+
+                </span>
+                Filtrar
+            </button> -->
+        </div>
+        <table-component [source]="data" [settings]="settings" (editConfirm)="onEditConfirm($event)"
+            (addConfirm)="onAddConfirm($event)" ></table-component>
+
+    </div>
+</ng-template>

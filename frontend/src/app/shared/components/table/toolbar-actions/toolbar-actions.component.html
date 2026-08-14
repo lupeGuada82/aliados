@@ -1,0 +1,50 @@
+<div class="table-toolbar-actions">
+    <div class="table-open-selected">
+        @if (isOpenSelected() && actionOpenSelected) {
+        <app-button variant="ghost" (click)="openSelected.emit()" [icon]="actionOpenSelected.icon || 'folder_managed'">
+            <span>{{ actionOpenSelected.label }}</span>
+        </app-button>
+        }
+    </div>
+    <div class="table-actions">
+        @if (isExport()) {
+        <app-button variant="ghost" [disabled]="grisarEditing(actionExport.disabled)"
+            [icon]="actionExport.icon || 'file_export'" [matMenuTriggerFor]="menuExport">
+            <span>{{ actionExport.label }}</span>
+        </app-button>
+        <mat-menu #menuExport="matMenu" panelClass="menu-plain">
+            <button type="button" mat-menu-item (click)="export('pdf')">PDF</button>
+            <button type="button" mat-menu-item (click)="export('xls')">Excel</button>
+            <button type="button" mat-menu-item (click)="export('csv')">CSV</button>
+        </mat-menu>
+        }
+
+        @if (isHidenColumn() && actionHiddenColumn) {
+        <app-button variant="ghost" [disabled]="grisarEditing(actionHiddenColumn.disabled)"
+            [icon]="actionHiddenColumn.icon || 'table_eye'" [matMenuTriggerFor]="menuHidden">
+            <span>{{ actionHiddenColumn.label }}</span>
+        </app-button>
+        <mat-menu #menuHidden="matMenu" panelClass="menu-plain">
+            <column-visibility-selector [columns]="hideableColumns"></column-visibility-selector>
+        </mat-menu>
+        }
+        @if (isAdd() && actionAdd) {
+        <app-button variant="ghost" [disabled]="grisar(actionAdd.disabled)" [icon]="actionAdd.icon || 'add'"
+            (click)="add.emit({ dataSource: dataSource() })">
+            <span>{{ actionAdd.label }}</span>
+        </app-button>
+        }
+        @if (settings().massiveActions.length > 0) {
+        <app-button variant="icon" [icon]="'more_vert'" [matMenuTriggerFor]="menuMassive" class="massiveActions">
+        </app-button>
+        <mat-menu #menuMassive="matMenu" panelClass="menu-plain">
+            @for (action of settings().massiveActions; track $index) {
+            <button type="button" mat-menu-item (click)="executeMassive(action.name)"
+                [disabled]="!evaluateConditionMassive(action)">
+                {{ action.label }}
+            </button>
+            }
+        </mat-menu>
+        }
+    </div>
+</div>

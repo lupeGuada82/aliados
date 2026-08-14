@@ -1,0 +1,208 @@
+/* You can add global styles to this file, and also import other style files */
+@import "./config";
+@import 'material-symbols/outlined.css';
+@import 'material-icons/iconfont/material-icons.css';
+
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow-y: hidden;
+}
+
+body {
+  margin: 0;
+  font-family: $font-family;
+  color: $app-font-color;
+}
+
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 20px;
+  vertical-align: middle;
+}
+
+
+.material-symbols-outlined {
+  font-weight: normal;
+  font-style: normal;
+  font-size: 18px;
+  font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+
+.mat-mdc-header-cell {
+  background-color: var(--primary) !important;
+  /* fondo */
+  color: #FFFFFF !important;
+  /* texto */
+  font-size: 14px !important;
+  /* 16px */
+  font-weight: 500;
+  text-align: left !important;
+  /* alinear horizontalmente */
+  vertical-align: top !important;
+  /* alinear verticalmente arriba */
+  padding: 12px 16px !important;
+
+}
+
+/* Alineación interna del sort-header */
+.mat-sort-header-content {
+  justify-content: flex-start !important;
+  /* fuerza alineación izquierda */
+  align-items: flex-start !important;
+  /* fuerza alineación arriba */
+}
+
+.mat-sort-header-arrow {
+  color: white !important;
+  fill: white !important;
+}
+
+.mat-sort-header {
+  color: white !important;
+}
+
+
+//color de los checkbox
+
+/* Fondo del checkbox transparente/blanco */
+.mdc-checkbox__background::before,
+.mdc-checkbox__background {
+  background-color: transparent !important;
+  border-color: var(--primary-dark);
+  /* Borde blanco (opcional) */
+}
+
+
+/* Color del checkmark (tilde) */
+.mdc-checkbox__checkmark-path {
+  stroke: var(--primary-dark) !important;
+  /* azul */
+  stroke-width: 3px !important;
+}
+
+
+.mat-mdc-checkbox.mat-mdc-checkbox-checked .mdc-checkbox__background {
+  background-color: var(--white) !important;
+  border-color: var(--primary-dark) !important;
+}
+
+.mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background {
+  background-color: var(--white) !important;
+  border-color: var(--primary-dark) !important;
+}
+
+
+.add-button,
+.export-button {
+  background-color: var(--primary-400) !important;
+  color: white !important;
+  border-radius: 12px !important;
+  height: 8px !important;
+  /* altura fina */
+  line-height: 1 !important;
+  min-height: 8px !important;
+  padding: 0 6px !important;
+  line-height: 8px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+
+.add-button .button-text,
+.export-button .button-text {
+  font-size: 10px;
+  line-height: 1 !important;
+}
+
+.add-button mat-icon,
+.export-button mat-icon {
+
+  margin-right: 10px;
+  color: white;
+  margin-left: 4px !important;
+  font-size: 16px;
+  height: 16px;
+  width: 16px;
+  //line-height: 14px;
+
+
+}
+
+.table-actions {
+  display: flex;
+  gap: 12px;
+  /* espacio entre botones */
+}
+
+.btn-cambiar-filtro {
+  background-color: var(--primary);
+  color: var(--white) !important;
+  border-radius: 12px !important;
+  text-transform: none !important;
+  font-size: 10pt;
+  padding: 4px 12px;
+}
+
+.btn-cambiar-filtro:hover {
+  background-color: var(--primary) !important;
+}
+
+
+.link-volver {
+  color: var(--primary);
+  cursor: pointer;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+
+.link-volver {
+  text-decoration: none !important;
+}
+
+.link-volver:hover,
+.link-volver:focus,
+.link-volver:active {
+  text-decoration: none !important;
+}
+
+
+
+
+.titulo {
+  color: var(--secondary)!important;
+  font-weight: 700;
+  font-size: 20px;
+  //user-select: none;
+}
+
+
+.cdk-column-acciones,
+.mat-column-acciones {
+  width: 150px;
+  min-width: 150px;
+  max-width: 150px;
+}
+
+
+//achica el panel de los 3 puntitos de las acciones de una tabla
+.mat-mdc-menu-panel {
+  min-width: 40px !important;
+}
+
+
+
+
+

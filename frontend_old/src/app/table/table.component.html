@@ -1,0 +1,10 @@
+<div *ngIf="settings; then eebbSelected else loadingPage"></div>
+
+<ng-template #loadingPage>
+</ng-template>
+<ng-template #eebbSelected>
+  <!--  tabla -->
+  <app-table-dinamic  [source]="source" [settings]="settings" (show)="onShow($event)" 
+    (navigate)="onNavigate($event)" (edit)="onEdit($event)" (editConfirm)="onEditConfirm($event)" (delete)="onDelete($event)" (deleteConfirm)="onDeleteConfirm($event)"
+    (add)="onAdd($event)" (addConfirm)="onAddConfirm($event)" (massive)="onMassive($event)" (selectionChange)="onSelectionChange($event)"></app-table-dinamic>
+</ng-template>

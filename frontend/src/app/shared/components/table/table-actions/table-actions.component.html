@@ -1,0 +1,51 @@
+@if (settings()) {
+  <div class="acciones-inline">
+    @if (isEditing()) {
+      <app-button
+        variant="icon"
+        [icon]="'check'"
+        [matTooltip]="'Aceptar'"
+        matTooltipClass="dark-tooltip"
+        (click)="addEditConfirmed(row())">
+      </app-button>
+
+      <app-button
+        variant="icon"
+        [icon]="'close'"
+        [matTooltip]="'Cancelar'"
+        matTooltipClass="dark-tooltip"
+        (click)="editCancel(row())">
+      </app-button>
+    } @else {
+      @for (action of allVisibleActions | slice:0:4; track $index) {
+        <app-button
+          variant="icon"
+          [icon]="action.icon || 'edit'"
+          [matTooltip]="action.label"
+          matTooltipClass="dark-tooltip"
+          (click)="action.action()"
+          [disabled]="evaluarCondicionDefault(action.disabled, row())">
+        </app-button>
+      }
+
+      @if (allVisibleActions.length > 4) {
+        <app-button
+          variant="icon"
+          [icon]="'more_vert'"
+          [matMenuTriggerFor]="menu"
+          [matTooltip]="'Más acciones'"
+          matTooltipClass="dark-tooltip">
+        </app-button>
+
+        <mat-menu #menu="matMenu">
+          @for (action of allVisibleActions | slice:4; track $index) {
+            <button type="button" mat-menu-item (click)="action.action()" [disabled]="evaluarCondicionDefault(action.disabled, row())" class="custom-action-button">
+              <app-icon [name]="action.icon || 'edit'" [size]="16"></app-icon>
+              <span class="custom-label">{{ action.label }}</span>
+            </button>
+          }
+        </mat-menu>
+      }
+    }
+  </div>
+}

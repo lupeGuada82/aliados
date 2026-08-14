@@ -1,0 +1,24 @@
+<mat-form-field class="auto-stretch-select" appearance="fill">
+  <mat-select [formControl]="control()" class="custom-select">
+    @for (opt of column().editor.listOptions; track opt.value) {
+      <mat-option [value]="opt.value">
+        {{ opt.title }}
+      </mat-option>
+    }
+  </mat-select>
+
+  @if (control().invalid && (control().dirty || control().touched)) {
+    <mat-icon matSuffix class="error-icon">error</mat-icon>
+  }
+
+  <mat-icon
+    matSuffix
+    class="dropdown-icon"
+    [ngClass]="{
+      'error': control().invalid && (control().dirty || control().touched),
+      'normal': !(control().invalid && (control().dirty || control().touched))
+    }"
+  >
+    arrow_drop_down
+  </mat-icon>
+</mat-form-field>

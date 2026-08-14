@@ -1,0 +1,11 @@
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 500px;
+  margin-top: 20px;
+}
+
+.full-width {
+  width: 100%;
+}

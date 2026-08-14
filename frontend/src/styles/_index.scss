@@ -1,0 +1,29 @@
+@forward "colors";
+@forward "spacing";
+@forward "radius";
+@forward "shadows";
+@forward "typography";
+@forward "animations";
+@forward "breakpoints";
+@forward "fonts";
+@forward "reset";
+
+:root {
+    /* ======================================================================
+         COMPONENTES
+   ====================================================================== */
+    // --header-height: 64px;
+    // --sidebar-width: 200px;
+    /**ICONO*/
+    --icon-size-lg: 38px;
+    --icon-container-sm: 32px;
+    --icon-container-md: 40px;
+    --icon-container-lg: 48px;
+
+
+    --content-width-sm: 700px;
+    --content-width-md: 960px;
+    --content-width-lg: 1200px;
+
+
+}

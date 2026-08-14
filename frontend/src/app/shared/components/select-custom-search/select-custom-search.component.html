@@ -1,0 +1,185 @@
+<mat-form-field
+  [appearance]="appearance()"
+  class="select-field"
+>
+
+  <mat-label>
+    {{ placeholder() }}
+  </mat-label>
+
+  <mat-select
+    #selectElem
+    [formControl]="control()"
+    [multiple]="multiple()"
+    (selectionChange)="onSelectionChange($event)"
+    (closed)="onClose()"
+  >
+
+    <!-- BUSCADOR -->
+    <div class="box-search">
+
+      @if (multiple() && filteredOptions.length > 0) {
+
+        <div class="box-search-icon">
+
+          <button
+            mat-icon-button
+            type="button"
+            class="search-action"
+            [class.is-active]="selectAllChecked"
+            (click)="toggleSelectAll()"
+          >
+
+            <mat-icon>
+              {{
+                selectAllChecked
+                  ? 'indeterminate_check_box'
+                  : 'check_box_outline_blank'
+              }}
+            </mat-icon>
+
+          </button>
+
+        </div>
+
+      }
+
+      <input
+        #searchInput
+        type="text"
+        class="search-input"
+        [class.search-input-single]="!multiple()"
+        [formControl]="inputControl"
+        [placeholder]="selectPlaceholder()"
+        (input)="filterItem(searchInput.value)"
+        (keydown.space)="$event.stopPropagation()"
+      />
+
+      <div class="box-search-icon">
+
+        <button
+          mat-icon-button
+          type="button"
+          class="search-action"
+          [class.has-value]="!!searchInput.value"
+          [disabled]="!searchInput.value"
+          (click)="
+            filterItem('');
+            searchInput.value = '';
+            inputControl.setValue('')
+          "
+        >
+
+          <mat-icon>
+            clear
+          </mat-icon>
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- VALOR SELECCIONADO -->
+    <mat-select-trigger>
+
+      @if (multiple()) {
+
+        <div class="chip-trigger-wrapper">
+
+          <div class="chip-trigger-scroll">
+
+            <mat-chip-set>
+
+              @for (value of visibleChips; track value) {
+
+                <mat-chip
+                  [removable]="true"
+                  (removed)="removeChip(value)"
+                >
+
+                  {{ getDisplayByValue(value) }}
+
+                  <mat-icon matChipRemove>
+                    cancel
+                  </mat-icon>
+
+                </mat-chip>
+
+              }
+
+            </mat-chip-set>
+
+          </div>
+
+          @if (hiddenChipsCount > 0) {
+
+            <div class="more-chip-wrapper">
+
+              <mat-chip
+                disabled
+                class="more-chip"
+              >
+                +{{ hiddenChipsCount }}
+              </mat-chip>
+
+            </div>
+
+          }
+
+        </div>
+
+      }
+
+      @if (!multiple()) {
+
+        <span class="selected-value">
+          {{ getDisplayByValue(selectedValue) }}
+        </span>
+
+      }
+
+    </mat-select-trigger>
+
+
+    <!-- OPCIONES -->
+    @for (
+      option of options();
+      track trackByFn($index, option)
+    ) {
+
+      <mat-option
+        [disabled]="option.disabled"
+        [value]="option[value()]"
+        [class.option-hidden]="hideOption(option)"
+      >
+
+        <span
+          class="option-text"
+          [matTooltip]="
+            showTooltip()
+              ? option[display()]
+              : null
+          "
+        >
+          {{ option[display()] }}
+        </span>
+
+      </mat-option>
+
+    }
+
+  </mat-select>
+
+
+  <!-- ERROR -->
+  @if (showErrorMsg()) {
+
+    <mat-hint class="error-message">
+      {{ errorMsg() }}
+    </mat-hint>
+
+  }
+
+</mat-form-field>
