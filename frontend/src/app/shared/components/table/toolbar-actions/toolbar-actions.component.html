@@ -13,9 +13,9 @@
             <span>{{ actionExport.label }}</span>
         </app-button>
         <mat-menu #menuExport="matMenu" panelClass="menu-plain">
-            <button type="button" mat-menu-item (click)="export('pdf')">PDF</button>
-            <button type="button" mat-menu-item (click)="export('xls')">Excel</button>
-            <button type="button" mat-menu-item (click)="export('csv')">CSV</button>
+            <button type="button" mat-menu-item class="menu-item" (click)="export('pdf')">PDF</button>
+            <button type="button" mat-menu-item class="menu-item" (click)="export('xls')">Excel</button>
+            <button type="button" mat-menu-item class="menu-item" (click)="export('csv')">CSV</button>
         </mat-menu>
         }
 
@@ -25,7 +25,9 @@
             <span>{{ actionHiddenColumn.label }}</span>
         </app-button>
         <mat-menu #menuHidden="matMenu" panelClass="menu-plain">
-            <column-visibility-selector [columns]="hideableColumns"></column-visibility-selector>
+            <div class="menu-item">
+                <column-visibility-selector [columns]="hideableColumns"></column-visibility-selector>
+            </div>
         </mat-menu>
         }
         @if (isAdd() && actionAdd) {
@@ -35,11 +37,11 @@
         </app-button>
         }
         @if (settings().massiveActions.length > 0) {
-        <app-button variant="icon" [icon]="'more_vert'" [matMenuTriggerFor]="menuMassive" class="massiveActions">
+        <app-button variant="action" [icon]="'more_vert'" [matMenuTriggerFor]="menuMassive" class="massiveActions">
         </app-button>
         <mat-menu #menuMassive="matMenu" panelClass="menu-plain">
             @for (action of settings().massiveActions; track $index) {
-            <button type="button" mat-menu-item (click)="executeMassive(action.name)"
+            <button type="button" mat-menu-item class="menu-item" (click)="executeMassive(action.name)"
                 [disabled]="!evaluateConditionMassive(action)">
                 {{ action.label }}
             </button>

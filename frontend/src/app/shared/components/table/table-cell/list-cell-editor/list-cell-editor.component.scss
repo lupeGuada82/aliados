@@ -1,4 +1,11 @@
-.mat-mdc-option,
+@use 'index' as *;
+
+/* El panel de opciones (mat-mdc-option) se renderiza afuera del árbol
+   de este componente (CDK Overlay lo cuelga de <body>), así que un
+   selector local `.mat-mdc-option {...}` acá NUNCA podía matchear —
+   por eso se saca. El tamaño/tipografía de las opciones ahora se
+   controla con panelClass="select-panel select-panel--compact" en el
+   <mat-select> del .html, resuelto en _material-abstractions.scss. */
 .mat-mdc-select {
   font-size: 13px;
 }
@@ -14,12 +21,15 @@
 }
 
 /* Contenedor de iconos */
-
 :host ::ng-deep .mat-mdc-form-field-icon-suffix {
   display: flex;
   align-items: flex-start;
   gap: 0;
-  padding-left: 0; 
+  padding-left: 0;
+}
+
+:host ::ng-deep .mat-mdc-form-field-icon-suffix > .mat-icon {
+  padding: 0 2px;
 }
 
 /* Íconos alineados */
@@ -33,8 +43,8 @@
 .dropdown-icon {
   font-size: 24px;
   pointer-events: none;
+  transform: translateY(-8px);
 
-  transform: translateY(-8px); 
   &.error {
     color: #DC3545;
   }
@@ -42,9 +52,4 @@
   &.normal {
     color: rgba(0, 0, 0, 0.54);
   }
-}
-
-
-:host ::ng-deep .mat-mdc-form-field-icon-suffix > .mat-icon {
-  padding: 0 2px; 
 }

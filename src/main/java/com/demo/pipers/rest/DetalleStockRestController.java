@@ -91,7 +91,7 @@ public class DetalleStockRestController {
 		DetalleStock ds = getService().getByProducto_Codigo(codigo);
 		return createDetalleStockDTO(ds);
 	}
-
+//esto seria ingreso manual
 	@GetMapping(value = "/{codigo}/ingresos", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody Collection<IngresoStockDTO> getIngresos(@PathVariable("codigo") Long codigo) {
@@ -103,7 +103,9 @@ public class DetalleStockRestController {
 				.map(i -> this.createIngresoDTO(i)).collect(Collectors.toList());
 
 	}
-
+//ingreso automatico
+	
+	
 	@PutMapping(value = "/{codigo}/ingreso", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public @ResponseBody IngresoStockDTO nuevoIngreso(@PathVariable("codigo") Long codigo,

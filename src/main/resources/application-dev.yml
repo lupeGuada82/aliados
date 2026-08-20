@@ -1,35 +1,15 @@
-spring:
-  liquibase:
-    enabled: false
+  spring:
+    liquibase:
+      enabled: false
 
-# ----------------------------------------
-# DATASOURCE PARAMETERS
-# ----------------------------------------
-    
-#server.servlet.context-Path: /pipers   
-#server.servlet.context-Path: 
+    config:
+      import: classpath:application-dev-private.properties
 
+  anthropic:
+    model: claude-sonnet-4-20250514
 #esto es apra poder realizar el qr dependiendo el ambiente
-frontend:
-  base-url: http://localhost:4200/#/egresoStock
-           
 
+  frontend:
+    base-url: http://localhost:4200/#/egresoStock
 
-
-
-
-
-
-
-
-
-
-debug: false
-
-
-
-
-
-
-
-
+  debug: false

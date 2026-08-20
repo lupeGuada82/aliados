@@ -25,6 +25,12 @@ spring:
 #              create-target: create.sql
   liquibase:
     enabled: false
+  
+  config:
+    import: classpath:application-dev-private.properties
+
+anthropic:
+  model: claude-sonnet-5
 
 springdoc:
   swagger-ui:

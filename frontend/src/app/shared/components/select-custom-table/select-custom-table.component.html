@@ -1,6 +1,6 @@
 <mat-form-field [appearance]="appearance()" style="width: 100%">
 
-  <mat-select #selectElem [formControl]="control()" (selectionChange)="onSelectionChange($event)" (closed)="onClose()">
+  <mat-select #selectElem panelClass="select-panel" [formControl]="control()" (selectionChange)="onSelectionChange($event)" (closed)="onClose()">
 
     <!-- ===========================
          BUSCADOR
@@ -8,7 +8,7 @@
 
     <div class="box-search">
 
-      <input #searchInput type="text" [formControl]="inputControl" [placeholder]="selectPlaceholder()"
+      <input #searchInput type="text" class="search-input" [formControl]="inputControl" [placeholder]="selectPlaceholder()"
         (input)="filterItem(searchInput.value)" (keydown.space)="$event.stopPropagation()" />
 
       <!-- LIMPIAR BÚSQUEDA -->

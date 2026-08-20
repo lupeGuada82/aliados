@@ -1,0 +1,459 @@
+/* ===========================
+   Design System Components
+   ===========================
+   Clases agnósticas, independientes del framework.
+   Son las clases que usan los componentes sin depender de Material.
+*/
+
+// ============================================================
+// PAGINATION
+// ============================================================
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  margin-top: var(--spacing-3);
+
+  &__item {
+    padding: var(--spacing-1) var(--spacing-2);
+    border: 1px solid var(--color-border, #e0e0e0);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: var(--color-primary);
+      color: var(--color-primary);
+    }
+
+    &--active {
+      background-color: var(--color-primary);
+      color: var(--color-background);
+      border-color: var(--color-primary);
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// ============================================================
+// SELECT FIELD (agnóstico)
+// ============================================================
+.field-select {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__input {
+    width: 100%;
+    padding: var(--spacing-2);
+    border: 1px solid var(--color-border, #e0e0e0);
+    border-radius: 4px;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-base);
+
+    &:hover {
+      border-color: var(--color-primary);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px var(--color-primary, rgba(0, 0, 0, 0.1));
+    }
+
+    &:disabled {
+      background: var(--color-disabled-bg, #f5f5f5);
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+  }
+
+  &__label {
+    margin-bottom: var(--spacing-1);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  &__error {
+    margin-top: var(--spacing-1);
+    font-size: var(--font-size-xs);
+    color: var(--color-error, #f44336);
+  }
+
+  // Variante: búsqueda
+  &--search &__input {
+    padding-left: var(--spacing-3);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath fill='%23999' d='M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 8px center;
+    background-size: 16px;
+  }
+}
+
+// ============================================================
+// SEARCH INPUT
+// ============================================================
+.search-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  height: 40px;
+  padding: 0 var(--spacing-1);
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-text);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-sm);
+
+  &::placeholder {
+    color: var(--color-text-secondary);
+  }
+
+  &-single {
+    padding-left: var(--spacing-2);
+  }
+}
+
+// ============================================================
+// SEARCH BOX
+// ============================================================
+.box-search {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  width: 100%;
+  padding: var(--spacing-1) var(--spacing-2);
+  box-sizing: border-box;
+  background: var(--color-background);
+  border-bottom: 1px solid var(--color-border, #e0e0e0);
+
+  &-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+// ============================================================
+// SEARCH ACTION BUTTON
+// ============================================================
+.search-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  transition: color 0.2s ease;
+
+  &:hover:not(:disabled) {
+    color: var(--color-primary);
+  }
+
+  &.is-active,
+  &.has-value {
+    color: var(--color-primary);
+  }
+
+  &:disabled {
+    color: var(--color-disabled);
+    cursor: not-allowed;
+  }
+
+  svg,
+  mat-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    line-height: 1;
+  }
+}
+
+// ============================================================
+// TABLE AGNÓSTICA
+// ============================================================
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--color-background);
+
+  &__header-cell,
+  &__cell {
+    padding: 16px;
+    box-sizing: border-box;
+    vertical-align: middle;
+    text-align: left;
+    border-bottom: 1px solid var(--color-border, #e0e0e0);
+  }
+
+  &__header-cell {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 500;
+    background: var(--color-surface, #fafafa);
+    color: var(--color-text);
+  }
+
+  &__cell {
+    font-size: 16px;
+    line-height: 20px;
+    color: var(--color-text);
+  }
+
+  &__row {
+    &:hover {
+      background-color: var(--color-hover, #f5f5f5);
+    }
+
+    &--selected {
+      background-color: var(--color-selected, #e3f2fd);
+    }
+  }
+
+  &__checkbox {
+    display: inline-flex;
+    align-items: center;
+  }
+}
+
+// ============================================================
+// CHECKBOX
+// ============================================================
+// Todo el color se define con custom properties OFICIALES de
+// Angular Material (API pública y estable, no clases internas).
+// Confirmado contra el paquete instalado — no son inventadas.
+// El tamaño de la caja sí requiere un reset estructural puntual
+// (Material lo trae hardcodeado en 18px, sin token): ver
+// `.checkbox` en _material-abstractions.scss.
+.checkbox {
+  --checkbox-size: 24px;
+
+  --mat-checkbox-unselected-icon-color: var(--color-secondary);
+  --mat-checkbox-unselected-hover-icon-color: var(--color-secondary, #000);
+  --mat-checkbox-unselected-focus-icon-color: var(--color-secondary, #000);
+
+  --mat-checkbox-selected-icon-color: var(--color-secondary);
+  --mat-checkbox-selected-hover-icon-color: var(--color-primary);
+  --mat-checkbox-selected-focus-icon-color: var(--color-primary);
+  --mat-checkbox-selected-checkmark-color: var(--color-background);
+
+  // Variante para usar sobre fondos oscuros/de color (ej: header de tabla)
+  &--on-color {
+    --mat-checkbox-unselected-hover-icon-color: var(--color-secondary);
+    --mat-checkbox-unselected-focus-icon-color: var(--color-secondary);
+    --mat-checkbox-unselected-pressed-icon-color: var(--color-secondary);
+  }
+}
+
+// ============================================================
+// GROUP HEADER (para tablas agrupadas)
+// ============================================================
+.group-header-cell {
+  text-align: center;
+  padding: 8px;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  font-weight: 600;
+  background-color: var(--color-surface, #f9f9f9);
+}
+
+// ============================================================
+// CHIP / TAG
+// ============================================================
+// Doble uso: funciona como diseño standalone (cualquier div/span)
+// Y, si esta clase cae sobre un <mat-chip> real, maneja también los
+// tokens oficiales de Material (confirmados contra el paquete
+// instalado) para que el chip interno tome el mismo look — sin tocar
+// ninguna clase mat-mdc-*/mdc-* directamente.
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-1);
+  padding: var(--spacing-1) var(--spacing-2);
+  border-radius: 16px;
+  background: var(--color-chip-bg, #e0e0e0);
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  max-width: 100%;
+  box-sizing: border-box;
+  transition: all 0.2s ease;
+
+  --mat-chip-container-height: 28px;
+  --mat-chip-container-shape-radius: 16px;
+  --mat-chip-elevated-container-color: var(--color-chip-bg, #e0e0e0);
+  --mat-chip-label-text-color: var(--color-text);
+  --mat-chip-label-text-size: var(--font-size-sm);
+  --mat-chip-label-text-weight: 500;
+  --mat-chip-outline-width: 0px;
+  --mat-chip-with-trailing-icon-trailing-icon-color: var(--color-text-secondary, var(--color-text));
+  --mat-chip-selected-trailing-icon-color: var(--color-text-secondary, var(--color-text));
+  --mat-chip-disabled-container-opacity: 0.6;
+  --mat-chip-disabled-label-text-color: var(--color-text);
+
+  &:hover {
+    background: var(--color-chip-bg-hover, #d0d0d0);
+    --mat-chip-elevated-container-color: var(--color-chip-bg-hover, #d0d0d0);
+  }
+
+  &--primary {
+    background: var(--color-primary);
+    color: var(--color-primary-contrast);
+    --mat-chip-elevated-container-color: var(--color-primary);
+    --mat-chip-label-text-color: var(--color-primary-contrast);
+  }
+
+  &--success {
+    background: var(--color-success, #4caf50);
+    color: white;
+    --mat-chip-elevated-container-color: var(--color-success, #4caf50);
+    --mat-chip-label-text-color: white;
+  }
+
+  &--warning {
+    background: var(--color-warning, #ff9800);
+    color: white;
+    --mat-chip-elevated-container-color: var(--color-warning, #ff9800);
+    --mat-chip-label-text-color: white;
+  }
+
+  &--error {
+    background: var(--color-error, #f44336);
+    color: white;
+    --mat-chip-elevated-container-color: var(--color-error, #f44336);
+    --mat-chip-label-text-color: white;
+  }
+
+  &__remove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    margin-left: var(--spacing-1);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: inherit;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+// ============================================================
+// DROPDOWN MENU AGNÓSTICO
+// ============================================================
+.dropdown-menu {
+  position: absolute;
+  background: var(--color-background);
+  border: 1px solid var(--color-border, #e0e0e0);
+  border-radius: 4px;
+  box-shadow: var(--shadow-md);
+  z-index: 1000;
+  min-width: 200px;
+
+  &__item {
+    padding: var(--spacing-2);
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover {
+      background: var(--color-hover, #f5f5f5);
+    }
+
+    &--disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  &__divider {
+    height: 1px;
+    background: var(--color-border, #e0e0e0);
+    margin: var(--spacing-1) 0;
+  }
+}
+
+// ============================================================
+// FORM GROUP
+// ============================================================
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-3);
+
+  &__label {
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    color: var(--color-text);
+  }
+
+  &__input,
+  &__select,
+  &__textarea {
+    padding: var(--spacing-2);
+    border: 1px solid var(--color-border, #e0e0e0);
+    border-radius: 4px;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-base);
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(var(--color-primary-rgb), 0.1);
+    }
+
+    &:disabled {
+      background: var(--color-disabled-bg, #f5f5f5);
+      cursor: not-allowed;
+    }
+  }
+
+  &__help {
+    font-size: var(--font-size-xs);
+    color: var(--color-text-secondary);
+    margin-top: var(--spacing-1);
+  }
+
+  &__error {
+    font-size: var(--font-size-xs);
+    color: var(--color-error, #f44336);
+    margin-top: var(--spacing-1);
+  }
+}
+
+// ============================================================
+// UTILITIES
+// ============================================================
+.hidden {
+  visibility: hidden;
+}
+
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}

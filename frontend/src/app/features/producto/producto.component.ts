@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { AbstractEntityComponent } from '../abstract-entity/abstract-entity.component';
@@ -8,21 +8,22 @@ import { TableComponent } from '../../shared/components/table/table.component';
 import { CommonModule } from '@angular/common';
 import { ButtonComponent } from '../../shared/components/button/button.component';
 import { LoadingOverlayComponent } from '../../shared/components/loading-overlay/loading-overlay.component';
+import { DocumentoService } from '../../core/services/document-service';
 
 @Component({
   selector: 'app-producto',
   standalone: true,
   imports: [
-    TableComponent, CommonModule, ButtonComponent, LoadingOverlayComponent
+     CommonModule, ButtonComponent, LoadingOverlayComponent
   ],
   templateUrl: './producto.component.html',
   styleUrl: './producto.component.scss'
 })
 export class ProductoComponent extends AbstractEntityComponent {
-
+//prueba de lector de remito
   // productos: any[] = [];
   constructor(
-    route: ActivatedRoute,
+    route: ActivatedRoute, private documentoService: DocumentoService,
     router: Router,
     titleService: Title,
     service: BaseService<any>) {
@@ -96,4 +97,40 @@ export class ProductoComponent extends AbstractEntityComponent {
     window.history.back()
   }
 
+
+  selectedFile: File | null = null;
+  processing = false;
+
+  onFileSelected(event: Event): void {
+
+    const input = event.target as HTMLInputElement;
+
+    if (!input.files || input.files.length === 0) {
+      return;
+    }
+
+    this.selectedFile = input.files[0];
+  }
+  
+  procesarArchivo(): void {
+
+    if (!this.selectedFile) {
+      return;
+    }
+
+    this.processing = true;
+
+    this.documentoService.procesarArchivo(this.selectedFile)
+      .subscribe({
+        next: response => {
+          console.log('Respuesta de Claude:', response);
+          this.processing = false;
+        },
+
+        error: error => {
+          console.error('Error:', error);
+          this.processing = false;
+        }
+      });
+  }
 }

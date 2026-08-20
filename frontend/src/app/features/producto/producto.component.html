@@ -12,13 +12,62 @@
             {{ getTitle() }}
         </h1>
 
-        <app-button variant="primary" (click)="cambiarFiltro()" icon="filter_alt">
+        <!-- <app-button variant="primary" (click)="cambiarFiltro()" icon="filter_alt">
             <span>Filtrar</span>
-        </app-button>
+        </app-button> -->
     </div>
+    <!-- <div class="upload-container">
 
-    <app-table [source]="data" [settings]="settings">
-    </app-table>
+        <input #fileInput type="file" accept="application/pdf,image/jpeg,image/png,image/webp"
+            (change)="onFileSelected($event)" hidden />
+
+        <button mat-raised-button type="button" (click)="fileInput.click()">
+            Examinar
+        </button>
+
+        @if (selectedFile) {
+        <span class="file-name">
+            {{ selectedFile.name }}
+        </span>
+
+        <button mat-raised-button color="primary" type="button" [disabled]="processing" (click)="procesarArchivo()">
+            @if (processing) {
+            Procesando...
+            } @else {
+            Procesar archivo
+            }
+        </button>
+        }
+
+    </div> -->
+    <div class="upload-container">
+
+        <input #fileInput type="file" accept="application/pdf,image/jpeg,image/png,image/webp"
+            (change)="onFileSelected($event)" hidden />
+
+        <app-button variant="secondary" type="button" (click)="fileInput.click()">
+            Examinar
+        </app-button>
+
+        @if (selectedFile) {
+        <span class="file-name">
+            {{ selectedFile.name }}
+        </span>
+
+        <app-button variant="primary" type="button" [disabled]="processing" (click)="procesarArchivo()">
+
+            @if (processing) {
+            Procesando...
+            } @else {
+            Procesar archivo
+            }
+
+        </app-button>
+        }
+
+    </div>
+    <!-- <app-table [source]="data" [settings]="settings">
+    </app-table> -->
 
 </section>
 }

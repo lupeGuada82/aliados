@@ -1,5 +1,5 @@
 /* =========================
-   FORM FIELD
+   FORM FIELD - Material Abstractions
 ========================= */
 
 /* elimina línea fantasma inferior */
@@ -17,9 +17,7 @@
 /* contenedor MDC */
 :host ::ng-deep .mdc-text-field {
   height: 24px !important;
-  // align-items: center;
 }
-
 
 /* interior del form-field */
 :host ::ng-deep .mat-mdc-form-field-infix {
@@ -41,7 +39,6 @@
   line-height: 20px !important;
 }
 
-
 /* elimina espacio de errores/hints */
 :host ::ng-deep .mat-mdc-form-field-subscript-wrapper {
   display: none;
@@ -59,24 +56,23 @@
    CELDA EDITABLE
 ========================= */
 
-
 .editor-wrapper {
   position: relative;
   display: flex;
-  align-items: center;   /* centra solo el editor */
+  align-items: center;
   min-height: 52px;
-  padding-bottom: 3px; /* reserva espacio visual para error */
+  padding-bottom: 3px;
 }
-// /* =========================
-//    ERRORES
-// ========================= */
 
+
+/* =========================
+   ERRORES
+========================= */
 
 .error-wrapper {
   position: absolute;
   left: 0;
   bottom: 6px;
-
   font-size: 10px;
   line-height: 10px;
   color: #DC3545;

@@ -1,5 +1,5 @@
 <mat-form-field class="auto-stretch-select" appearance="fill">
-  <mat-select [formControl]="control()" class="custom-select">
+  <mat-select [formControl]="control()" class="custom-select" panelClass="select-panel select-panel--compact">
     @for (opt of column().editor.listOptions; track opt.value) {
       <mat-option [value]="opt.value">
         {{ opt.title }}

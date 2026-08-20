@@ -32,40 +32,4 @@
   flex-wrap: nowrap;
 }
 
-::ng-deep .mat-menu-panel {
-  min-width: auto !important;
-  width: auto !important;
-  padding: 0 !important;
-}
-
-::ng-deep .custom-action-button {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 8px;
-  white-space: nowrap;
-  width: auto !important;
-  min-width: unset !important;
-}
-
-::ng-deep .custom-action-button app-icon {
-  width: 16px;
-  height: 16px;
-  font-size: 16px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-
-::ng-deep .dark-tooltip .mdc-tooltip__surface {
-  background: rgba(255, 255, 255, 0.96) !important;
-  color: #111827 !important;
-  border: 1px solid rgba(17, 24, 39, 0.1);
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
-  font-size: 11px !important;
-  line-height: 1.2 !important;
-  letter-spacing: 0.01em !important;
-  padding: 6px 8px !important;
-  border-radius: 8px !important;
-  opacity: 1 !important;
-}
+/* Ajustes de menú y tooltip se abstraen en _material-abstractions.scss */

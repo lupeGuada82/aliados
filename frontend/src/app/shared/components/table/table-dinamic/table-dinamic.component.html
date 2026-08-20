@@ -6,19 +6,19 @@
 <!-- tabla -->
 <div #tableContainer class="table-wrapper">
   <div #tableResponsive class="table-responsive" [class.with-scroll]="needScroll" style="overflow-x:auto;">
-    <table #tableEl mat-table [dataSource]="dataSource" matSort class="my-table mat-elevation-z8 noselect"
+    <table #tableEl mat-table [dataSource]="dataSource" matSort class="my-table data-table mat-elevation-z8 noselect"
       (matSortChange)="changeSort($event)" [style.min-width]="needScroll ? tableMinWidth : null" [trackBy]="trackByUid">
 
       <!-- Columna seleccion de filas -->
       @if (columnsKeyIncludes('select')) {
       <ng-container matColumnDef="select">
-        <th mat-header-cell *matHeaderCellDef class="h-check">
-          <mat-checkbox (change)="masterToggle()" [checked]="selection.hasValue() && isAllSelected()"
+        <th mat-header-cell *matHeaderCellDef class="h-check table-header-cell">
+          <mat-checkbox class="checkbox checkbox--on-color" (change)="masterToggle()" [checked]="selection.hasValue() && isAllSelected()"
             [indeterminate]="selection.hasValue() && !isAllSelected()" disableRipple>
           </mat-checkbox>
         </th>
         <td mat-cell *matCellDef="let row" class="col-check">
-          <mat-checkbox (click)="$event.stopPropagation()" (change)="onCheckboxChange(row)"
+          <mat-checkbox class="checkbox" (click)="$event.stopPropagation()" (change)="onCheckboxChange(row)"
             [checked]="selection.isSelected(row)" disableRipple>
           </mat-checkbox>
         </td>
@@ -41,7 +41,7 @@
       @if (column.key !== 'acciones') {
       <ng-container [matColumnDef]="column.key">
         <!-- HEADER -->
-        <th mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="column.headerClass">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header [ngClass]="column.headerClass" class="table-header-cell">
           {{ column.label }}
         </th>
         <!-- CELDA -->
@@ -56,26 +56,26 @@
 
       <!-- Fila de Encabezado Agrupado -->
       @if (settings().headerGroup.length > 0) {
-      <tr class="mat-header-row">
+      <tr class="mat-header-row table-header-row">
         @if (getDefaultGroupColspan() > 0) {
         <ng-container matColumnDef="default">
-          <th mat-header-cell *matHeaderCellDef [attr.colspan]="getDefaultGroupColspan()"></th>
+          <th mat-header-cell *matHeaderCellDef [attr.colspan]="getDefaultGroupColspan()" class="table-header-cell"></th>
         </ng-container>
         }
         @for (group of settings().headerGroup; track group.nameGroup) {
         <ng-container [matColumnDef]="group.nameGroup">
           <th mat-header-cell *matHeaderCellDef [attr.colspan]="getColumnVisible(group.groupColumns)"
-            class="group-header-cell">
+            class="group-header-cell table-header-cell">
             {{ group.nameGroup }}
           </th>
         </ng-container>
         }
       </tr>
-      <tr mat-header-row *matHeaderRowDef="groupedHeaderRowKeys"></tr>
+      <tr mat-header-row *matHeaderRowDef="groupedHeaderRowKeys" class="table-header-row"></tr>
       }
 
       <!-- Header & Rows -->
-      <tr mat-header-row *matHeaderRowDef="columnKeys"></tr>
+      <tr mat-header-row *matHeaderRowDef="columnKeys" class="table-header-row"></tr>
       <tr mat-row *matRowDef="let row; columns: columnKeys; let i = index" [class.even-row]="i % 2 === 0"
         [class.odd-row]="i % 2 !== 0" [class.selected-row]="selection.isSelected(row)"></tr>
     </table>
@@ -89,9 +89,11 @@
 
   <!-- Paginación -->
   @if (settings().pagination.enabled) {
-  <table-paginator [hidden]="dataSource.data.length === 0" [length]="dataSource.data.length"
-    [pagination]="settings().pagination">
-  </table-paginator>
+  <div class="table-paginator-wrap">
+    <table-paginator [hidden]="dataSource.data.length === 0" [length]="dataSource.data.length"
+      [pagination]="settings().pagination">
+    </table-paginator>
+  </div>
   }
 </div>
 } @else {

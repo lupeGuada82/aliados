@@ -1,0 +1,797 @@
+/* ===========================
+   Material Design Abstractions
+   ===========================
+   Este archivo encapsula TODAS las dependencias de Material Design.
+   Usamos los COMPONENTES de Angular Material (estructura, accesibilidad,
+   comportamiento) pero NO su theming/estilo visual: el look real vive
+   acá, sobreescribiendo las clases internas mat-* / mdc-*.
+
+   IMPORTANTE: este archivo se carga vía styles.scss (global, sin
+   encapsulación de componente), por lo tanto NO hace falta ::ng-deep
+   ni :deep() acá — un selector plano ya atraviesa cualquier boundary
+   porque no hay ninguno a este nivel. ::ng-deep solo es necesario
+   DENTRO de un *.component.scss cuando el elemento a estilar lo
+   renderiza un componente hijo (ej: overlay de mat-select, mat-menu).
+*/
+
+// ============================================================
+// SELECT / DROPDOWN
+// ============================================================
+.select-input {
+    &__value {
+        .mat-mdc-select-value-text {
+            padding: 10px;
+        }
+    }
+
+    &__panel {
+        .mat-mdc-select-panel {
+            // panel del select
+        }
+    }
+
+    &__option {
+        .mat-mdc-option {
+            // opción del select
+        }
+
+        .mat-mdc-option .mdc-list-item__primary-text {
+            // texto dentro de la opción
+        }
+    }
+}
+
+// ============================================================
+// CHIPS — reset estructural
+// ============================================================
+// Color, tipografía y forma van 100% por custom properties oficiales
+// de Material desde `.chip` en components-abstractions.scss (confirmado
+// contra el paquete instalado: --mat-chip-container-*, --mat-chip-label-*,
+// --mat-chip-outline-*, etc. cubren todo el look). Acá solo queda layout
+// que Material no expone como token: que los chips no salten de línea
+// y no se achiquen, para poder scrollear horizontal en el trigger.
+.chips-container {
+    .mat-mdc-chip-set {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        width: max-content;
+    }
+}
+
+.chip {
+    flex-shrink: 0 !important;
+    white-space: nowrap;
+}
+
+.select-custom-search,
+.select-custom-table {
+    .mat-mdc-select-panel {
+        max-width: 100%;
+        overflow-x: hidden;
+    }
+
+    .mat-mdc-option {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .mat-mdc-option .mdc-list-item__primary-text {
+        display: block !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+        white-space: nowrap !important;
+        text-overflow: ellipsis !important;
+    }
+}
+
+// ============================================================
+// TABLE (Data Table)
+// ============================================================
+.data-table {
+    width: auto;
+    min-width: 100%;
+    table-layout: fixed;
+
+    .mat-mdc-header-row {
+        background: var(--orange-500) !important;
+        min-height: 56px;
+        height: auto;
+    }
+
+    .mat-mdc-header-cell {
+        padding: 16px;
+        box-sizing: border-box;
+        vertical-align: middle;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 500;
+        color: var(--color-text) !important;
+    }
+
+    .mat-mdc-cell {
+        padding: 16px;
+        box-sizing: border-box;
+        vertical-align: middle;
+        font-size: 16px;
+        line-height: 20px;
+        color: #000000;
+    }
+
+    .mat-mdc-row {
+        min-height: 52px;
+        height: auto;
+    }
+
+    // Checkbox en tabla
+    .mat-mdc-header-cell .mat-mdc-checkbox {
+        margin-top: 6px;
+    }
+
+    .mat-mdc-checkbox {
+        display: inline-block;
+        padding-top: 8px;
+    }
+
+    // Último row
+    .mdc-data-table__row:last-child .mat-mdc-cell {
+        border-bottom: 1px solid var(--color-border, #e0e0e0);
+    }
+
+    .mdc-data-table__row .mat-mdc-cell {
+        border-bottom: 1px solid var(--color-border, #e0e0e0);
+    }
+
+    // Row seleccionado
+    .mdc-data-table__row.selected-row .mat-mdc-cell {
+        background-color: var(--color-selected, #f5f5f5);
+    }
+
+    // Form field dentro de tabla
+    .mat-mdc-cell mat-form-field {
+        width: 100%;
+    }
+
+    .mat-mdc-form-field {
+        width: 100%;
+    }
+}
+
+
+// ============================================================
+// PAGINATOR
+// ============================================================
+.paginator-page-size {
+    .mdc-text-field--outlined {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        overflow: visible;
+    }
+
+    .mat-mdc-select-value {
+        padding-left: 0 !important;
+        box-sizing: border-box;
+    }
+
+    .mat-mdc-select-trigger {
+        display: flex;
+        align-items: center;
+    }
+
+    .mat-mdc-select-arrow-wrapper {
+        margin-left: 4px;
+    }
+
+    .mat-mdc-select-value-text,
+    .mat-mdc-paginator-page-size-label,
+    .mat-mdc-paginator-range-label {
+        font-size: 12px;
+        line-height: 1.2;
+    }
+}
+
+.mat-mdc-option .mdc-list-item__primary-text {
+    font-size: var(--font-size-xs) !important;
+}
+
+.mdc-text-field--outlined {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+}
+
+.acciones-inline {
+
+    .mat-menu-panel {
+        min-width: auto !important;
+        width: auto !important;
+        padding: 0 !important;
+    }
+
+    .custom-action-button {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 8px;
+        white-space: nowrap;
+        width: auto !important;
+        min-width: unset !important;
+    }
+
+    .custom-action-button app-icon {
+        width: 16px;
+        height: 16px;
+        font-size: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dark-tooltip .mdc-tooltip__surface {
+        background: rgba(17, 24, 39, 0.96) !important;
+        color: #ffffff !important;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+        font-size: 11px !important;
+        line-height: 1.2 !important;
+        letter-spacing: 0.01em !important;
+        padding: 6px 8px !important;
+        border-radius: 8px !important;
+        opacity: 1 !important;
+    }
+}
+
+// ============================================================
+// FORM FIELD
+// ============================================================
+.form-input {
+    .mat-mdc-form-field-bottom-align::before {
+        // alineación inferior
+    }
+
+    .mat-mdc-text-field-wrapper {
+        padding-bottom: 0;
+    }
+
+    .mat-mdc-form-field-infix {
+        padding: 8px 0;
+        border: none;
+    }
+
+    .mat-mdc-input-element {
+        padding: 8px 0;
+        background: transparent;
+    }
+
+    .mat-mdc-form-field-icon-suffix {
+        // ícono al final del campo
+    }
+
+    .mat-mdc-form-field-icon-suffix>.mat-icon {
+        // ícono al final del campo
+    }
+
+    .mat-mdc-form-field-subscript-wrapper {
+        // área de texto de ayuda
+    }
+}
+
+// ============================================================
+// MENU
+// ============================================================
+.menu {
+    .mat-menu-panel {
+        // panel del menú
+    }
+
+    .mat-mdc-menu-panel {
+        // panel del menú MDC
+    }
+
+    .mat-mdc-menu-content {
+        // contenido del menú
+    }
+
+    .mat-mdc-menu-item {
+        // item del menú
+    }
+
+    .mat-mdc-menu-item:hover,
+    .mat-mdc-menu-item:focus {
+        // hover y focus del item
+    }
+
+    // Menu plain (sin styling)
+    &--plain {
+
+        .mat-mdc-menu-panel,
+        .mat-mdc-menu-content {
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .mat-mdc-menu-item {
+            height: auto;
+            padding: 8px 16px;
+        }
+
+        .mat-mdc-menu-item:hover,
+        .mat-mdc-menu-item:focus {
+            background-color: var(--color-hover, #f5f5f5);
+        }
+    }
+}
+
+// ============================================================
+// CHECKBOX — reset estructural
+// ============================================================
+// Confirmado contra el CSS compilado real: Material fija el tamaño
+// de la caja en 18px con un valor hardcodeado (no hay custom property
+// para eso). Por eso es el único punto de esta sección que toca DOM
+// interno — el color NO se toca acá, va 100% por tokens en `.checkbox`
+// dentro de _components-abstractions.scss.
+.checkbox {
+
+    .mdc-checkbox,
+    .mdc-checkbox .mdc-checkbox__background,
+    .mdc-checkbox .mdc-checkbox__native-control {
+        width: var(--checkbox-size, 24px);
+        height: var(--checkbox-size, 24px);
+    }
+
+    .mdc-checkbox__checkmark {
+        width: 100%;
+        height: 100%;
+    }
+
+    // El ripple de Material asume el tamaño chico por defecto y queda
+    // descentrado al agrandar la caja; lo apagamos acá.
+    .mdc-checkbox__ripple {
+        display: none;
+    }
+}
+
+// ============================================================
+// ICON
+// ============================================================
+.icon {
+    .mat-icon {
+        // ícono
+    }
+
+    &__button {
+        .mat-icon-button {
+            // botón con ícono
+        }
+    }
+}
+
+// ============================================================
+// LIST CELL EDITOR (en tablas)
+// ============================================================
+.list-cell-editor {
+
+    .mat-mdc-option,
+    .mat-mdc-select {
+        // estilos base
+    }
+
+    .mat-mdc-select .mat-mdc-select-arrow {
+        // flecha del select
+    }
+
+    .mat-mdc-form-field-icon-suffix {
+        // ícono de sufijo
+    }
+
+    .mat-mdc-form-field-icon-suffix>.mat-icon {
+        // ícono de sufijo
+    }
+}
+
+// ============================================================
+// TABLE CELL (celdas con formularios)
+// ============================================================
+.table-cell {
+    .mat-mdc-form-field-bottom-align::before {
+        // línea inferior
+    }
+
+    .mat-mdc-text-field-wrapper {
+        padding-bottom: 0;
+    }
+
+    .mat-mdc-form-field-infix {
+        padding: 4px 0;
+        border: none;
+    }
+
+    .mat-mdc-input-element {
+        padding: 4px 0;
+        font-size: 14px;
+    }
+
+    .mat-mdc-form-field-subscript-wrapper {
+        display: none;
+    }
+
+    .mat-mdc-text-field-wrapper,
+    .mat-mdc-form-field-infix {
+        // ajustes para celdas
+    }
+
+    .mat-mdc-cell mat-form-field {
+        width: 100%;
+    }
+}
+
+/* ===========================
+   Material Design Abstractions
+   ===========================
+   Este archivo encapsula TODAS las dependencias de Material Design.
+   Usamos los COMPONENTES de Angular Material (estructura, accesibilidad,
+   comportamiento) pero NO su theming/estilo visual: el look real vive
+   acá, sobreescribiendo las clases internas mat-* / mdc-*.
+
+   IMPORTANTE: este archivo se carga vía styles.scss (global, sin
+   encapsulación de componente), por lo tanto NO hace falta ::ng-deep
+   ni :deep() acá — un selector plano ya atraviesa cualquier boundary
+   porque no hay ninguno a este nivel. ::ng-deep solo es necesario
+   DENTRO de un *.component.scss cuando el elemento a estilar lo
+   renderiza un componente hijo (ej: overlay de mat-select, mat-menu).
+*/
+
+// ============================================================
+// SELECT — panel (se renderiza afuera del árbol, via CDK Overlay)
+// ============================================================
+// mat-select cuelga su panel de opciones directo de <body> (CDK
+// Overlay), como hermano de app-root — NO como descendiente del
+// componente que lo abre. Por eso un selector anidado bajo la clase
+// del wrapper (ej: `.select-custom-search .mat-mdc-select-panel`,
+// como estaba antes) NUNCA podía matchear: ese ancestro no existe en
+// el DOM real. La forma correcta es `panelClass` en <mat-select>,
+// que le pasa una clase directo al panel teletransportado — así:
+// <mat-select panelClass="select-panel"> (o "select-panel select-panel--compact")
+.select-panel {
+    max-width: 100%;
+    overflow-x: hidden;
+
+    .mat-mdc-option {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .mat-mdc-option .mdc-list-item__primary-text {
+        display: block;
+        max-width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    // Variante compacta: usada en list-cell-editor (select dentro de
+    // una celda de tabla, necesita opciones más chicas)
+    &--compact .mat-mdc-option {
+        min-height: 32px;
+        font-size: 13px;
+    }
+}
+
+// ============================================================
+// CHIPS — reset estructural
+// ============================================================
+// Color, tipografía y forma van 100% por custom properties oficiales
+// de Material desde `.chip` en components-abstractions.scss (confirmado
+// contra el paquete instalado: --mat-chip-container-*, --mat-chip-label-*,
+// --mat-chip-outline-*, etc. cubren todo el look). Acá solo queda layout
+// que Material no expone como token: que los chips no salten de línea
+// y no se achiquen, para poder scrollear horizontal en el trigger.
+.chips-container {
+    .mat-mdc-chip-set {
+        display: flex !important;
+        flex-wrap: nowrap !important;
+        width: max-content;
+    }
+}
+
+.chip {
+    flex-shrink: 0 !important;
+    white-space: nowrap;
+}
+
+// ============================================================
+// TABLE (Data Table)
+// ============================================================
+.data-table {
+    width: auto;
+    min-width: 100%;
+    table-layout: fixed;
+
+    .mat-mdc-header-row {
+        background: var(--orange-500) !important;
+        min-height: 56px;
+        height: auto;
+    }
+
+    .mat-mdc-header-cell {
+        padding: 16px;
+        box-sizing: border-box;
+        vertical-align: middle;
+        font-size: 16px;
+        line-height: 20px;
+        font-weight: 500;
+        color: var(--color-text) !important;
+    }
+
+    .mat-mdc-cell {
+        padding: 16px;
+        box-sizing: border-box;
+        vertical-align: middle;
+        font-size: 16px;
+        line-height: 20px;
+        color: #000000;
+    }
+
+    .mat-mdc-row {
+        min-height: 52px;
+        height: auto;
+    }
+
+    // Checkbox en tabla
+    .mat-mdc-header-cell .mat-mdc-checkbox {
+        margin-top: 6px;
+    }
+
+    .mat-mdc-checkbox {
+        display: inline-block;
+        padding-top: 8px;
+    }
+
+    // Último row
+    .mdc-data-table__row:last-child .mat-mdc-cell {
+        border-bottom: 1px solid var(--color-border, #e0e0e0);
+    }
+
+    .mdc-data-table__row .mat-mdc-cell {
+        border-bottom: 1px solid var(--color-border, #e0e0e0);
+    }
+
+    // Row seleccionado
+    .mdc-data-table__row.selected-row .mat-mdc-cell {
+        background-color: var(--color-selected, #f5f5f5);
+    }
+
+    // Form field dentro de tabla
+    .mat-mdc-cell mat-form-field {
+        width: 100%;
+    }
+
+    .mat-mdc-form-field {
+        width: 100%;
+    }
+}
+
+
+// ============================================================
+// PAGINATOR
+// ============================================================
+.paginator-page-size {
+    .mdc-text-field--outlined {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        overflow: visible;
+    }
+
+    .mat-mdc-select-value {
+        padding-left: 0 !important;
+        box-sizing: border-box;
+    }
+
+    .mat-mdc-select-trigger {
+        display: flex;
+        align-items: center;
+    }
+
+    .mat-mdc-select-arrow-wrapper {
+        margin-left: 4px;
+    }
+
+    .mat-mdc-select-value-text,
+    .mat-mdc-paginator-page-size-label,
+    .mat-mdc-paginator-range-label {
+        font-size: 12px;
+        line-height: 1.2;
+    }
+}
+
+.mat-mdc-option .mdc-list-item__primary-text {
+    font-size: var(--font-size-xs) !important;
+}
+
+.mdc-text-field--outlined {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+}
+
+.acciones-inline {
+
+    .mat-menu-panel {
+        min-width: auto !important;
+        width: auto !important;
+        padding: 0 !important;
+    }
+
+    .custom-action-button {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 8px;
+        white-space: nowrap;
+        width: auto !important;
+        min-width: unset !important;
+    }
+
+    .custom-action-button app-icon {
+        width: 16px;
+        height: 16px;
+        font-size: 16px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dark-tooltip .mdc-tooltip__surface {
+        background: rgba(17, 24, 39, 0.96) !important;
+        color: #ffffff !important;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+        font-size: 11px !important;
+        line-height: 1.2 !important;
+        letter-spacing: 0.01em !important;
+        padding: 6px 8px !important;
+        border-radius: 8px !important;
+        opacity: 1 !important;
+    }
+}
+
+// ============================================================
+// FORM FIELD
+// ============================================================
+.form-input {
+    .mat-mdc-form-field-bottom-align::before {
+        // alineación inferior
+    }
+
+    .mat-mdc-text-field-wrapper {
+        padding-bottom: 0;
+    }
+
+    .mat-mdc-form-field-infix {
+        padding: 8px 0;
+        border: none;
+    }
+
+    .mat-mdc-input-element {
+        padding: 8px 0;
+        background: transparent;
+    }
+
+    .mat-mdc-form-field-icon-suffix {
+        // ícono al final del campo
+    }
+
+    .mat-mdc-form-field-icon-suffix>.mat-icon {
+        // ícono al final del campo
+    }
+
+    .mat-mdc-form-field-subscript-wrapper {
+        // área de texto de ayuda
+    }
+}
+
+// ============================================================
+// MENU
+// ============================================================
+.menu {
+    .mat-menu-panel {
+        // panel del menú
+    }
+
+    .mat-mdc-menu-panel {
+        // panel del menú MDC
+    }
+
+    .mat-mdc-menu-content {
+        // contenido del menú
+    }
+
+    .mat-mdc-menu-item {
+        // item del menú
+    }
+
+    .mat-mdc-menu-item:hover,
+    .mat-mdc-menu-item:focus {
+        // hover y focus del item
+    }
+
+    // Menu plain (sin styling)
+    &--plain {
+
+        .mat-mdc-menu-panel,
+        .mat-mdc-menu-content {
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .mat-mdc-menu-item {
+            height: auto;
+            padding: 8px 16px;
+        }
+
+        .mat-mdc-menu-item:hover,
+        .mat-mdc-menu-item:focus {
+            background-color: var(--color-hover, #f5f5f5);
+        }
+    }
+}
+
+// ============================================================
+// CHECKBOX — reset estructural
+// ============================================================
+// Confirmado contra el CSS compilado real: Material fija el tamaño
+// de la caja en 18px con un valor hardcodeado (no hay custom property
+// para eso). Por eso es el único punto de esta sección que toca DOM
+// interno — el color NO se toca acá, va 100% por tokens en `.checkbox`
+// dentro de _components-abstractions.scss.
+// .checkbox {
+//     .mdc-checkbox,
+//     .mdc-checkbox .mdc-checkbox__background,
+//     .mdc-checkbox .mdc-checkbox__native-control {
+//         width: var(--checkbox-size, 24px);
+//         height: var(--checkbox-size, 24px);
+//     }
+
+//     .mdc-checkbox__checkmark {
+//         width: 60%;
+//     }
+
+//     // El ripple de Material asume el tamaño chico por defecto y queda
+//     // descentrado al agrandar la caja; lo apagamos acá.
+//     .mdc-checkbox__ripple {
+//         display: none;
+//     }
+// }
+
+// ============================================================
+// ICON
+// ============================================================
+.icon {
+    .mat-icon {
+        // ícono
+    }
+
+    &__button {
+        .mat-icon-button {
+            // botón con ícono
+        }
+    }
+}
+
+// ============================================================
+// LIST CELL EDITOR / TABLE CELL
+// ============================================================
+// Estos dos NO se centralizaron acá (a diferencia del resto de este
+// archivo). Motivo: sus elementos viven adentro de varios niveles de
+// componentes hijos (table-cell delega a text/number/list/custom-cell-editor)
+// o son elementos portaleados por CDK Overlay (el panel de opciones
+// de list-cell-editor). Un selector puesto acá, en el archivo global,
+// no puede distinguir "esta celda de tabla" de cualquier otro
+// form-field de la app sin una clase que lo identifique, y esa clase
+// nunca llegaba a aplicarse en el DOM real — quedaba huérfana.
+//
+// Para el panel del select de list-cell-editor: ver `.select-panel`
+// / `.select-panel--compact` más arriba (usa panelClass, que sí
+// atraviesa el portal del overlay correctamente).
+//
+// Para los form-fields de las celdas: el override queda LOCAL, en
+// cada *.component.scss con `:host ::ng-deep`, porque ::ng-deep
+// atraviesa boundaries de componentes hijos (cosa que una clase
+// centralizada acá no puede hacer sin repetirla en cada editor).

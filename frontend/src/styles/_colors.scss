@@ -101,67 +101,12 @@
    // --table-column-xl: 400px;
    // --table-row-hover: var(--color-primary-100);
    // --table-row-select: var(--color-primary-light);
-   // --table-row-border-select: var(--color-primary-dark);
+   --table-row-border-select: var(--color-text-secondary);
    --table-paginator-font-size: 12px;
    // --table-paginator-font-weight: 400;
 
 
-
-
-   // /* ==========================================================
-   //   MATERIAL BRIDGE
-   //   ========================================================== */
-   /* paginator */
-   --mat-paginator-container-text-size: var(--table-paginator-font-size);
-   // /* checkbox */
-   // --mat-checkbox-selected-icon-color: var(--color-primary-dark);
-   // --mat-checkbox-selected-checkmark-color: var(--white);
-   // --mat-checkbox-selected-pressed-icon-color: var(--color-primary-dark);
-   // --mat-checkbox-selected-focus-icon-color: var(--color-primary-dark);
-   // --mat-checkbox-selected-hover-icon-color: var(--color-primary-dark);
-
-
-   // /* icon buttons */
-   // --mat-icon-button-state-layer-size: 32px;
-   // --mat-icon-button-icon-size: 18px;
-
-   // /* buttons */
-   // --mat-shape-small: var(--radius-md);
-   // --mat-button-filled-container-shape: var(--radius-md);
-   // --mat-button-outlined-container-shape: var(--radius-md);
-   // --mat-button-filled-container-height: var(--button-height);
-   // --mat-button-filled-label-text-size: var(--font-size-sm);
-   // --mat-button-outlined-container-height: var(--button-height);
-
-   // /* dialog */
-   // --mat-dialog-container-shape: var(--dialog-radius);
-   // --mat-dialog-container-shape: var(--dialog-radius);
-   // --mat-dialog-scrim-color: var(--dialog-backdrop-color);
-
-   // // --mat-dialog-content-padding: var(--dialog-content-padding);
-   // // --mat-dialog-supporting-text-padding: var(--dialog-content-padding);
-   // --mat-dialog-headline-padding: var(--dialog-title-padding);
-   // --mat-form-field-container-height: var(--field-compact-height);
-   // /* form fields */
-   // --mat-form-field-filled-container-color: transparent;
-   // --mat-form-field-filled-hover-state-layer-opacity: 0;
-   // --mat-form-field-filled-focus-state-layer-opacity: 0;
-   // --mat-form-field-filled-focus-label-text-color: var(--color-primary);
-   // --mat-form-field-filled-focus-active-indicator-color: var(--color-primary);
-   // --mat-mdc-form-field-focus-state-layer-opacity: 0;
-
-
-   // --mat-select-panel-max-height: var(--select-panel-max-height);
-   // /* MENU */
-
-   // --mat-menu-container-min-width: var(--menu-min-width);
-
-   // /* CHIP */
-
-   // --mat-chip-container-height: 24px;
-   // --mat-chip-container-shape-radius: var(--radius-pill);
-   // --mat-button-filled-label-text-tracking: 0px
-
+   
   --mat-menu-container-color: rgba(255, 244, 235, 0.96);
   --mat-menu-container-shape: 12px;
   --mat-menu-item-label-text-color: #1f2937;
@@ -170,14 +115,14 @@
   --mat-menu-divider-color: rgba(249, 115, 22, 0.18);
 
   /* checkbox */
-  --mat-checkbox-label-text-color: #1f2937;
-  --mat-checkbox-unselected-icon-color: #1f2937;
-  --mat-checkbox-unselected-hover-icon-color: #1f2937;
-  --mat-checkbox-unselected-focus-icon-color: #1f2937;
-  --mat-checkbox-unselected-pressed-icon-color: #1f2937;
-  --mat-checkbox-selected-icon-color: var(--orange-200);
-  --mat-checkbox-selected-checkmark-color: #ffffff;
-  --mat-checkbox-selected-hover-icon-color: var(--orange-600);
-  --mat-checkbox-selected-focus-icon-color: var(--orange-200);
-  --mat-checkbox-selected-pressed-icon-color: var(--orange-600);
+  // --mat-checkbox-label-text-color: #1f2937;
+  // --mat-checkbox-unselected-icon-color: #1f2937;
+  // --mat-checkbox-unselected-hover-icon-color: #1f2937;
+  // --mat-checkbox-unselected-focus-icon-color: #1f2937;
+  // --mat-checkbox-unselected-pressed-icon-color: #1f2937;
+  // --mat-checkbox-selected-icon-color: var(--orange-200);
+  // --mat-checkbox-selected-checkmark-color: #ffffff;
+  // --mat-checkbox-selected-hover-icon-color: var(--orange-600);
+  // --mat-checkbox-selected-focus-icon-color: var(--orange-200);
+  // --mat-checkbox-selected-pressed-icon-color: var(--orange-600);
 }

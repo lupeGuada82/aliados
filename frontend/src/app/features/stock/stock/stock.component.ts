@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { AbstractEntityComponent } from '../../abstract-entity/abstract-entity.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -8,6 +8,7 @@ import { BaseService } from '../../../core/services/base.service';
 import { ColumnSetting, CustomAction, MassiveAction } from '../../../shared/components/table/utils/utils';
 import { LoadingOverlayComponent } from '../../../shared/components/loading-overlay/loading-overlay.component';
 import { ButtonComponent } from '../../../shared/components/button/button.component';
+import { DocumentoService } from '../../../core/services/document-service';
 
 @Component({
     selector: 'app-stock',
@@ -76,6 +77,8 @@ export class StockComponent extends AbstractEntityComponent {
         this.settings.editable = true;
         this.settings.createAddAction = true;
         this.settings.createEditAction = true;
+        this.settings.createHidenAction = false;
+        this.settings.createExportAction = false;
         this.settings.pagination.pageSize = 10;
         var descargarQR = new CustomAction({
             icon: 'generate_QR',
@@ -83,7 +86,7 @@ export class StockComponent extends AbstractEntityComponent {
             action: (row) => this.descargarQR(row)
         })
         this.settings.selection = true;
-        
+
 
 
         this.settings.customActions = [this.createActionsAjustarStock(), descargarQR];
@@ -136,4 +139,5 @@ export class StockComponent extends AbstractEntityComponent {
         window.history.back()
     }
 
+  
 }

@@ -1,149 +1,26 @@
 /* =========================
-   BOX SEARCH CONFIGURACION
-   ========================= */
+   BOX SEARCH
+   =========================
+   .box-search, .box-search-icon y .search-input ya están definidas
+   en styles/_components-abstractions.scss (mismo patrón que usa
+   select-custom-search) — no se duplican acá.
 
-/* Contenedor del buscador dentro del mat-select  se ajusta  el check y la x para que cuando se achique el componenete no desbore*/
-.box-search {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-  padding: 4px 8px;
-  box-sizing: border-box;
-  width: 100%;
-}
+   NOTA (encontrado al migrar): el font-size local era 11pt (≈14.67px),
+   muy cercano a --font-size-sm (14px) del sistema. Asumo que era la
+   misma intención y no un valor a propósito distinto; si el tamaño
+   real cambia visualmente, es ese px de diferencia.
+*/
 
-
-.box-search input {
-  flex: 1;
-  min-width: 0;
-  height: 40px;              /* mismo alto que mat-icon-button */
-  line-height: 40px;
-  border: none;
-  outline: none;
-  font-size: 11pt;
-  box-sizing: border-box;
-}
-
-
-
-.box-search-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 40px;
-}
-
-
-.box-search-icon button.mat-icon-button {
-  width: 40px;
-  height: 40px;
-  padding: 0;                /* 🔥 clave */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.box-search-icon mat-icon {
-  font-size: 20px;
-  line-height: 1;
-  display: block;
-}
-
-
-
-/* =========================
-   MAT SELECT TRIGGER CONFIGURACION
-   ========================= */
-
-/* Wrapper general */
-.chip-trigger-wrapper {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  min-width: 0;
-  flex-wrap: nowrap;
-}
-
-/* Chips dentro del scroll */
-::ng-deep .mat-mdc-chip-set {
-  display: flex !important;
-  flex-wrap: nowrap !important;
-  width: max-content; /* fuerza desbordamiento */
-}
-
-/* Chips individuales */
-::ng-deep .mat-mdc-chip {
-  flex-shrink: 0 !important;
-  //height: 24px;
-  //line-height: 24px;
-  white-space: nowrap;
-}
-
-/* +N siempre visible */
-.more-chip-wrapper {
-  flex-shrink: 0;
-  margin-left: 4px;
-}
-
-::ng-deep .more-chip {
-  height: 24px;
-  line-height: 24px;
-}
-
-/* Scroll fino */
-.chip-trigger-scroll::-webkit-scrollbar {
-  height: 3px;
-}
-
-.chip-trigger-scroll::-webkit-scrollbar-thumb {
-  background-color: #bdbdbd;
-  border-radius: 2px;
-}
-
-
-/* Esto obliga a los chips a mantenerse en la misma línea */
-::ng-deep .chip-trigger-scroll .mdc-evolution-chip-set__chips {
-  display: flex !important;
-  flex-wrap: nowrap !important;
-  min-width: 0; /* clave para scroll horizontal */
-}
-
-.chip-trigger-scroll {
-  display: flex;
-  flex: 1 1 auto;
-  min-width: 0;
-  max-width: calc(100% - 40px); /* deja espacio para +N */ /*Hay que ver cuando no es necesasrio mostrarlo sacar el espacio*/
-  overflow-x: auto;
-  overflow-y: hidden;
- // height: 28px;
-  align-items: center;
-  scrollbar-width: thin;
-}
-
-
-/* =========================
-   PANEL DE OPCIONES
-   ========================= */
-
-/* Panel de opciones */
-::ng-deep .mat-mdc-select-panel {
-  max-width: 100%;      /* nunca excede ancho del select */
-  overflow-x: hidden; 
-}
-
-/* Cada opción: ocupar todo el ancho */
-::ng-deep .mat-mdc-option {
-  width: 100%;
-  box-sizing: border-box;
-}
-
-/* Texto dentro de la opción: cortar con ..., esto es porque a veces la descripcion es muy larga y queda muy desprolijo, igual se le agregó un tooltips */
-::ng-deep .mat-mdc-option .mdc-list-item__primary-text {
-  white-space: nowrap !important;      
-  overflow: hidden !important;          
-  text-overflow: ellipsis !important;  
-  display: block !important;           
-  max-width: 100% !important;          
-}
-
-
-
+/*
+ * OJO — código muerto que se saca de acá (no se usa en el .html):
+ *
+ * - .box-search-icon button.mat-icon-button
+ *   Nunca matchea: el botón acá es <app-button>, que renderiza su
+ *   propio <button> (no trae la clase mat-icon-button).
+ *
+ * - Toda la sección "MAT SELECT TRIGGER CONFIGURACION"
+ *   (.chip-trigger-wrapper, .chip-trigger-scroll, .more-chip-wrapper,
+ *   .more-chip): este select es de valor único (mat-select-trigger
+ *   solo muestra texto plano), nunca renderiza chips. Es un resto de
+ *   copy-paste de select-custom-search que nunca se usó acá.
+ */

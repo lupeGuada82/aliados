@@ -8,6 +8,10 @@
 @forward "fonts";
 @forward "reset";
 
+// ⚠️ IMPORTANTE: Estas abstracciones deben cargarse DESPUÉS de variables
+@use "material-abstractions";
+@use "components-abstractions";
+
 :root {
     /* ======================================================================
          COMPONENTES

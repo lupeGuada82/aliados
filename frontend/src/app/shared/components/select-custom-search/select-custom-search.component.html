@@ -9,6 +9,7 @@
 
   <mat-select
     #selectElem
+    panelClass="select-panel"
     [formControl]="control()"
     [multiple]="multiple()"
     (selectionChange)="onSelectionChange($event)"
@@ -90,11 +91,12 @@
 
           <div class="chip-trigger-scroll">
 
-            <mat-chip-set>
+            <mat-chip-set class="chips-container">
 
               @for (value of visibleChips; track value) {
 
                 <mat-chip
+                  class="chip"
                   [removable]="true"
                   (removed)="removeChip(value)"
                 >
@@ -119,7 +121,7 @@
 
               <mat-chip
                 disabled
-                class="more-chip"
+                class="more-chip chip"
               >
                 +{{ hiddenChipsCount }}
               </mat-chip>

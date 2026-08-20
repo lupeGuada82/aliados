@@ -1,5 +1,3 @@
-
-/* Estilo para botón pequeño en la columna de acciones */
 .small-icon-button {
   width: 32px;
   height: 32px;
@@ -8,34 +6,27 @@
   line-height: 1;
 }
 
-/* Ajuste del ícono dentro del botón */
 .small-icon-button .material-icons {
   font-size: 10px;
-  /* Tamaño más chico */
   line-height: 0;
-  /* Quita espacio vertical extra */
   vertical-align: middle;
-  /* Centrado respecto al texto */
 }
-
 
 .toolbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* o start si quieres que estén pegados a la izquierda */
   gap: 1rem;
-  /* espacio entre los elementos */
   flex-wrap: wrap;
-  /* permite que se ajusten en pantallas pequeñas */
 }
 
-::ng-deep  .mat-mdc-header-row {
+.table-header-row {
   background: var(--orange-500) !important;
 }
 
-.mat-mdc-header-cell {
+.table-header-cell {
   color: var(--color-text) !important;
   font-weight: 600;
   padding: var(--spacing-3) var(--spacing-4);
+  background: var(--orange-500) !important;
 }
