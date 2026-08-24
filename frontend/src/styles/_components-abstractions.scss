@@ -195,25 +195,32 @@
 
   &__header-cell,
   &__cell {
-    padding: 16px;
     box-sizing: border-box;
     vertical-align: middle;
     text-align: left;
     border-bottom: 1px solid var(--color-border, #e0e0e0);
   }
 
+  // Convención única de la app: TODO header de tabla es naranja de marca
+  // con texto blanco y bold — no un default "neutro" que cada tabla
+  // termina pisando a mano (por eso antes vivía duplicado, con !important
+  // peleando, en cada *.component.scss). Si algún día aparece una tabla
+  // que necesita otro esquema, se agrega un modifier acá (ej: &--neutral)
+  // en vez de volver a las guerras de especificidad locales.
   &__header-cell {
     font-size: 16px;
     line-height: 20px;
-    font-weight: 500;
-    background: var(--color-surface, #fafafa);
-    color: var(--color-text);
+    font-weight: 600;
+    padding: var(--spacing-3) var(--spacing-4);
+    background: var(--orange-500) !important;
+    color: var(--color-text) !important; // blanco — el header siempre es naranja
   }
 
   &__cell {
     font-size: 16px;
     line-height: 20px;
-    color: var(--color-text);
+    padding: 16px;
+    color: var(--gray-900, #111827); // negro real, no --color-text (ver nota en .checkbox)
   }
 
   &__row {
@@ -244,20 +251,33 @@
 .checkbox {
   --checkbox-size: 24px;
 
-  --mat-checkbox-unselected-icon-color: var(--color-secondary);
-  --mat-checkbox-unselected-hover-icon-color: var(--color-secondary, #000);
-  --mat-checkbox-unselected-focus-icon-color: var(--color-secondary, #000);
+  // "Negro" del sistema — NO usar --color-text: acá vale #ffffff porque
+  // el tema de la app es oscuro (--color-background es --gray-900) y
+  // --color-text está pensado para texto sobre fondo oscuro. Las filas
+  // de esta tabla son claras, así que necesitan el negro real.
+  --mat-checkbox-unselected-icon-color: var(--gray-900);
+  --mat-checkbox-unselected-hover-icon-color: var(--gray-900);
+  --mat-checkbox-unselected-focus-icon-color: var(--gray-900);
 
-  --mat-checkbox-selected-icon-color: var(--color-secondary);
+  // Tildado/indeterminado: caja naranja de marca, tilde blanco adentro
+  --mat-checkbox-selected-icon-color: var(--color-primary);
   --mat-checkbox-selected-hover-icon-color: var(--color-primary);
   --mat-checkbox-selected-focus-icon-color: var(--color-primary);
-  --mat-checkbox-selected-checkmark-color: var(--color-background);
+  --mat-checkbox-selected-checkmark-color: #ffffff;
 
-  // Variante para usar sobre fondos oscuros/de color (ej: header de tabla)
+  // Variante para usar sobre fondos de color (ej: header naranja de tabla).
+  // Acá SÍ hace falta pisar también el estado tildado/indeterminado:
+  // el naranja de marca sobre el header naranja quedaba invisible
+  // (era el guión/tilde raro que se veía en las capturas).
   &--on-color {
-    --mat-checkbox-unselected-hover-icon-color: var(--color-secondary);
-    --mat-checkbox-unselected-focus-icon-color: var(--color-secondary);
-    --mat-checkbox-unselected-pressed-icon-color: var(--color-secondary);
+    --mat-checkbox-unselected-icon-color: #ffffff;
+    --mat-checkbox-unselected-hover-icon-color: #ffffff;
+    --mat-checkbox-unselected-focus-icon-color: #ffffff;
+
+    --mat-checkbox-selected-icon-color: #ffffff;
+    --mat-checkbox-selected-hover-icon-color: #ffffff;
+    --mat-checkbox-selected-focus-icon-color: #ffffff;
+    --mat-checkbox-selected-checkmark-color: var(--color-primary);
   }
 }
 

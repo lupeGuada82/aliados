@@ -12,13 +12,16 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.demo.pipers.dto.ItemProcesadoDTO;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.core.type.TypeReference;
 
 @Service
 public class ClaudeService {
 
 	private final RestClient restClient;
+	private final ObjectMapper objectMapper;
 
 	@Value("${anthropic.api-key}")
 	private String apiKey;
@@ -31,16 +34,14 @@ public class ClaudeService {
 
 	public ClaudeService(RestClient.Builder builder) {
 		this.restClient = builder.baseUrl("https://api.anthropic.com").build();
+		this.objectMapper = new ObjectMapper();
 	}
 
-	public String procesarArchivo(MultipartFile file) throws IOException {
+	public List<ItemProcesadoDTO> procesarArchivo(MultipartFile file) throws IOException {
 
 		validarArchivo(file);
-
 		String base64 = Base64.getEncoder().encodeToString(file.getBytes());
-
 		Map<String, Object> archivo;
-
 		if (esPdf(file)) {
 			archivo = crearDocumentoPdf(base64);
 		} else {
@@ -56,30 +57,55 @@ public class ClaudeService {
 				.header("anthropic-version", "2023-06-01").contentType(MediaType.APPLICATION_JSON).body(request)
 				.retrieve().body(String.class);
 
-		return extraerJson(respuesta);
+		return extraerItems(respuesta);
 
 	}
 
-	private String extraerJson(String respuesta) throws IOException {
+	private List<ItemProcesadoDTO> extraerItems(String respuesta) throws IOException {
 
-		ObjectMapper mapper = new ObjectMapper();
-
-		JsonNode root = mapper.readTree(respuesta);
+		JsonNode root = objectMapper.readTree(respuesta);
 
 		String texto = root.path("content").findValue("text").asText();
 
 		texto = texto.trim();
 
+		// Por si Claude devuelve ```json ... ```
 		if (texto.startsWith("```json")) {
 			texto = texto.substring(7);
+		} else if (texto.startsWith("```")) {
+			texto = texto.substring(3);
 		}
 
 		if (texto.endsWith("```")) {
 			texto = texto.substring(0, texto.length() - 3);
 		}
 
-		return texto.trim();
+		texto = texto.trim();
+
+		return objectMapper.readValue(texto, new TypeReference<List<ItemProcesadoDTO>>() {
+		});
 	}
+
+//	private String extraerJson(String respuesta) throws IOException {
+//
+//		ObjectMapper mapper = new ObjectMapper();
+//
+//		JsonNode root = mapper.readTree(respuesta);
+//
+//		String texto = root.path("content").findValue("text").asText();
+//
+//		texto = texto.trim();
+//
+//		if (texto.startsWith("```json")) {
+//			texto = texto.substring(7);
+//		}
+//
+//		if (texto.endsWith("```")) {
+//			texto = texto.substring(0, texto.length() - 3);
+//		}
+//
+//		return texto.trim();
+//	}
 
 	private void validarArchivo(MultipartFile file) {
 

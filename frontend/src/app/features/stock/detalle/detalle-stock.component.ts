@@ -20,10 +20,10 @@ export class DetalleStockComponent implements OnInit {
     currentSelectedProd: any;
     originalSelectedProd: any;
 
-    ingresosDeStock: MatTableDataSource<any>;
+    ingresosDeStock: MatTableDataSource<any> = new MatTableDataSource();
     settingsIngresos = new TableConfiguration();
 
-    egresosDeStock: MatTableDataSource<any>;
+    egresosDeStock: MatTableDataSource<any> = new MatTableDataSource();
     settingsEgresos = new TableConfiguration();
 
 

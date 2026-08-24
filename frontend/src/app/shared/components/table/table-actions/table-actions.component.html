@@ -37,7 +37,7 @@
           matTooltipClass="dark-tooltip">
         </app-button>
 
-        <mat-menu #menu="matMenu">
+        <mat-menu #menu="matMenu" class="menu menu--plain">
           @for (action of allVisibleActions | slice:4; track $index) {
             <button type="button" mat-menu-item (click)="action.action()" [disabled]="evaluarCondicionDefault(action.disabled, row())" class="custom-action-button">
               <app-icon [name]="action.icon || 'edit'" [size]="16"></app-icon>

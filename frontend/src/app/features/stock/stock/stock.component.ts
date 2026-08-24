@@ -20,7 +20,7 @@ import { DocumentoService } from '../../../core/services/document-service';
     styleUrl: './stock.component.scss'
 })
 export class StockComponent extends AbstractEntityComponent {
-    selection: any[];
+    selection: any[] = [];
 
     constructor(
         route: ActivatedRoute,

@@ -1,1 +1,8 @@
-<mat-paginator class="paginador paginator-page-size" [length]="length()" [pageSizeOptions]="pagination().pageSizeOptions" [pageSize]="pagination().pageSize" showFirstLastButtons></mat-paginator>
+<mat-paginator
+  class="paginador paginator-page-size"
+  [length]="length()"
+  [pageSizeOptions]="pagination().pageSizeOptions"
+  [pageSize]="pagination().pageSize"
+  [selectConfig]="{ panelClass: 'select-panel select-panel--compact' }"
+  showFirstLastButtons>
+</mat-paginator>

@@ -15,431 +15,6 @@
 */
 
 // ============================================================
-// SELECT / DROPDOWN
-// ============================================================
-.select-input {
-    &__value {
-        .mat-mdc-select-value-text {
-            padding: 10px;
-        }
-    }
-
-    &__panel {
-        .mat-mdc-select-panel {
-            // panel del select
-        }
-    }
-
-    &__option {
-        .mat-mdc-option {
-            // opción del select
-        }
-
-        .mat-mdc-option .mdc-list-item__primary-text {
-            // texto dentro de la opción
-        }
-    }
-}
-
-// ============================================================
-// CHIPS — reset estructural
-// ============================================================
-// Color, tipografía y forma van 100% por custom properties oficiales
-// de Material desde `.chip` en components-abstractions.scss (confirmado
-// contra el paquete instalado: --mat-chip-container-*, --mat-chip-label-*,
-// --mat-chip-outline-*, etc. cubren todo el look). Acá solo queda layout
-// que Material no expone como token: que los chips no salten de línea
-// y no se achiquen, para poder scrollear horizontal en el trigger.
-.chips-container {
-    .mat-mdc-chip-set {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        width: max-content;
-    }
-}
-
-.chip {
-    flex-shrink: 0 !important;
-    white-space: nowrap;
-}
-
-.select-custom-search,
-.select-custom-table {
-    .mat-mdc-select-panel {
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-
-    .mat-mdc-option {
-        width: 100%;
-        box-sizing: border-box;
-    }
-
-    .mat-mdc-option .mdc-list-item__primary-text {
-        display: block !important;
-        max-width: 100% !important;
-        overflow: hidden !important;
-        white-space: nowrap !important;
-        text-overflow: ellipsis !important;
-    }
-}
-
-// ============================================================
-// TABLE (Data Table)
-// ============================================================
-.data-table {
-    width: auto;
-    min-width: 100%;
-    table-layout: fixed;
-
-    .mat-mdc-header-row {
-        background: var(--orange-500) !important;
-        min-height: 56px;
-        height: auto;
-    }
-
-    .mat-mdc-header-cell {
-        padding: 16px;
-        box-sizing: border-box;
-        vertical-align: middle;
-        font-size: 16px;
-        line-height: 20px;
-        font-weight: 500;
-        color: var(--color-text) !important;
-    }
-
-    .mat-mdc-cell {
-        padding: 16px;
-        box-sizing: border-box;
-        vertical-align: middle;
-        font-size: 16px;
-        line-height: 20px;
-        color: #000000;
-    }
-
-    .mat-mdc-row {
-        min-height: 52px;
-        height: auto;
-    }
-
-    // Checkbox en tabla
-    .mat-mdc-header-cell .mat-mdc-checkbox {
-        margin-top: 6px;
-    }
-
-    .mat-mdc-checkbox {
-        display: inline-block;
-        padding-top: 8px;
-    }
-
-    // Último row
-    .mdc-data-table__row:last-child .mat-mdc-cell {
-        border-bottom: 1px solid var(--color-border, #e0e0e0);
-    }
-
-    .mdc-data-table__row .mat-mdc-cell {
-        border-bottom: 1px solid var(--color-border, #e0e0e0);
-    }
-
-    // Row seleccionado
-    .mdc-data-table__row.selected-row .mat-mdc-cell {
-        background-color: var(--color-selected, #f5f5f5);
-    }
-
-    // Form field dentro de tabla
-    .mat-mdc-cell mat-form-field {
-        width: 100%;
-    }
-
-    .mat-mdc-form-field {
-        width: 100%;
-    }
-}
-
-
-// ============================================================
-// PAGINATOR
-// ============================================================
-.paginator-page-size {
-    .mdc-text-field--outlined {
-        padding-left: 12px !important;
-        padding-right: 12px !important;
-        overflow: visible;
-    }
-
-    .mat-mdc-select-value {
-        padding-left: 0 !important;
-        box-sizing: border-box;
-    }
-
-    .mat-mdc-select-trigger {
-        display: flex;
-        align-items: center;
-    }
-
-    .mat-mdc-select-arrow-wrapper {
-        margin-left: 4px;
-    }
-
-    .mat-mdc-select-value-text,
-    .mat-mdc-paginator-page-size-label,
-    .mat-mdc-paginator-range-label {
-        font-size: 12px;
-        line-height: 1.2;
-    }
-}
-
-.mat-mdc-option .mdc-list-item__primary-text {
-    font-size: var(--font-size-xs) !important;
-}
-
-.mdc-text-field--outlined {
-    padding-left: 12px !important;
-    padding-right: 12px !important;
-}
-
-.acciones-inline {
-
-    .mat-menu-panel {
-        min-width: auto !important;
-        width: auto !important;
-        padding: 0 !important;
-    }
-
-    .custom-action-button {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 4px 8px;
-        white-space: nowrap;
-        width: auto !important;
-        min-width: unset !important;
-    }
-
-    .custom-action-button app-icon {
-        width: 16px;
-        height: 16px;
-        font-size: 16px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .dark-tooltip .mdc-tooltip__surface {
-        background: rgba(17, 24, 39, 0.96) !important;
-        color: #ffffff !important;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
-        font-size: 11px !important;
-        line-height: 1.2 !important;
-        letter-spacing: 0.01em !important;
-        padding: 6px 8px !important;
-        border-radius: 8px !important;
-        opacity: 1 !important;
-    }
-}
-
-// ============================================================
-// FORM FIELD
-// ============================================================
-.form-input {
-    .mat-mdc-form-field-bottom-align::before {
-        // alineación inferior
-    }
-
-    .mat-mdc-text-field-wrapper {
-        padding-bottom: 0;
-    }
-
-    .mat-mdc-form-field-infix {
-        padding: 8px 0;
-        border: none;
-    }
-
-    .mat-mdc-input-element {
-        padding: 8px 0;
-        background: transparent;
-    }
-
-    .mat-mdc-form-field-icon-suffix {
-        // ícono al final del campo
-    }
-
-    .mat-mdc-form-field-icon-suffix>.mat-icon {
-        // ícono al final del campo
-    }
-
-    .mat-mdc-form-field-subscript-wrapper {
-        // área de texto de ayuda
-    }
-}
-
-// ============================================================
-// MENU
-// ============================================================
-.menu {
-    .mat-menu-panel {
-        // panel del menú
-    }
-
-    .mat-mdc-menu-panel {
-        // panel del menú MDC
-    }
-
-    .mat-mdc-menu-content {
-        // contenido del menú
-    }
-
-    .mat-mdc-menu-item {
-        // item del menú
-    }
-
-    .mat-mdc-menu-item:hover,
-    .mat-mdc-menu-item:focus {
-        // hover y focus del item
-    }
-
-    // Menu plain (sin styling)
-    &--plain {
-
-        .mat-mdc-menu-panel,
-        .mat-mdc-menu-content {
-            background: transparent;
-            box-shadow: none;
-        }
-
-        .mat-mdc-menu-item {
-            height: auto;
-            padding: 8px 16px;
-        }
-
-        .mat-mdc-menu-item:hover,
-        .mat-mdc-menu-item:focus {
-            background-color: var(--color-hover, #f5f5f5);
-        }
-    }
-}
-
-// ============================================================
-// CHECKBOX — reset estructural
-// ============================================================
-// Confirmado contra el CSS compilado real: Material fija el tamaño
-// de la caja en 18px con un valor hardcodeado (no hay custom property
-// para eso). Por eso es el único punto de esta sección que toca DOM
-// interno — el color NO se toca acá, va 100% por tokens en `.checkbox`
-// dentro de _components-abstractions.scss.
-.checkbox {
-
-    .mdc-checkbox,
-    .mdc-checkbox .mdc-checkbox__background,
-    .mdc-checkbox .mdc-checkbox__native-control {
-        width: var(--checkbox-size, 24px);
-        height: var(--checkbox-size, 24px);
-    }
-
-    .mdc-checkbox__checkmark {
-        width: 100%;
-        height: 100%;
-    }
-
-    // El ripple de Material asume el tamaño chico por defecto y queda
-    // descentrado al agrandar la caja; lo apagamos acá.
-    .mdc-checkbox__ripple {
-        display: none;
-    }
-}
-
-// ============================================================
-// ICON
-// ============================================================
-.icon {
-    .mat-icon {
-        // ícono
-    }
-
-    &__button {
-        .mat-icon-button {
-            // botón con ícono
-        }
-    }
-}
-
-// ============================================================
-// LIST CELL EDITOR (en tablas)
-// ============================================================
-.list-cell-editor {
-
-    .mat-mdc-option,
-    .mat-mdc-select {
-        // estilos base
-    }
-
-    .mat-mdc-select .mat-mdc-select-arrow {
-        // flecha del select
-    }
-
-    .mat-mdc-form-field-icon-suffix {
-        // ícono de sufijo
-    }
-
-    .mat-mdc-form-field-icon-suffix>.mat-icon {
-        // ícono de sufijo
-    }
-}
-
-// ============================================================
-// TABLE CELL (celdas con formularios)
-// ============================================================
-.table-cell {
-    .mat-mdc-form-field-bottom-align::before {
-        // línea inferior
-    }
-
-    .mat-mdc-text-field-wrapper {
-        padding-bottom: 0;
-    }
-
-    .mat-mdc-form-field-infix {
-        padding: 4px 0;
-        border: none;
-    }
-
-    .mat-mdc-input-element {
-        padding: 4px 0;
-        font-size: 14px;
-    }
-
-    .mat-mdc-form-field-subscript-wrapper {
-        display: none;
-    }
-
-    .mat-mdc-text-field-wrapper,
-    .mat-mdc-form-field-infix {
-        // ajustes para celdas
-    }
-
-    .mat-mdc-cell mat-form-field {
-        width: 100%;
-    }
-}
-
-/* ===========================
-   Material Design Abstractions
-   ===========================
-   Este archivo encapsula TODAS las dependencias de Material Design.
-   Usamos los COMPONENTES de Angular Material (estructura, accesibilidad,
-   comportamiento) pero NO su theming/estilo visual: el look real vive
-   acá, sobreescribiendo las clases internas mat-* / mdc-*.
-
-   IMPORTANTE: este archivo se carga vía styles.scss (global, sin
-   encapsulación de componente), por lo tanto NO hace falta ::ng-deep
-   ni :deep() acá — un selector plano ya atraviesa cualquier boundary
-   porque no hay ninguno a este nivel. ::ng-deep solo es necesario
-   DENTRO de un *.component.scss cuando el elemento a estilar lo
-   renderiza un componente hijo (ej: overlay de mat-select, mat-menu).
-*/
-
-// ============================================================
 // SELECT — panel (se renderiza afuera del árbol, via CDK Overlay)
 // ============================================================
 // mat-select cuelga su panel de opciones directo de <body> (CDK
@@ -505,58 +80,38 @@
     min-width: 100%;
     table-layout: fixed;
 
+    // Material fija la altura de fila/header con `height` (no
+    // min-height) vía estos tokens oficiales. Antes pisábamos con
+    // `min-height + height:auto`, pero min-height en filas de <table>
+    // (display: table-row) es poco confiable en los navegadores — con
+    // contenido chico (ej: el checkbox propio, sin touch-target extra
+    // de Material) la fila se achicaba de verdad. Usar el token real
+    // hace que `height` quede fijo y confiable.
+    --mat-table-header-container-height: 56px;
+    --mat-table-row-item-container-height: 40px;
+
+    // Convención real de la app (no un reset): toda .data-table tiene
+    // header naranja de marca por default. Cualquier tabla puede pisarlo
+    // localmente si necesita otro color.
     .mat-mdc-header-row {
         background: var(--orange-500) !important;
-        min-height: 56px;
-        height: auto;
     }
 
-    .mat-mdc-header-cell {
-        padding: 16px;
-        box-sizing: border-box;
-        vertical-align: middle;
-        font-size: 16px;
-        line-height: 20px;
-        font-weight: 500;
-        color: var(--color-text) !important;
-    }
-
-    .mat-mdc-cell {
-        padding: 16px;
-        box-sizing: border-box;
-        vertical-align: middle;
-        font-size: 16px;
-        line-height: 20px;
-        color: #000000;
-    }
-
-    .mat-mdc-row {
-        min-height: 52px;
-        height: auto;
-    }
-
-    // Checkbox en tabla
-    .mat-mdc-header-cell .mat-mdc-checkbox {
-        margin-top: 6px;
-    }
-
-    .mat-mdc-checkbox {
-        display: inline-block;
-        padding-top: 8px;
-    }
+    // La altura ya la fija el token --mat-table-row-item-container-height
+    // de arriba — no hace falta pisar height/min-height acá.
 
     // Último row
     .mdc-data-table__row:last-child .mat-mdc-cell {
-        border-bottom: 1px solid var(--color-border, #e0e0e0);
+        border-bottom: 1px solid var(--color-border);
     }
 
     .mdc-data-table__row .mat-mdc-cell {
-        border-bottom: 1px solid var(--color-border, #e0e0e0);
+        border-bottom: 1px solid var(--color-border);
     }
 
     // Row seleccionado
     .mdc-data-table__row.selected-row .mat-mdc-cell {
-        background-color: var(--color-selected, #f5f5f5);
+        background-color: var(--table-row-selected);
     }
 
     // Form field dentro de tabla
@@ -571,12 +126,39 @@
 
 
 // ============================================================
+// FORM FIELD OUTLINE — reset genérico
+// ============================================================
+// MDC deja el padding del appearance="outline" pisado por el notch del
+// borde; esto no es específico del paginador, lo usan varios form-field
+// con appearance="outline" en la app (ej: egreso-stock-form). Se separa
+// del bloque de paginator para que quede claro que es genérico.
+.mdc-text-field--outlined {
+    padding-left: 12px !important;
+    padding-right: 12px !important;
+}
+
+// ============================================================
 // PAGINATOR
 // ============================================================
+// Confirmado contra el paquete instalado: mat-paginator tiene tokens
+// oficiales para casi todo (texto, ícono, tamaño del form-field/select).
+// El panel de opciones (5/10/25) es portaleado como cualquier mat-select
+// — se targetea con [selectConfig]="{panelClass: 'select-panel select-panel--compact'}"
+// en el .html, reusando la misma clase que ya usan los demás selects
+// (no un selector global suelto pisando TODOS los mat-option de la app,
+// como estaba antes con `.mat-mdc-option .mdc-list-item__primary-text`).
 .paginator-page-size {
+    --mat-paginator-container-text-size: 12px;
+    --mat-paginator-select-trigger-text-size: 12px;
+    --mat-paginator-form-field-container-height: 36px;
+    --mat-paginator-form-field-container-vertical-padding: 6px;
+
+    // Ajustes de layout que Material no expone como token: el select de
+    // "items por página" queda con overflow raro por default con
+    // appearance outline compacto.
+    // El padding de appearance="outline" ya lo resuelve el reset
+    // genérico de arriba; acá solo el extra que necesita el paginador.
     .mdc-text-field--outlined {
-        padding-left: 12px !important;
-        padding-right: 12px !important;
         overflow: visible;
     }
 
@@ -593,43 +175,49 @@
     .mat-mdc-select-arrow-wrapper {
         margin-left: 4px;
     }
+}
 
-    .mat-mdc-select-value-text,
-    .mat-mdc-paginator-page-size-label,
-    .mat-mdc-paginator-range-label {
-        font-size: 12px;
-        line-height: 1.2;
+// ============================================================
+// MENU — se renderiza afuera del árbol (mismo caso que el select)
+// ============================================================
+// El panel de mat-menu también es portaleado por CDK Overlay. La forma
+// correcta de targetearlo es `class="menu menu--plain"` en <mat-menu>
+// (MatMenu tiene panelClass como alias directo de `class`), NO anidar
+// selectores bajo el wrapper que abre el menú — eso nunca matcheaba
+// (era el caso de `.acciones-inline .mat-menu-panel`, ya retirado).
+//
+// Color/tipografía van por tokens oficiales (confirmados contra el
+// paquete instalado: --mat-menu-container-*, --mat-menu-item-*).
+.menu {
+    --mat-menu-container-color: var(--color-surface, #fff4eb);
+    --mat-menu-container-shape: 12px;
+    --mat-menu-item-label-text-color: var(--gray-900, #1f2937);
+    --mat-menu-item-hover-state-layer-color: rgba(249, 115, 22, 0.1);
+    --mat-menu-item-focus-state-layer-color: rgba(249, 115, 22, 0.14);
+    --mat-menu-divider-color: rgba(249, 115, 22, 0.18);
+
+    // Variante sin sombra/borde de "tarjeta" (usada como menú de acciones simple)
+    &--plain {
+        border: 1px solid rgba(249, 115, 22, 0.18);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08);
     }
 }
 
-.mat-mdc-option .mdc-list-item__primary-text {
-    font-size: var(--font-size-xs) !important;
-}
+// Botón de acción dentro del menú de la columna de acciones de la tabla
+// (mat-menu-item con ícono + label). Layout puro, no color — el color
+// del texto/hover ya lo pone `.menu` de arriba vía tokens.
+.custom-action-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 8px;
+    white-space: nowrap;
+    width: auto !important;
+    min-width: unset !important;
 
-.mdc-text-field--outlined {
-    padding-left: 12px !important;
-    padding-right: 12px !important;
-}
-
-.acciones-inline {
-
-    .mat-menu-panel {
-        min-width: auto !important;
-        width: auto !important;
-        padding: 0 !important;
-    }
-
-    .custom-action-button {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        padding: 4px 8px;
-        white-space: nowrap;
-        width: auto !important;
-        min-width: unset !important;
-    }
-
-    .custom-action-button app-icon {
+    app-icon {
         width: 16px;
         height: 16px;
         font-size: 16px;
@@ -637,19 +225,21 @@
         align-items: center;
         justify-content: center;
     }
+}
 
-    .dark-tooltip .mdc-tooltip__surface {
-        background: rgba(17, 24, 39, 0.96) !important;
-        color: #ffffff !important;
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
-        font-size: 11px !important;
-        line-height: 1.2 !important;
-        letter-spacing: 0.01em !important;
-        padding: 6px 8px !important;
-        border-radius: 8px !important;
-        opacity: 1 !important;
-    }
+// Tooltip oscuro — matTooltipClass="dark-tooltip" ya aplica esta clase
+// directo al panel portaleado, no hace falta ancestro.
+.dark-tooltip .mdc-tooltip__surface {
+    background: rgba(17, 24, 39, 0.96) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.12);
+    font-size: 11px !important;
+    line-height: 1.2 !important;
+    letter-spacing: 0.01em !important;
+    padding: 6px 8px !important;
+    border-radius: 8px !important;
+    opacity: 1 !important;
 }
 
 // ============================================================
@@ -688,90 +278,36 @@
 }
 
 // ============================================================
-// MENU
+// CHECKBOX
 // ============================================================
-.menu {
-    .mat-menu-panel {
-        // panel del menú
-    }
-
-    .mat-mdc-menu-panel {
-        // panel del menú MDC
-    }
-
-    .mat-mdc-menu-content {
-        // contenido del menú
-    }
-
-    .mat-mdc-menu-item {
-        // item del menú
-    }
-
-    .mat-mdc-menu-item:hover,
-    .mat-mdc-menu-item:focus {
-        // hover y focus del item
-    }
-
-    // Menu plain (sin styling)
-    &--plain {
-
-        .mat-mdc-menu-panel,
-        .mat-mdc-menu-content {
-            background: transparent;
-            box-shadow: none;
-        }
-
-        .mat-mdc-menu-item {
-            height: auto;
-            padding: 8px 16px;
-        }
-
-        .mat-mdc-menu-item:hover,
-        .mat-mdc-menu-item:focus {
-            background-color: var(--color-hover, #f5f5f5);
-        }
-    }
-}
+// Ya no queda ningún <mat-checkbox> en la app — se reemplazó por
+// app-checkbox (shared/components/checkbox), un componente propio con
+// <input type="checkbox"> nativo. El reset de tamaño que vivía acá
+// (Material fijaba 18px hardcodeado, sin token) ya no aplica a nada.
 
 // ============================================================
-// CHECKBOX — reset estructural
+// ICON (mat-icon / mat-icon-button de Material)
 // ============================================================
-// Confirmado contra el CSS compilado real: Material fija el tamaño
-// de la caja en 18px con un valor hardcodeado (no hay custom property
-// para eso). Por eso es el único punto de esta sección que toca DOM
-// interno — el color NO se toca acá, va 100% por tokens en `.checkbox`
-// dentro de _components-abstractions.scss.
-// .checkbox {
-//     .mdc-checkbox,
-//     .mdc-checkbox .mdc-checkbox__background,
-//     .mdc-checkbox .mdc-checkbox__native-control {
-//         width: var(--checkbox-size, 24px);
-//         height: var(--checkbox-size, 24px);
-//     }
-
-//     .mdc-checkbox__checkmark {
-//         width: 60%;
-//     }
-
-//     // El ripple de Material asume el tamaño chico por defecto y queda
-//     // descentrado al agrandar la caja; lo apagamos acá.
-//     .mdc-checkbox__ripple {
-//         display: none;
-//     }
-// }
-
-// ============================================================
-// ICON
-// ============================================================
+// NOTA: la mayoría de los íconos de la app ya usan <app-icon>, un
+// componente propio (SVG + currentColor, cero Material) — ver
+// shared/components/icon. Este bloque es solo para los pocos <mat-icon>
+// reales que quedan (glifos de Material Symbols: error, cancel,
+// arrow_drop_down, etc. que no existen todavía como SVG propio en
+// public/icons/). Color/tamaño van por tokens oficiales confirmados
+// contra el paquete instalado.
 .icon {
+    --mat-icon-color: currentColor;
+
+    &.mat-icon,
     .mat-icon {
-        // ícono
+        width: 20px;
+        height: 20px;
+        font-size: 20px;
     }
 
     &__button {
-        .mat-icon-button {
-            // botón con ícono
-        }
+        --mat-icon-button-icon-size: 20px;
+        --mat-icon-button-state-layer-size: 40px;
     }
 }
 

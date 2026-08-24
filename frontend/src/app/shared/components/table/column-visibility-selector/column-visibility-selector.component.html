@@ -1,9 +1,9 @@
 <div class="checkboxes-scroll" (click)="$event.stopPropagation()">
   @for (col of columns(); track col.key) {
-    <mat-checkbox
-      [(ngModel)]="col.visible"
-      class="checkbox-item checkbox">
+    <app-checkbox
+      [(checked)]="col.visible"
+      class="checkbox-item">
       {{ col.label }}
-    </mat-checkbox>
+    </app-checkbox>
   }
 </div>

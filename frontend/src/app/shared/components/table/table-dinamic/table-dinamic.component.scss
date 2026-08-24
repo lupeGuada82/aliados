@@ -2,27 +2,20 @@
 // TABLE BASE
 // ============================================================
 // Sizing, padding, colores y bordes base de la tabla ya viven
-// centralizados en styles/_material-abstractions.scss bajo `.data-table`
-// (esa clase ya está en el <table> de este componente). Acá solo queda
-// lo que es específico de ESTA tabla: filas alternadas, selección,
-// checkbox de columna, headers agrupados, wrapper/responsive, etc.
-
-// NOTA / CONFLICTO DE VALORES con `.data-table` del archivo central:
-// - Acá: font-weight 600, padding var(--spacing-3) var(--spacing-4)
-// - Central: font-weight 500, padding 16px
-// Como esta regla es más específica que la del archivo central (o cae
-// después en el cascade), hoy gana ESTA. Si querés que el header se vea
-// igual en todas las tablas de la app, mové este valor al `.data-table`
-// central y borrá este bloque. Si es intencional para esta tabla en
-// particular, dejalo así pero ya sabés por qué difiere.
-.my-table .table-header-cell,
-.my-table .table-header-row .mat-mdc-header-cell,
-.my-table .mat-mdc-header-cell.table-header-cell {
-  color: var(--color-text) !important;
-  font-weight: 600;
-  padding: var(--spacing-3) var(--spacing-4);
-  background: var(--orange-500) !important;
-}
+// centralizados: reset estructural en styles/_material-abstractions.scss
+// bajo `.data-table`, diseño real (color/tipografía/spacing) en
+// `.table` / `.table__header-cell` / `.table__cell` de
+// _components-abstractions.scss (esas clases ya están wireadas en el
+// .html de este componente). Acá solo queda lo que es específico de
+// ESTA tabla: filas alternadas, selección, checkbox de columna,
+// headers agrupados, wrapper/responsive, etc.
+//
+// El conflicto que había acá (font-weight 600 vs 500, padding distinto
+// del central) ya se resolvió: se consolidó en `.table__header-cell`
+// como convención única de toda la app (header naranja + texto blanco
+// + bold). Este bloque local se borró — si alguna tabla necesita verse
+// distinta, se agrega un modifier tipo `.table--neutral` en el central,
+// no un override local nuevo.
 
 // ============================================================
 // UTILITIES
@@ -91,15 +84,6 @@ app-table-paginator {
 // ROW STYLES - Border & Hover
 // ============================================================
 
-// NOTA / CONFLICTO con `.data-table` central: el archivo central pone
-// border-bottom: var(--color-border, #e0e0e0) en TODAS las filas.
-// Acá se pisa con #6c757d (gris más oscuro) para esta tabla en particular.
-// Misma especificidad en ambos selectores → depende del orden de carga,
-// es frágil. Si el gris oscuro es el que querés en toda la app, movelo
-// al central; si es solo para esta tabla, esto queda bien pero documentado.
-.my-table .mdc-data-table__row .mat-mdc-cell {
-  border-bottom: 1px solid #6c757d;
-}
 
 // Row alternation with hover
 .even-row:hover,
@@ -123,9 +107,9 @@ app-table-paginator {
   background-color: var(--table-row-select, rgb(45, 45, 45)) !important;
 }
 
-.my-table .mdc-data-table__row.selected-row .mat-mdc-cell {
-  border-bottom: 2px solid var(--table-row-border-select, rgb(22, 22, 22)) !important;
-}
+// .my-table .mdc-data-table__row.selected-row .mat-mdc-cell {
+//   border-bottom: 2px solid var(--table-row-border-select, rgb(22, 22, 22)) !important;
+// }
 
 // ============================================================
 // CHECKBOX COLUMN
@@ -138,25 +122,6 @@ app-table-paginator {
   text-align: center;
 }
 
-.my-table mat-checkbox {
-  padding: 0;
-  margin: 0 auto;
-}
-
-.my-table .mat-mdc-cell mat-form-field {
-  width: 100%;
-  box-sizing: border-box;
-  margin: 0;
-  display: block;
-}
-
-/* Opcional: achicar el mat-form-field si hay inputs dentro de la celda */
-.my-table .mat-mdc-form-field {
-  margin-top: 0 !important;
-  margin-bottom: 0 !important;
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
-}
 
 // ============================================================
 // NO DATA MESSAGE
@@ -172,13 +137,4 @@ app-table-paginator {
 .my-table td {
   white-space: normal;
   word-break: normal;
-}
-
-// El color y tamaño del checkbox de esta columna ahora vienen de la
-// clase agnóstica `.checkbox` / `.checkbox--on-color` puesta directo
-// en el <mat-checkbox> del .html (ver components-abstractions.scss
-// y el reset en material-abstractions.scss). Acá ya no queda nada
-// mat-mdc-*/mdc-* para checkbox.
-.my-table .mat-mdc-checkbox {
-  padding: 0 4px !important;
 }

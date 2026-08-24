@@ -1,6 +1,7 @@
 package com.demo.pipers.rest;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.demo.pipers.dto.ItemProcesadoDTO;
 import com.demo.pipers.service.ClaudeService;
 
 @RestController
@@ -18,12 +20,21 @@ public class DocumentoRestController {
 	@Autowired
 	private ClaudeService claudeService;
 
-	@PostMapping("/procesar")
-	public ResponseEntity<String> procesar(@RequestParam("file") MultipartFile file) throws IOException {
+//	@PostMapping("/procesar")
+//	public ResponseEntity<String> procesar(@RequestParam("file") MultipartFile file) throws IOException {
+//
+//		String resultado = claudeService.procesarArchivo(file);
+//
+//		return ResponseEntity.ok(resultado);
+//
+//	}
 
-		String resultado = claudeService.procesarArchivo(file);
+	@PostMapping("/procesar")
+	public ResponseEntity<List<ItemProcesadoDTO>> procesar(@RequestParam("file") MultipartFile file)
+			throws IOException {
+
+		List<ItemProcesadoDTO> resultado = claudeService.procesarArchivo(file);
 
 		return ResponseEntity.ok(resultado);
-
 	}
 }

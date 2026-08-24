@@ -8,7 +8,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { FormArray, FormGroup } from '@angular/forms';
 import { AddConfirmEvent, DeleteConfirmEvent, EditConfirmEvent } from '../utils/events';
 import { ToolbarActionsComponent } from '../toolbar-actions/toolbar-actions.component';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { CheckboxComponent } from '../../checkbox/checkbox.component';
 import { TableActionsComponent } from '../table-actions/table-actions.component';
 import { TableCellComponent } from '../table-cell/table-cell.component';
 import { CommonModule, LocationStrategy } from '@angular/common';
@@ -27,7 +27,7 @@ import { Router } from '@angular/router';
   templateUrl: './table-dinamic.component.html',
   styleUrl: './table-dinamic.component.scss',
   providers: [TableFormService, TableStateService, TableDataService, TableInlineService, TableActionService, RowIdentityService],
-  imports: [CommonModule, ToolbarActionsComponent, MatTableModule, MatCheckboxModule, MatSortModule, TableActionsComponent, TableCellComponent, TablePaginatorComponent]
+  imports: [CommonModule, ToolbarActionsComponent, MatTableModule, CheckboxComponent, MatSortModule, TableActionsComponent, TableCellComponent, TablePaginatorComponent]
 })
 export class TableDinamicComponent implements AfterViewInit, OnDestroy {
 
@@ -56,7 +56,7 @@ export class TableDinamicComponent implements AfterViewInit, OnDestroy {
   // cambio el paginador por el customizado
   @ViewChild(TablePaginatorComponent, { static: false }) private customPaginator?: TablePaginatorComponent;
   // Usado para renderizar la fila de agrupamiento
-  protected dataSource: MatTableDataSource<any>;
+  protected dataSource!: MatTableDataSource<any>;
   // private gridCreated = false;
 
   //Rastrear si usamos FormArray
@@ -73,7 +73,7 @@ export class TableDinamicComponent implements AfterViewInit, OnDestroy {
   protected errorTable = false;
   protected errorList: string[] = [];
 
-  private actionStrategy: {
+  private actionStrategy!: {
     add: (payload?: any) => void;
     edit: (payload?: any) => void;
     delete: (payload?: any) => void;

@@ -52,21 +52,10 @@
   margin-left: 1.5rem;
 }
 
-/* Menu plain - neutral style */
-.menu-plain {
-  background: rgba(255, 244, 235, 0.96) !important;
-  border-radius: 12px !important;
-  border: 1px solid rgba(249, 115, 22, 0.18) !important;
-  overflow: hidden !important;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08) !important;
-}
-
-.menu-item {
-  color: #1f2937;
-}
-
-.menu-item:hover,
-.menu-item:focus {
-  background: rgba(249, 115, 22, 0.1) !important;
-}
-
+/*
+ * .menu-plain / .menu-item vivían acá duplicadas. Ya están centralizadas
+ * como .menu / .menu--plain en _material-abstractions.scss (mismos
+ * valores, con tokens oficiales de mat-menu en vez de hardcodear el
+ * background/color a mano). Los 3 <mat-menu> de este componente ahora
+ * usan panelClass="menu menu--plain".
+ */

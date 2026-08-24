@@ -1,14 +1,12 @@
-
 import { Component, input } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { CheckboxComponent } from '../../checkbox/checkbox.component';
 import { ColumnSetting } from '../utils/utils';
 
 @Component({
     selector: 'column-visibility-selector',
     templateUrl: './column-visibility-selector.component.html',
     styleUrl: './column-visibility-selector.component.scss',
-    imports: [FormsModule, MatCheckboxModule]
+    imports: [CheckboxComponent]
 })
 export class ColumnVisibilitySelectorComponent {
   columns= input<ColumnSetting[]>([]) ;

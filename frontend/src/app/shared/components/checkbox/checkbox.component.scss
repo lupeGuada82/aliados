@@ -1,0 +1,125 @@
+:host {
+  display: inline-flex;
+}
+
+.checkbox {
+  --checkbox-size: 24px;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2, 8px);
+  cursor: pointer;
+  user-select: none;
+}
+
+// Input real: invisible pero presente y en la posición correcta —
+// así el foco de teclado, el toggle con Espacio y los lectores de
+// pantalla los resuelve el navegador solo, gratis.
+.checkbox__input {
+  position: absolute;
+  inset: 0;
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
+  margin: 0;
+  opacity: 0;
+  cursor: inherit;
+}
+
+.checkbox__box {
+  flex-shrink: 0;
+  width: var(--checkbox-size);
+  height: var(--checkbox-size);
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 2px solid var(--gray-900, #111827);
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.checkbox__checkmark,
+.checkbox__indeterminate {
+  width: 70%;
+  height: 70%;
+  color: #ffffff;
+  display: none;
+}
+
+.checkbox__checkmark-path {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+}
+
+// Foco visible por teclado (no en click con mouse) — accesibilidad,
+// no algo que Material nos regale gratis acá, lo definimos nosotros.
+.checkbox__input:focus-visible ~ .checkbox__box {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.checkbox__input:hover:not(:disabled) ~ .checkbox__box {
+  border-color: var(--color-primary);
+}
+
+// Tildado
+.checkbox__input:checked ~ .checkbox__box {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+
+  .checkbox__checkmark {
+    display: block;
+    animation: checkbox-draw 0.15s ease forwards;
+  }
+}
+
+// Indeterminado (pseudo-clase nativa; requiere setear el .indeterminate
+// del elemento por JS, ver checkbox.component.ts — no hay atributo HTML
+// para esto, es la única parte que no resuelve el navegador solo)
+.checkbox__input:indeterminate ~ .checkbox__box {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+
+  .checkbox__indeterminate {
+    display: block;
+  }
+}
+
+.checkbox__label:empty {
+  display: none;
+}
+
+// Variante sobre fondos de color (ej: header naranja de tabla): caja
+// blanca sin marcar, tildado = caja blanca + tilde de color (invertido).
+.checkbox--on-color {
+  .checkbox__box {
+    border-color: #ffffff;
+  }
+
+  .checkbox__input:checked ~ .checkbox__box,
+  .checkbox__input:indeterminate ~ .checkbox__box {
+    background: #ffffff;
+    border-color: #ffffff;
+
+    .checkbox__checkmark,
+    .checkbox__indeterminate {
+      color: var(--color-primary);
+    }
+  }
+}
+
+.checkbox--disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+
+  .checkbox__input {
+    cursor: not-allowed;
+  }
+}
+
+@keyframes checkbox-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

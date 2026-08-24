@@ -16,16 +16,13 @@ export class DocumentoService {
 
   private readonly http = inject(HttpClient);
 
-  procesarArchivo(file: File): Observable<string> {
+  procesarArchivo(file: File): Observable<any[]> {
     const formData = new FormData();
 
     formData.append('file', file);
 
-    return this.http.post(this.baseUrl + '/documentos/procesar',
-      formData,
-      {
-        responseType: 'text'
-      }
+    return this.http.post<any[]>(this.baseUrl + '/documentos/procesar',
+      formData
     );
   }
 }

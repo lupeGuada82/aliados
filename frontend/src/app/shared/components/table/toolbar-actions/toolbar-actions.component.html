@@ -12,7 +12,7 @@
             [icon]="actionExport.icon || 'file_export'" [matMenuTriggerFor]="menuExport">
             <span>{{ actionExport.label }}</span>
         </app-button>
-        <mat-menu #menuExport="matMenu" panelClass="menu-plain">
+        <mat-menu #menuExport="matMenu" panelClass="menu menu--plain">
             <button type="button" mat-menu-item class="menu-item" (click)="export('pdf')">PDF</button>
             <button type="button" mat-menu-item class="menu-item" (click)="export('xls')">Excel</button>
             <button type="button" mat-menu-item class="menu-item" (click)="export('csv')">CSV</button>
@@ -24,7 +24,7 @@
             [icon]="actionHiddenColumn.icon || 'table_eye'" [matMenuTriggerFor]="menuHidden">
             <span>{{ actionHiddenColumn.label }}</span>
         </app-button>
-        <mat-menu #menuHidden="matMenu" panelClass="menu-plain">
+        <mat-menu #menuHidden="matMenu" panelClass="menu menu--plain">
             <div class="menu-item">
                 <column-visibility-selector [columns]="hideableColumns"></column-visibility-selector>
             </div>
@@ -39,7 +39,7 @@
         @if (settings().massiveActions.length > 0) {
         <app-button variant="action" [icon]="'more_vert'" [matMenuTriggerFor]="menuMassive" class="massiveActions">
         </app-button>
-        <mat-menu #menuMassive="matMenu" panelClass="menu-plain">
+        <mat-menu #menuMassive="matMenu" panelClass="menu menu--plain">
             @for (action of settings().massiveActions; track $index) {
             <button type="button" mat-menu-item class="menu-item" (click)="executeMassive(action.name)"
                 [disabled]="!evaluateConditionMassive(action)">

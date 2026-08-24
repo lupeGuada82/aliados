@@ -4,7 +4,7 @@
     </app-button>
 </div>
 
-@if (data) {
+<!-- @if (data) { -->
 <section class="productos-page">
 
     <div class="page-header">
@@ -66,13 +66,14 @@
         }
 
     </div>
-    <!-- <app-table [source]="data" [settings]="settings">
-    </app-table> -->
+    @if (data) {
+    <app-table [source]="data" [settings]="settings"></app-table>
+    }
 
 </section>
-}
+<!-- }
 @else {
 
 <app-loading-overlay message="Cargando productos..." />
 
-}
+} -->
