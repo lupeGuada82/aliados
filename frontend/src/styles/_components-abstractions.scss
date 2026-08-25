@@ -242,44 +242,11 @@
 // ============================================================
 // CHECKBOX
 // ============================================================
-// Todo el color se define con custom properties OFICIALES de
-// Angular Material (API pública y estable, no clases internas).
-// Confirmado contra el paquete instalado — no son inventadas.
-// El tamaño de la caja sí requiere un reset estructural puntual
-// (Material lo trae hardcodeado en 18px, sin token): ver
-// `.checkbox` en _material-abstractions.scss.
-.checkbox {
-  --checkbox-size: 24px;
-
-  // "Negro" del sistema — NO usar --color-text: acá vale #ffffff porque
-  // el tema de la app es oscuro (--color-background es --gray-900) y
-  // --color-text está pensado para texto sobre fondo oscuro. Las filas
-  // de esta tabla son claras, así que necesitan el negro real.
-  --mat-checkbox-unselected-icon-color: var(--gray-900);
-  --mat-checkbox-unselected-hover-icon-color: var(--gray-900);
-  --mat-checkbox-unselected-focus-icon-color: var(--gray-900);
-
-  // Tildado/indeterminado: caja naranja de marca, tilde blanco adentro
-  --mat-checkbox-selected-icon-color: var(--color-primary);
-  --mat-checkbox-selected-hover-icon-color: var(--color-primary);
-  --mat-checkbox-selected-focus-icon-color: var(--color-primary);
-  --mat-checkbox-selected-checkmark-color: #ffffff;
-
-  // Variante para usar sobre fondos de color (ej: header naranja de tabla).
-  // Acá SÍ hace falta pisar también el estado tildado/indeterminado:
-  // el naranja de marca sobre el header naranja quedaba invisible
-  // (era el guión/tilde raro que se veía en las capturas).
-  &--on-color {
-    --mat-checkbox-unselected-icon-color: #ffffff;
-    --mat-checkbox-unselected-hover-icon-color: #ffffff;
-    --mat-checkbox-unselected-focus-icon-color: #ffffff;
-
-    --mat-checkbox-selected-icon-color: #ffffff;
-    --mat-checkbox-selected-hover-icon-color: #ffffff;
-    --mat-checkbox-selected-focus-icon-color: #ffffff;
-    --mat-checkbox-selected-checkmark-color: var(--color-primary);
-  }
-}
+// El color/tamaño real vive en shared/components/checkbox
+// (checkbox.component.scss) — es un componente propio, <input>
+// nativo + SVG, no usa ningún token de Material. Este bloque vivía
+// acá de la época de <mat-checkbox> y quedó huérfano (los
+// --mat-checkbox-* que seteaba no los lee nada). Se retira.
 
 // ============================================================
 // GROUP HEADER (para tablas agrupadas)

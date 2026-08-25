@@ -70,6 +70,12 @@
 
   .checkbox__checkmark {
     display: block;
+  }
+
+  // La animación tiene que estar en el <path> (que es quien tiene
+  // stroke-dashoffset), no en el <svg> contenedor — animar el <svg>
+  // no dibuja nada, el trazo del path se quedaba frizado en oculto.
+  .checkbox__checkmark-path {
     animation: checkbox-draw 0.15s ease forwards;
   }
 }
@@ -94,6 +100,14 @@
 // blanca sin marcar, tildado = caja blanca + tilde de color (invertido).
 .checkbox--on-color {
   .checkbox__box {
+    border-color: #ffffff;
+  }
+
+  // Faltaba esto: sin esta regla, el hover genérico de más arriba
+  // (border-color: var(--color-primary), naranja) le ganaba por
+  // especificidad al borde blanco de acá — resultado: borde naranja
+  // + fondo transparente sobre header naranja = se funde y desaparece.
+  .checkbox__input:hover:not(:disabled) ~ .checkbox__box {
     border-color: #ffffff;
   }
 
