@@ -48,7 +48,6 @@ export class EgresoStockFormComponent implements OnInit {
                 this.producto = producto;
 
                 this.form = this.fb.group({
-                    //  codigo: [{ value: this.producto.codigo, disabled: true }],
                     cantidad: [null, [Validators.required, Validators.min(1)]],
                     responsable: [{ value: 'Usuario autenticado', disabled: true }],
                     solicitante: ['', Validators.required],
@@ -62,9 +61,7 @@ export class EgresoStockFormComponent implements OnInit {
 
 
     onCancelar(): void {
-        // Aquí puedes agregar lógica para limpiar el formulario o redirigir a otra página
         this.form.reset();
-        // Por ejemplo, si quieres redirigir a la página de detalles del stock:
         this.router.navigate(['/stock', this.codigo]);
     }
 
@@ -80,8 +77,6 @@ export class EgresoStockFormComponent implements OnInit {
         };
 
         console.log(payload);
-        // acá llamás al service HTTP
-
         this.detalleStockService.nuevoEgreso(payload).subscribe((data) => {
 
             alert('Enviado correctamente');//aca podemos utilizar las notificaciones que ya tenemos

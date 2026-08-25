@@ -28,8 +28,7 @@ export class ProductoComponent implements OnInit {
 
   selectedFile: File | null = null;
   processing = false;
-  //prueba de lector de remito
-  // productos: any[] = [];
+
   constructor(
     route: ActivatedRoute, private documentoService: DocumentoService,
     router: Router,
@@ -41,12 +40,10 @@ export class ProductoComponent implements OnInit {
       new ColumnSetting({
         key: 'cantidad',
         label: 'Cantidad',
-        // cellClass: 'column-codigo',
       }),
       new ColumnSetting({
         key: 'unidad',
         label: 'Unidad',
-        // cellClass: 'column-nombre',
       }),
       new ColumnSetting({
         key: 'descripcion',
@@ -62,10 +59,7 @@ export class ProductoComponent implements OnInit {
     this.settings.editable = false;
     this.settings.createExportAction = false;
     this.settings.createHidenAction = false;
-    // this.settings.createAddAction = true;
-    // this.settings.createEditAction = true;
     this.settings.pagination.pageSize = 10;
-    //this.settings.createExportAction=false;
     var imputarStock = new CustomAction({
       icon: 'generate_QR',
       label: 'Imputar Stock',
@@ -85,25 +79,7 @@ export class ProductoComponent implements OnInit {
   protected getTitle(): string {
     return 'Cargar Stock';
   }
-  // protected getPath(): string {
-  //   return 'producto/';
-  // }
-
-
-  // protected loadData() {
-  //   this.service.getAll(this.getPath()).subscribe((datos: any[]) => {
-  //     this.data = new MatTableDataSource(datos);
-  //     console.log(this.data);
-  //     this.createTable();
-  //   }
-  //   );
-  // }
-
-  // cambiarFiltro() {
-  //   // this.loadData();
-  // }
-
-
+ 
   atras() {
     window.history.back()
   }

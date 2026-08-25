@@ -37,13 +37,11 @@ export class StockComponent extends AbstractEntityComponent {
             new ColumnSetting({
                 key: 'codigo',
                 label: 'Codigo',
-                // cellClass: 'column-codigo',
                 isAddable: true
             }),
             new ColumnSetting({
                 key: 'nombre',
                 label: 'Nombre',
-                // cellClass: 'column-nombre',
                 isAddable: true,
                 isEditable: true
             }),
@@ -131,7 +129,6 @@ export class StockComponent extends AbstractEntityComponent {
         this.selection = event;
     }
     cambiarFiltro() {
-        // this.loadData();
     }
 
 

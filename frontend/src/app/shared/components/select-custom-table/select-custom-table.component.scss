@@ -10,17 +10,3 @@
    misma intención y no un valor a propósito distinto; si el tamaño
    real cambia visualmente, es ese px de diferencia.
 */
-
-/*
- * OJO — código muerto que se saca de acá (no se usa en el .html):
- *
- * - .box-search-icon button.mat-icon-button
- *   Nunca matchea: el botón acá es <app-button>, que renderiza su
- *   propio <button> (no trae la clase mat-icon-button).
- *
- * - Toda la sección "MAT SELECT TRIGGER CONFIGURACION"
- *   (.chip-trigger-wrapper, .chip-trigger-scroll, .more-chip-wrapper,
- *   .more-chip): este select es de valor único (mat-select-trigger
- *   solo muestra texto plano), nunca renderiza chips. Es un resto de
- *   copy-paste de select-custom-search que nunca se usó acá.
- */

@@ -85,7 +85,7 @@
   &__error {
     margin-top: var(--spacing-1);
     font-size: var(--font-size-xs);
-    color: var(--color-error, #f44336);
+    color: var(--color-danger);
   }
 
   // Variante: búsqueda
@@ -220,7 +220,7 @@
     font-size: 16px;
     line-height: 20px;
     padding: 16px;
-    color: var(--gray-900, #111827); // negro real, no --color-text (ver nota en .checkbox)
+    color: var(--gray-900, #111827); 
   }
 
   &__row {
@@ -321,9 +321,9 @@
   }
 
   &--error {
-    background: var(--color-error, #f44336);
+    background: var(--color-danger);
     color: white;
-    --mat-chip-elevated-container-color: var(--color-error, #f44336);
+    --mat-chip-elevated-container-color: var(--color-danger);
     --mat-chip-label-text-color: white;
   }
 
@@ -428,7 +428,7 @@
 
   &__error {
     font-size: var(--font-size-xs);
-    color: var(--color-error, #f44336);
+    color: var(--color-danger);
     margin-top: var(--spacing-1);
   }
 }

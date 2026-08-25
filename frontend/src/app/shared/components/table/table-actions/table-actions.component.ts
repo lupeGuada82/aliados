@@ -33,7 +33,7 @@ export class TableActionsComponent {
   editConfirm = output<any>();
   addConfirm = output<any>();
 
-  allVisibleActions: any[] = []; // 👈 lista final calculada una sola vez
+  allVisibleActions: any[] = []; //lista final calculada una sola vez
 
   ngOnInit(): void {
     this.buildActionsList();
@@ -87,7 +87,7 @@ export class TableActionsComponent {
       });
     }
 
-    // 🔹 Custom actions: usan "condicion" como "disabled"
+    //Custom actions: usan "condicion" como "disabled"
     const customs =
       this.settings().customActions?.map(a => ({
         type: 'custom',

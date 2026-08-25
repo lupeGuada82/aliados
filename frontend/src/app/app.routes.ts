@@ -33,11 +33,6 @@ export const routes: Routes = [
                 component: ProductoComponent
             },
 
-            // {
-            //     path: 'empleados',
-            //     component: EmpleadoComponent
-            // },
-
             {
                 path: 'stock',
                 component: StockGeneralComponent,
@@ -58,10 +53,6 @@ export const routes: Routes = [
                 component: EgresoStockFormComponent
             },
 
-            // {
-            //     path: 'consulta-empleados',
-            //     component: ConsultaEmpleadosComponent
-            // }
 
         ]
     },

@@ -52,9 +52,9 @@ export class TableFormService {
   
     formArray.controls.forEach((control) => {
   
-      // 👇 IMPORTANTE: trabajar sobre el control, no sobre value
+      //IMPORTANTE: trabajar sobre el control, no sobre value
       if (!control.get('__uid')) {
-        const uid = this.generateUID(control.value); // 👈 MISMA lógica
+        const uid = this.generateUID(control.value); // MISMA lógica
         control.addControl('__uid', new FormControl(uid));
       }
   

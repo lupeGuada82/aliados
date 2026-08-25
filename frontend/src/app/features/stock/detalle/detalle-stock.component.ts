@@ -67,18 +67,15 @@ export class DetalleStockComponent implements OnInit {
             new ColumnSetting({
                 key: 'fecha',
                 label: 'Fecha',
-                // className: 'column-fecha'
             }),
 
             new ColumnSetting({
                 key: 'cantidad',
                 label: 'Cantidad',
-                //className: 'column-cantidad'
             }),
             new ColumnSetting({
                 key: 'responsable',
                 label: 'Responsable',
-                //className: 'column-responsable',
             }),
 
             new ColumnSetting({
@@ -89,13 +86,10 @@ export class DetalleStockComponent implements OnInit {
             new ColumnSetting({
                 key: 'estado',
                 label: 'Estado',
-                //className: 'column-estado',
-
             }),
             new ColumnSetting({
                 key: 'observacion',
                 label: 'Observacion',
-                // className: 'column-observacion',
             })
 
         ];
@@ -103,25 +97,9 @@ export class DetalleStockComponent implements OnInit {
         this.settingsEgresos.createHidenAction = false;
         this.settingsEgresos.editable = true;
         this.settingsEgresos.createEditAction = true;
-        // this.settingsEgresos.createAddAction = true;
         this.settingsEgresos.createExportAction = false;
         this.settingsEgresos.pagination.pageSize = 10;
-        //esto se hace asi para poder probar el formulario que luego se realiza en QR
-        // this.settingsEgresos.customActions = this.createActionEgresoStock();
-
     }
-
-    // createActionEgresoStock(): CustomAction[] {
-    //   return [new CustomAction({
-    //     icon: 'format_list_bulleted_add',
-    //     label: 'Egreso Stock',
-    //     action: (row) => this.egresoStock(row)
-    //   })];
-    // }
-    // egresoStock(row: any): void {
-    //   console.log('Navegando a egreso de stock para el producto: ', row);
-    //   this.router.navigate(["/egresoStock", this.currentSelectedProd.codigo]);
-    // }
 
     loadDataMovimientos() {
 
@@ -130,7 +108,6 @@ export class DetalleStockComponent implements OnInit {
             console.log(this.ingresosDeStock);
 
         });
-        //this.ingresosDeStock = this.currentSelectedProd.modificaciones.filter(m => m.tipo === 'INGRESO');
 
         //TODO los egresos de stock se deberían cargar solamente cuando se va a la solapa de egresos
         this.detalleStockService.getEngresos(this.currentSelectedProd.codigo).subscribe((datos) => {
@@ -138,7 +115,6 @@ export class DetalleStockComponent implements OnInit {
             console.log(this.ingresosDeStock);
 
         });
-        // this.egresosDeStock = this.currentSelectedProd.modificaciones.filter(m => m.tipo === 'DESCUENTO');
     }
 
     inicializarTablaIngresosStock() {
@@ -149,7 +125,6 @@ export class DetalleStockComponent implements OnInit {
                 label: 'Fecha',
                 isEditable: false,
                 isAddable: false,
-                //  className: 'column-fecha'
             }),
 
             new ColumnSetting({
@@ -157,14 +132,12 @@ export class DetalleStockComponent implements OnInit {
                 label: 'Cantidad',
                 isEditable: true,
                 isAddable: true,
-                // className: 'column-cantidad'
             }),
             new ColumnSetting({
                 key: 'observacion',
                 label: 'Observacion',
                 isEditable: true,
                 isAddable: true
-                //  className: 'column-observacion',
             }),
 
             new ColumnSetting({
