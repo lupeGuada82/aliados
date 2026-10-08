@@ -20,20 +20,21 @@
    --orange-200: #fed7aa;
    --orange-300: #fdba74;
    --orange-400: #fb923c;
-   --orange-500: #f97316;
-   --orange-600: #ea580c;
+   --orange-500: #8b9cff;
+   --orange-600: #a8b5ff;
 
    --green-500: #22c55e;
    --red-500: #ef4444;
    --blue-500: #3b82f6;
+   --white: #ffffff;
 
 
    /* ======================================================================
      COLORES DE MARCA
      ====================================================================== */
 
-   --color-primary: var(--orange-500);
-   --color-primary-hover: var(--orange-600);
+   --color-primary: #8b9cff;
+   --color-primary-hover: #a8b5ff;
 
    --color-success: var(--green-500);
    --color-danger: var(--red-500);
@@ -44,12 +45,12 @@
      SUPERFICIES
      ====================================================================== */
 
-   --color-background: var(--gray-900);
-   --color-surface: var(--gray-800);
-   --color-surface-elevated: var(--gray-700);
+   --color-background: #020d28;
+   --color-surface: #081434;
+   --color-surface-elevated: #101d4a;
 
-   --color-border: var(--gray-900);
-   
+   --color-border: #1f2a5f;
+   --color-background-option: #18265c;
 
 
    /* ======================================================================
@@ -57,19 +58,22 @@
      ====================================================================== */
 
    --color-text: #ffffff;
-   --color-text-secondary: var(--gray-300);
+   --color-text-secondary: #aeb8e8;
 
 
    /* ======================================================================
      ESTADOS
      ====================================================================== */
 
-   --color-primary-subtle: rgba(249, 115, 22, 0.08);
-   --color-primary-muted: rgba(249, 115, 22, 0.12);
-   --color-primary-focus: rgba(249, 115, 22, 0.16);
+   --color-primary-subtle: rgba(139, 156, 255, 0.08);
+   --color-primary-muted: rgba(139, 156, 255, 0.12);
+   --color-primary-focus: rgba(139, 156, 255, 0.16);
 
-   --color-disabled: var(--gray-500);
-   --color-overlay: rgba(255, 255, 255, 0.08);
+   --color-disabled: #344061;
+   --color-overlay: rgba(139, 156, 255, 0.08);
+   // Distinto de --color-overlay (8%, tinte sutil): esto es el fondo
+   // casi opaco detrás de un spinner de carga, opacidad real 75%.
+   --color-loading-backdrop: rgba(2, 13, 40, 0.75);
 
 
    /* ======================================================================
@@ -84,15 +88,20 @@
    TABLA
    ====================================================================== */
 
-   --table-header-background: #cc8029;
+   --table-header-background: #18265c;
    --table-header-text: #ffffff;
-   --table-header-border: var(--orange-500);
+   --table-header-border: #8b9cff;
 
-   --table-row-background: var(--gray-800);
-   --table-row-hover: var(--gray-200);
-   --table-row-selected: var(--orange-100);
+   --table-row-background: #081434;
+   --table-row-hover: #162150;
+   --table-row-selected: #25346c;
+   // Estos dos no estaban definidos acá — vivían solo como fallback
+   // inline en table-dinamic.component.scss (var(--table-row-even, #fff)),
+   // es decir, el token "real" nunca existía. Ahora sí.
+   --table-row-even: #081434;
+   --table-row-odd: #0c183f;
 
-   --table-border: var(--gray-700);
+   --table-border: #1f2a5f;
 
    --table-header-border-width: 2px;
 
@@ -108,12 +117,12 @@
 
 
    
-  --mat-menu-container-color: rgba(255, 244, 235, 0.96);
+  --mat-menu-container-color: rgba(8, 20, 52, 0.96);
   --mat-menu-container-shape: 12px;
-  --mat-menu-item-label-text-color: #1f2937;
-  --mat-menu-item-hover-state-layer-color: rgba(249, 115, 22, 0.1);
-  --mat-menu-item-focus-state-layer-color: rgba(249, 115, 22, 0.14);
-  --mat-menu-divider-color: rgba(249, 115, 22, 0.18);
+  --mat-menu-item-label-text-color: #ffffff;
+  --mat-menu-item-hover-state-layer-color: rgba(139, 156, 255, 0.12);
+  --mat-menu-item-focus-state-layer-color: rgba(139, 156, 255, 0.16);
+  --mat-menu-divider-color: rgba(139, 156, 255, 0.22);
 
   /* checkbox: ver .checkbox / .checkbox--on-color en
      _components-abstractions.scss — ahí vive el color real. */

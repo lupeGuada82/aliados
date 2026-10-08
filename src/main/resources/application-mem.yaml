@@ -1,0 +1,29 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:aliados
+    username: sa
+    password: sa
+    driverClassName: org.h2.Driver
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+  liquibase:
+    enabled: false
+  config:
+    import: classpath:application-dev-private.properties
+
+springdoc:
+  swagger-ui:
+    enabled: true
+
+frontend:
+  base-url: http://localhost:4200/

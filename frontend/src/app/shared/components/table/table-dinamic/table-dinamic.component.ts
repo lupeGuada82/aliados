@@ -35,6 +35,8 @@ export class TableDinamicComponent implements AfterViewInit, OnDestroy {
   formArray = input<FormArray<FormGroup>>();
   settings = input.required<TableConfiguration>();
 
+  //prueba de filtro
+  filterValue = input<string>('');
 
   navigate = output<any>();
   show = output<any>();
@@ -89,7 +91,7 @@ export class TableDinamicComponent implements AfterViewInit, OnDestroy {
     private tableActionService: TableActionService, private router: Router,
     private locationStrategy: LocationStrategy) {
 
-    
+
     this.initEffects();
 
   }
@@ -108,8 +110,16 @@ export class TableDinamicComponent implements AfterViewInit, OnDestroy {
         this.dataSource
       );
     });
-
+    // dentro del effect que reconstruye dataSource, o en uno nuevo:
     effect(() => {
+      const filter = this.filterValue();
+      if (this.dataSource) {
+        this.dataSource.filter = filter;
+      }
+    });
+    
+    effect(() => {
+
       const formArray = this.formArray();
       if (!formArray) {
         return;
@@ -261,15 +271,15 @@ export class TableDinamicComponent implements AfterViewInit, OnDestroy {
     else return [...this.visibleColumns.map(c => c.key)];
   }
 
-  onNavigate(row:any): void {
+  onNavigate(row: any): void {
     this.navigate.emit(row);
   }
 
-  onShow(row:any): void {
+  onShow(row: any): void {
     this.show.emit(row);
   }
 
-  onEdit(row:any): void {
+  onEdit(row: any): void {
     this.actionStrategy.edit(row);
   }
 
@@ -367,7 +377,7 @@ export class TableDinamicComponent implements AfterViewInit, OnDestroy {
     this.enableGeneralAction();
   }
 
-  onDelete(row:any): void {
+  onDelete(row: any): void {
     this.actionStrategy.delete(row);
   }
 
@@ -375,7 +385,7 @@ export class TableDinamicComponent implements AfterViewInit, OnDestroy {
     this.onDeleteConfirm(row);
   }
 
-  onDeleteConfirm(row:any): void {
+  onDeleteConfirm(row: any): void {
     const formArray = this.formArray();
     const result = this.tableActionService.handleDeleteConfirm({
       row,
@@ -395,11 +405,11 @@ export class TableDinamicComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-  onAdd(event:any): void {
+  onAdd(event: any): void {
     this.actionStrategy.add(event);
   }
 
-  handleAddInline(event:any): void {
+  handleAddInline(event: any): void {
 
     if (this.tableStateService.hasAdding()) return;
 
@@ -425,7 +435,7 @@ export class TableDinamicComponent implements AfterViewInit, OnDestroy {
     });
     this.refreshDataSource();
   }
-  onAddConfirm(row:any): void {
+  onAddConfirm(row: any): void {
     const fg = this.getForm(row);
     if (!fg) return;
     const formArray = this.formArray();
@@ -464,11 +474,11 @@ export class TableDinamicComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  onCopy(row:any): void {
+  onCopy(row: any): void {
     this.actionStrategy.copy(row);
   }
 
-  handleCopyInline(row:any): void {
+  handleCopyInline(row: any): void {
     this.disableGeneralAction();
     const settings = this.settings();
     const { newRow, newData } = this.tableInlineService.copyInline({
@@ -490,7 +500,7 @@ export class TableDinamicComponent implements AfterViewInit, OnDestroy {
     this.refreshDataSource();
   }
 
-  onMassive(event:any): void {
+  onMassive(event: any): void {
     this.massive.emit({ actionName: event, selected: this.selection.selected, datasource: this.source() });
   }
   // Verifica si todos los ítems están seleccionados

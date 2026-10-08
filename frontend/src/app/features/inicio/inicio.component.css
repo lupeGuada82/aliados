@@ -1,0 +1,44 @@
+.hero {
+  display: grid;
+  grid-template-columns: minmax(280px, 560px) 1fr;
+  gap: var(--spacing-8);
+  align-items: center;
+  min-height: calc(100vh - 140px);
+}
+
+.hero-logo {
+  width: 100%;
+  max-height: 68vh;
+  object-fit: cover;
+  border-radius: 28px;
+  border: 1px solid rgba(139, 156, 255, 0.22);
+  box-shadow: var(--shadow-card-hover), 0 0 42px rgba(139, 156, 255, 0.12);
+}
+
+.hero-eyebrow {
+  color: var(--color-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-weight: 700;
+  margin-bottom: var(--spacing-4);
+}
+
+.hero-content h1 {
+  margin: 0;
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  line-height: 1;
+  color: var(--color-text);
+}
+
+.hero-content p:last-child {
+  color: var(--color-text-secondary);
+  font-size: 1.1rem;
+  max-width: 620px;
+  margin-top: var(--spacing-5);
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+}

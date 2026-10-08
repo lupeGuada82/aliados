@@ -1,0 +1,54 @@
+<app-section-title
+  eyebrow="Ventas"
+  title="Presupuestos"
+  description="Listado básico de presupuestos del proyecto."
+></app-section-title>
+
+<app-card title="Presupuestos registrados" icon="file_copy">
+  <div class="table-container">
+    <table class="presupuestos-table">
+      <thead>
+        <tr>
+          <th>Número</th>
+          <th>Cliente</th>
+          <th>Descripción</th>
+          <th>Fecha</th>
+          <th>Estado</th>
+          <th>PDF</th>
+          <th>Imágenes</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (presupuesto of presupuestos; track presupuesto.numero) {
+          <tr>
+            <td>{{ presupuesto.numero }}</td>
+            <td>{{ presupuesto.cliente }}</td>
+            <td>{{ presupuesto.descripcion }}</td>
+            <td>{{ presupuesto.fecha | date: 'dd/MM/yyyy' }}</td>
+            <td>
+              <span class="badge" [ngClass]="'badge-' + presupuesto.estado.toLowerCase()">
+                {{ presupuesto.estado }}
+              </span>
+            </td>
+            <td>
+              <a class="download-link" [href]="presupuesto.pdfUrl" target="_blank" rel="noopener">
+                Descargar PDF
+              </a>
+            </td>
+            <td>
+              @if (presupuesto.imagenes.length > 0) {
+                @for (imagen of presupuesto.imagenes; track imagen) {
+                  <a class="download-link" [href]="imagen" target="_blank" rel="noopener">
+                    Imagen {{ $index + 1 }}
+                  </a>
+                }
+              } @else {
+                Sin imágenes
+              }
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</app-card>

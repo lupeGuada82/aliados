@@ -20,7 +20,8 @@ export class TableComponent {
     source = input<any>();
     formArray = input<FormArray>(); // Soporte para FormArray, 
     settings = input(new TableConfiguration());
-
+    //prueba de filtro
+    filterValue = input<string>('');
     columns: ColumnSetting[] = [];
 
     navigate = output<any>();

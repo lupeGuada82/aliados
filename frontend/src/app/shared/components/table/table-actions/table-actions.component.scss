@@ -10,7 +10,7 @@
 }
 
 .action-button[disabled] {
-  color: #adb5bd !important;
+  color: var(--color-disabled) !important;
   cursor: not-allowed;
   pointer-events: none;
 }
@@ -32,4 +32,3 @@
   flex-wrap: nowrap;
 }
 
-/* Ajustes de menú y tooltip se abstraen en _material-abstractions.scss */

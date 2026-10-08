@@ -1,15 +1,20 @@
-  spring:
-    liquibase:
-      enabled: false
+spring:
+  config:
+    import: classpath:application-dev-private.properties
+  datasource:
+    url: jdbc:postgresql://localhost:5432/aliados
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
 
-    config:
-      import: classpath:application-dev-private.properties
+frontend:
+  base-url: http://localhost:4200/
 
-  anthropic:
-    model: claude-sonnet-4-20250514
-#esto es apra poder realizar el qr dependiendo el ambiente
-
-  frontend:
-    base-url: http://localhost:4200/#/egresoStock
-
-  debug: false
+debug: false

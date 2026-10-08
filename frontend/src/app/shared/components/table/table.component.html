@@ -1,6 +1,6 @@
 @if (settings()) {
 <div>
-  <app-table-dinamic [source]="source()" [formArray]="formArray()" [settings]="settings()" (show)="onShow($event)"
+  <app-table-dinamic [source]="source()" [filterValue]="filterValue()" [formArray]="formArray()" [settings]="settings()" (show)="onShow($event)"
     (navigate)="onNavigate($event)" (edit)="onEdit($event)" (editConfirm)="onEditConfirm($event)"
     (delete)="onDelete($event)" (deleteConfirm)="onDeleteConfirm($event)" (add)="onAdd($event)"
     (addConfirm)="onAddConfirm($event)" (massive)="onMassive($event)"

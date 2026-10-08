@@ -31,7 +31,7 @@
   height: var(--checkbox-size);
   box-sizing: border-box;
   border-radius: 4px;
-  border: 2px solid var(--gray-900, #111827);
+  border: 2px solid var(--gray-900);
   background: transparent;
   display: inline-flex;
   align-items: center;
@@ -43,7 +43,7 @@
 .checkbox__indeterminate {
   width: 70%;
   height: 70%;
-  color: #ffffff;
+  color: var(--white);
   display: none;
 }
 
@@ -100,7 +100,7 @@
 // blanca sin marcar, tildado = caja blanca + tilde de color (invertido).
 .checkbox--on-color {
   .checkbox__box {
-    border-color: #ffffff;
+    border-color: var(--white);
   }
 
   // Faltaba esto: sin esta regla, el hover genérico de más arriba
@@ -108,13 +108,13 @@
   // especificidad al borde blanco de acá — resultado: borde naranja
   // + fondo transparente sobre header naranja = se funde y desaparece.
   .checkbox__input:hover:not(:disabled) ~ .checkbox__box {
-    border-color: #ffffff;
+    border-color: var(--white);
   }
 
   .checkbox__input:checked ~ .checkbox__box,
   .checkbox__input:indeterminate ~ .checkbox__box {
-    background: #ffffff;
-    border-color: #ffffff;
+    background: var(--white);
+    border-color: var(--white);
 
     .checkbox__checkmark,
     .checkbox__indeterminate {

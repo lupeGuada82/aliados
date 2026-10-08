@@ -11,7 +11,7 @@ export class AuthService {
 
   private static COOKIE_NAME = 'JSESSIONID';
 
-  private static KEY_LOCALSTORE = 'pipers';
+  private static KEY_LOCALSTORE = 'Aliados';
 
   private storage: any = localStorage;
 

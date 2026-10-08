@@ -33,7 +33,7 @@ h5 button {
 
 fa-icon {
   font-size: 11pt;
-  color: rgb(53, 53, 53);
+  color: var(--gray-800); // antes rgb(53, 53, 53), aproximación más cercana
 }
 
 td fa-icon {
@@ -48,11 +48,11 @@ td fa-icon {
   text-align: center;
   padding: 8px;
   border-left-width: 1px !important;
-  border-left-color: rgb(188, 188, 188) !important;
+  border-left-color: var(--gray-300) !important; // antes rgb(188, 188, 188)
 }
 
 .my-table th.group-header-cell {
-  border-right: 1px solid #ccc !important;
+  border-right: 1px solid var(--gray-300) !important; // antes #ccc — mismo gris que el borde izquierdo, consolidados
 }
 
 // ============================================================
@@ -88,15 +88,15 @@ app-table-paginator {
 // Row alternation with hover
 .even-row:hover,
 .odd-row:hover {
-  background-color: var(--table-row-hover, #dee2e6) !important;
+  background-color: var(--table-row-hover) !important;
 }
 
 .even-row {
-  background-color: var(--table-row-even, #ffffff) !important;
+  background-color: var(--table-row-even) !important;
 }
 
 .odd-row {
-  background-color: var(--table-row-odd, #DEE2E6) !important;
+  background-color: var(--table-row-odd) !important;
 }
 
 // ============================================================
@@ -104,12 +104,13 @@ app-table-paginator {
 // ============================================================
 
 .selected-row {
-  background-color: var(--table-row-select, rgb(45, 45, 45)) !important;
+  // Antes decía --table-row-select (sin "ed"): no coincidía con el
+  // token real definido en _colors.scss (--table-row-selected, que
+  // apunta a --orange-100), así que nunca se usaba — siempre caía al
+  // gris de fallback. Reconectado.
+  background-color: var(--table-row-selected, var(--orange-100)) !important;
 }
 
-// .my-table .mdc-data-table__row.selected-row .mat-mdc-cell {
-//   border-bottom: 2px solid var(--table-row-border-select, rgb(22, 22, 22)) !important;
-// }
 
 // ============================================================
 // CHECKBOX COLUMN

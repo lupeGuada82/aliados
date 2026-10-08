@@ -7,7 +7,7 @@ plugins {
 
 group = 'com.demo'
 version = '0.0.1-SNAPSHOT'
-description = 'Demo para Pipers'
+description = 'Demo para Aliados'
 
 java {
     toolchain {
@@ -28,17 +28,20 @@ dependencies {
     implementation 'com.google.zxing:core:3.5.3'
     implementation 'com.google.zxing:javase:3.5.3'
     implementation 'com.github.librepdf:openpdf:1.3.30' //en vez de utilizar Itex porque se necesita licencia
-    
+  
 
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
+    runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
-
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
 tasks.named('test') {
     useJUnitPlatform()
 }

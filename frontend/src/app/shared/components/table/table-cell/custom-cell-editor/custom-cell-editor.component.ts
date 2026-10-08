@@ -4,7 +4,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 @Component({
     selector: 'custom-cell-editor',
     standalone: true,
-    template: `<ng-template #dynamicTarget></ng-template>`
+    template: `<ng-template #dynamicTarget></ng-template>`,
+    styleUrl: './custom-cell-editor.component.scss'
 })
 export class CustomCellEditor implements OnChanges, OnDestroy {
     /** Control de la celda */

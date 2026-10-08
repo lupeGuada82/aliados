@@ -15,10 +15,49 @@ body {
 
 body {
   min-height: 100%;
-  background: var(--color-background);
+  background:
+    radial-gradient(circle at 20% 0%, rgba(139, 156, 255, 0.12), transparent 36%),
+    radial-gradient(circle at 90% 20%, rgba(80, 110, 255, 0.08), transparent 30%),
+    var(--color-background);
   color: var(--color-text);
   font-family: var(--font-family-primary);
   line-height: var(--line-height-normal);
 }
 
 
+.mat-column-cantidad,
+.mat-column-unidad {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 10% !important;
+  width: 13% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  margin-right: 10px;
+}
+
+.mat-column-descripcion,
+.mat-column-productoMatch {
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  flex: 0 0 37% !important;
+  width: 37% !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  margin-right: 10px;
+}
+
+table {
+  width: 100%;
+  table-layout: fixed;
+}

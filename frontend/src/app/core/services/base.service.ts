@@ -14,7 +14,7 @@ export class BaseService<T> {
 
   constructor(private http: HttpClient) { }
 
-  getAll(path:string): Observable<T[]> {
+  getAll(path: string): Observable<T[]> {
     return this.http.get<T[]>(this.baseUrl + path);
   }
 
@@ -32,9 +32,15 @@ export class BaseService<T> {
     const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     return this.http.put<T>(this.baseUrl + path, body, { headers: headers });
   }
- 
+
   getByCodigo(codigo: number, path: string) {
     return this.http.get<any>(this.baseUrl + path + codigo);
   }
+  getByDescripcion(search: String, path: string) {
+    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.http.post<any>(this.baseUrl + path + 'bySearchDescripcion', search, { headers: headers })
+
+  }
+
 }
 

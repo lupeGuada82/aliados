@@ -1,0 +1,23 @@
+/*
+ * Sin este archivo, <custom-cell-editor> se renderizaba con el display
+ * por default de un elemento custom (inline) — no tenía ancho propio,
+ * así que cualquier `width: 100%` puesto MÁS ADENTRO (en el componente
+ * que inyectás dinámicamente, ej. <stock-editor>/<select-custom-table>)
+ * resolvía contra un ancestro sin ancho real y terminaba encogido al
+ * contenido en vez de estirarse a la celda.
+ *
+ * :host pasa a ser flex para que .editor-wrapper (el padre, también
+ * flex) lo estire correctamente, y `:host > *` fuerza a que el
+ * componente que se inyecta dinámicamente (el hijo directo real en el
+ * DOM, sea cual sea) ocupe todo ese ancho.
+ */
+:host {
+  display: flex;
+  width: 100%;
+  min-width: 0;
+}
+
+:host > * {
+  flex: 1 1 auto;
+  min-width: 0;
+}

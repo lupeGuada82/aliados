@@ -29,6 +29,18 @@
     max-width: 100%;
     overflow-x: hidden;
 
+    // El panel y las opciones de Material dependen por default de
+    // tokens "de sistema" M3 (--mat-sys-surface-container, --mat-sys-on-surface)
+    // que solo existen si llamás mat.theme() — acá nunca se llamó, así
+    // que la cadena de fallback no resolvía en nada y el panel quedaba
+    // con background transparente (se "perdía" el color, sobre todo
+    // visible en el tema oscuro de la app).
+    --mat-select-panel-background-color: var(--color-background-option);
+    --mat-option-label-text-color: var(--color-text);
+    --mat-option-selected-state-label-text-color: var(--color-primary);
+    --mat-option-hover-state-layer-color: var(--color-hover, rgba(0, 0, 0, 0.04));
+    --mat-option-focus-state-layer-color: var(--color-hover, rgba(0, 0, 0, 0.04));
+
     .mat-mdc-option {
         width: 100%;
         box-sizing: border-box;

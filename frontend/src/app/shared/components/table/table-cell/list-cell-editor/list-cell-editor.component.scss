@@ -11,7 +11,7 @@
 }
 
 .error-icon {
-  color: #DC3545;
+  color: var(--color-denger);
   transform: translateY(-8px);
 }
 
@@ -46,10 +46,10 @@
   transform: translateY(-8px);
 
   &.error {
-    color: #DC3545;
+    color: var(--color-danger);
   }
 
   &.normal {
-    color: rgba(0, 0, 0, 0.54);
+    color: var(--gray-600); 
   }
 }

@@ -9,6 +9,7 @@ import { StockGeneralComponent } from './features/stock/stock-general.component'
 import { StockComponent } from './features/stock/stock/stock.component';
 import { DetalleStockComponent } from './features/stock/detalle/detalle-stock.component';
 import { EgresoStockFormComponent } from './features/stock/egreso-stock-form/egreso-stock-form.component';
+import { PresupuestosComponent } from './features/presupuestos/presupuestos.component';
 
 export const routes: Routes = [
 
@@ -46,6 +47,11 @@ export const routes: Routes = [
                         component: DetalleStockComponent
                     }
                 ]
+            },
+
+            {
+                path: 'presupuestos',
+                component: PresupuestosComponent
             },
 
             {

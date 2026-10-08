@@ -10,7 +10,7 @@ import { BaseService } from '../../core/services/base.service';
 export abstract class AbstractEntityComponent implements OnInit {
 
   displayedColumns: any[] = [];
-  data: MatTableDataSource<any> | undefined;
+  data: MatTableDataSource<any>= new MatTableDataSource<any>([]);
   settings = new TableConfiguration();
 
   constructor(protected route: ActivatedRoute, protected router: Router, protected titleService: Title, private service: BaseService<any>) {

@@ -1,3 +1,13 @@
+/*
+ * Sin :host, <select-custom-table> es display:inline por default —
+ * el width:100% del <mat-form-field> interno (inline style en el html)
+ * no alcanza si este wrapper no tiene ancho propio dentro de SU padre.
+ */
+:host {
+  display: block;
+  width: 100%;
+}
+
 /* =========================
    BOX SEARCH
    =========================

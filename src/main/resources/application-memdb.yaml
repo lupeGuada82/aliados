@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:h2:mem:pipers
+    url: jdbc:h2:mem:aliados
     username: sa
     password: sa
     driverClassName: org.h2.Driver
@@ -29,8 +29,8 @@ spring:
   config:
     import: classpath:application-dev-private.properties
 
-anthropic:
-  model: claude-sonnet-5
+#anthropic:
+#  model: claude-sonnet-5
 
 springdoc:
   swagger-ui:
