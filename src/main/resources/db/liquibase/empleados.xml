@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="2026-10-08-02-insert-empleados-test" author="lupeGuada82">
+        <insert tableName="empleado">
+            <column name="id" valueNumeric="1" />
+            <column name="version" valueNumeric="0" />
+            <column name="fh_alta" valueComputed="CURRENT_TIMESTAMP" />
+            <column name="fhu_actualiz" valueComputed="CURRENT_TIMESTAMP" />
+            <column name="c_usuario" value="system" />
+            <column name="nombre" value="Teresa Gutierrez" />
+            <column name="cargo" value="Administración" />
+            <column name="fecha_ingreso" valueComputed="CURRENT_DATE" />
+        </insert>
+
+        <insert tableName="empleado">
+            <column name="id" valueNumeric="2" />
+            <column name="version" valueNumeric="0" />
+            <column name="fh_alta" valueComputed="CURRENT_TIMESTAMP" />
+            <column name="fhu_actualiz" valueComputed="CURRENT_TIMESTAMP" />
+            <column name="c_usuario" value="system" />
+            <column name="nombre" value="Gaspar Torres" />
+            <column name="cargo" value="Depósito" />
+            <column name="fecha_ingreso" valueComputed="CURRENT_DATE" />
+        </insert>
+
+        <insert tableName="empleado">
+            <column name="id" valueNumeric="3" />
+            <column name="version" valueNumeric="0" />
+            <column name="fh_alta" valueComputed="CURRENT_TIMESTAMP" />
+            <column name="fhu_actualiz" valueComputed="CURRENT_TIMESTAMP" />
+            <column name="c_usuario" value="system" />
+            <column name="nombre" value="Marcela Alvarez" />
+            <column name="cargo" value="Atención al cliente" />
+            <column name="fecha_ingreso" valueComputed="CURRENT_DATE" />
+        </insert>
+
+        <insert tableName="empleado">
+            <column name="id" valueNumeric="4" />
+            <column name="version" valueNumeric="0" />
+            <column name="fh_alta" valueComputed="CURRENT_TIMESTAMP" />
+            <column name="fhu_actualiz" valueComputed="CURRENT_TIMESTAMP" />
+            <column name="c_usuario" value="system" />
+            <column name="nombre" value="Tomas Hernandez" />
+            <column name="cargo" value="Logística" />
+            <column name="fecha_ingreso" valueComputed="CURRENT_DATE" />
+        </insert>
+
+        <sql>
+            SELECT setval('seq_empleado', 4, true);
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

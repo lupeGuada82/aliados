@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <changeSet id="2026-10-08-01-create-empleado" author="lupeGuada82">
+        <createSequence sequenceName="SEQ_EMPLEADO" incrementBy="1" />
+
+        <createTable tableName="EMPLEADO">
+            <column name="ID" type="BIGINT">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="VERSION" type="BIGINT">
+                <constraints nullable="false" />
+            </column>
+            <column name="FH_ALTA" type="TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column name="FHU_ACTUALIZ" type="TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+            <column name="FH_BAJA" type="TIMESTAMP" />
+            <column name="C_USUARIO" type="VARCHAR(255)" />
+            <column name="NOMBRE" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="CARGO" type="VARCHAR(255)" />
+            <column name="FECHA_INGRESO" type="DATE" />
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

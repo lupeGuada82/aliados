@@ -1,8 +1,0 @@
-<div class="checkboxes-scroll" (click)="$event.stopPropagation()">
-  <mat-checkbox
-    *ngFor="let col of columns"
-    [(ngModel)]="col.visible"
-    class="checkbox-item">
-    {{ col.label }}
-  </mat-checkbox>
-</div>

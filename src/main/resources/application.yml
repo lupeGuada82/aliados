@@ -4,6 +4,7 @@ spring:
     name: aliados
   liquibase:
     enabled: false
+    change-log: classpath:db/liquibase/db.changelog.xml
   web:
     cors:
       mappings:
