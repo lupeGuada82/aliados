@@ -4,7 +4,7 @@
 
 - Java 17 o superior
 - Node.js 22 (o usar el Node provisto por Gradle)
-- Docker Desktop
+- Docker Desktop, o bien PostgreSQL 16 instalado localmente
 - Git
 
 ## 1. Clonar el proyecto
@@ -46,6 +46,35 @@ Usuario: postgres
 Contraseña: postgres
 Host: localhost
 Puerto: 5432
+```
+
+### Alternativa: PostgreSQL instalado localmente
+
+Otra persona puede crear la misma base sin Docker instalando PostgreSQL nativamente.
+
+1. Instalar PostgreSQL 16.
+2. Crear la base de datos:
+
+```sql
+CREATE DATABASE aliados;
+```
+
+3. Configurar el usuario/contrasena.
+
+La aplicación se conecta a `localhost:5432`, ya sea que PostgreSQL corra en Docker o de forma nativa.
+
+Si Docker y PostgreSQL nativo se ejecutan al mismo tiempo, los dos pueden pelear por el puerto `5432`. Para evitarlo hay dos opciones:
+
+- Detener el contenedor:
+
+```powershell
+docker compose down
+```
+
+- O mapear Docker a otro puerto, por ejemplo `5433`, y usar:
+
+```text
+jdbc:postgresql://localhost:5433/aliados
 ```
 
 ## 3. Ejecutar el backend
